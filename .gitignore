@@ -13,3 +13,7 @@ tmp/
 local.properties
 .factorypath
 src-gen/
+
+direnv/
+livrables/src/*.pdf
+livrables/src/*/*.pdf
