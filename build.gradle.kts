@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "org.n7"
+group = "org.pinte"
 version = "1.0-SNAPSHOT"
 
 repositories {

@@ -1,4 +1,4 @@
-package org.n7;
+package org.pinte;
 
 public class Main {
 	public static void main(String[] args) {
