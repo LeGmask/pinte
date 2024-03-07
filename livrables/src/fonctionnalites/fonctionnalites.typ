@@ -15,7 +15,7 @@
   ),
   teachers: (),
   date: "24 Février 2024",
-  subtitle: "Groupe EF02",
+  subtitle: "1SN EF02",
   toc: false,
 )
 #let pinte = $arrow("Pinte")$ //+ " " + emoji.beer

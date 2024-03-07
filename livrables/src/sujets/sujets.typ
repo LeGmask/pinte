@@ -15,7 +15,7 @@
   ),
   //teachers: none,
   date: "12 Février 2024",
-  subtitle: "Groupe EF02",
+  subtitle: "1SN EF02",
   toc: false,
 )
 
