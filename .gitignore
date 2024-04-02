@@ -11,7 +11,8 @@ local.properties
 .factorypath
 src-gen/
 
-direnv/
+.direnv/
+.envrc
 livrables/src/*.pdf
 livrables/src/*/*.pdf
 
