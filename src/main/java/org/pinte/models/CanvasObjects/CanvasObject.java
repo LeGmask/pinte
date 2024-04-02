@@ -1,6 +1,5 @@
 package org.pinte.models.CanvasObjects;
 
-import java.util.Vector;
 import javafx.scene.shape.Shape;
 
 public abstract class CanvasObject {
