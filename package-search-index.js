@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.pinte"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.pinte"},{"l":"org.pinte.controllers"},{"l":"org.pinte.models"}];updateSearchResults();
