@@ -21,7 +21,7 @@ javafx {
 }
 
 application {
-    mainClass.set("org.pinte.Main")
+    mainClass.set("org.pinte.Application")
 }
 
 tasks.test {
