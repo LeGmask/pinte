@@ -25,7 +25,7 @@ public class CanvasRectangle extends CanvasObject {
     public CanvasRectangle(Point2D a, Point2D b, Point2D c, Point2D d, CanvasColor fillColor, CanvasColor strokeColor) {
         super(fillColor, strokeColor);
 
-        if (!validCoordinates(a, b, c, d)) {
+        if (!isOppositeCorners(a, b, c, d)) {
             throw new IllegalArgumentException("Points passed do not form a valid rectangle.");
         }
         this.a = a;
@@ -63,23 +63,6 @@ public class CanvasRectangle extends CanvasObject {
         double sideAB = Math.sqrt(Math.pow(p2.getX() - p1.getX(), 2) + Math.pow(p2.getY() - p1.getY(), 2));
         double sideCD = Math.sqrt(Math.pow(p4.getX() - p3.getX(), 2) + Math.pow(p4.getY() - p3.getY(), 2));
         return sideAB == sideCD;
-    }
-
-    /**
-     * Check conformity of the coordinates
-     *
-     * @param a
-     * @param b
-     * @param c
-     * @param d
-     * @return true if the coordinates are conform, false otherwise
-     */
-    private boolean validCoordinates(Point2D a, Point2D b, Point2D c, Point2D d) {
-        boolean res = true;
-        res = res && isOppositeCorners(a, b, c, d);
-        res = res && a.getX() <= b.getX() && a.getY() <= b.getY();
-        res = res && c.getX() >= d.getX() && c.getY() >= d.getY();
-        return res;
     }
 
 }
