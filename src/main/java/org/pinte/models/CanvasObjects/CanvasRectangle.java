@@ -35,6 +35,25 @@ public class CanvasRectangle extends CanvasObject {
 
     }
 
+    /**
+     * Creates a rectangle with the given point, width, height and color.
+     *
+     * @param a           The top left corner of the rectangle
+     * @param width       The width of the rectangle
+     * @param height      The height of the rectanglet
+     * @param fillColor   The color to fill the rectangle with
+     * @param strokeColor The color of the outline
+     */
+    public CanvasRectangle(Point2D a, double width, double height, CanvasColor fillColor, CanvasColor strokeColor) {
+        super(fillColor, strokeColor);
+
+        this.a = a;
+        this.b = new Point2D(a.getX() + width, a.getY());
+        this.c = new Point2D(a.getX() + width, a.getY() - height);
+        this.d = new Point2D(a.getX(), a.getY() - height);
+
+    }
+
     public Shape render() {
         javafx.scene.shape.Rectangle r = new javafx.scene.shape.Rectangle(this.a.getX(), this.a.getY(),
                 this.a.distance(b), this.a.distance(d));
@@ -46,7 +65,12 @@ public class CanvasRectangle extends CanvasObject {
     public String toSVG() {
         return """
                 <rect fill="#%s" height="%f" id="svg_1" stroke="#%s" width="%f" x="%f" y="%f"/>
-                """.formatted("000000", this.a.distance(this.d), "FFFFFF", this.a.distance(this.b), this.a.getX(),
+                """.formatted(
+                this.fillColor.asHex(),
+                this.a.distance(this.d),
+                this.strokeColor.asHex(),
+                this.a.distance(this.b),
+                this.a.getX(),
                 this.a.getY());
     }
 
