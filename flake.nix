@@ -25,7 +25,9 @@
             #typst-fmt
 
             # Java
-            jdk21
+            (jdk21.override {enableJavaFX = true;})
+            gradle
+            xorg.libXxf86vm
           ];
         };
       };
