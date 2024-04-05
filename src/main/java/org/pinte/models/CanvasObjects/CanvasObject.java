@@ -27,4 +27,17 @@ public abstract class CanvasObject {
      */
     public abstract String toSVG();
 
+    public static CanvasObject parseFromSVG(String svgString) throws IllegalArgumentException {
+        var split = svgString.replace("<", "").split(" ");
+        var type = split[0];
+
+        switch (type) {
+            case "rect":
+                return CanvasRectangle.createFromSVG(svgString);
+            default:
+                throw new IllegalArgumentException("Unknown object type '" + type + "' in SVG string.");
+        }
+
+    }
+
 }

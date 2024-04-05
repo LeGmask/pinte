@@ -1,7 +1,8 @@
 package org.pinte.models.CanvasObjects;
 
+import org.pinte.models.Utils.CanvasObjectParser;
+
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 public class CanvasRectangle extends CanvasObject {
@@ -35,6 +36,18 @@ public class CanvasRectangle extends CanvasObject {
 
     }
 
+    public static CanvasRectangle createFromSVG(String args) {
+        double x = Double.parseDouble(CanvasObjectParser.parse("x", args));
+        double y = Double.parseDouble(CanvasObjectParser.parse("y", args));
+
+        double w = Double.parseDouble(CanvasObjectParser.parse("width", args));
+        double h = Double.parseDouble(CanvasObjectParser.parse("height", args));
+        CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parse("fill", args));
+        CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parse("stroke", args));
+
+        return new CanvasRectangle(new Point2D(x, y), w, h, fillColor, strokeColor);
+    }
+
     /**
      * Creates a rectangle with the given point, width, height and color.
      *
@@ -46,7 +59,6 @@ public class CanvasRectangle extends CanvasObject {
      */
     public CanvasRectangle(Point2D a, double width, double height, CanvasColor fillColor, CanvasColor strokeColor) {
         super(fillColor, strokeColor);
-
         this.a = a;
         this.b = new Point2D(a.getX() + width, a.getY());
         this.c = new Point2D(a.getX() + width, a.getY() - height);
@@ -64,7 +76,7 @@ public class CanvasRectangle extends CanvasObject {
 
     public String toSVG() {
         return """
-                <rect fill="#%s" height="%f" id="svg_1" stroke="#%s" width="%f" x="%f" y="%f"/>
+                <rect fill="%s" height="%f" stroke="%s" width="%f" x="%f" y="%f"/>
                 """.formatted(
                 this.fillColor.asHex(),
                 this.a.distance(this.d),
