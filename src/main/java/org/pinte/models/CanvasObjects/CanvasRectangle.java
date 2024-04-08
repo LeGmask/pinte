@@ -37,13 +37,13 @@ public class CanvasRectangle extends CanvasObject {
     }
 
     public static CanvasRectangle createFromSVG(String args) {
-        double x = Double.parseDouble(CanvasObjectParser.parse("x", args));
-        double y = Double.parseDouble(CanvasObjectParser.parse("y", args));
+        double x = Double.parseDouble(CanvasObjectParser.parseKeyword("x", args));
+        double y = Double.parseDouble(CanvasObjectParser.parseKeyword("y", args));
 
-        double w = Double.parseDouble(CanvasObjectParser.parse("width", args));
-        double h = Double.parseDouble(CanvasObjectParser.parse("height", args));
-        CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parse("fill", args));
-        CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parse("stroke", args));
+        double w = Double.parseDouble(CanvasObjectParser.parseKeyword("width", args));
+        double h = Double.parseDouble(CanvasObjectParser.parseKeyword("height", args));
+        CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args));
+        CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args));
 
         return new CanvasRectangle(new Point2D(x, y), w, h, fillColor, strokeColor);
     }

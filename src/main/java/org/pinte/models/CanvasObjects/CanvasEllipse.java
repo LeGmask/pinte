@@ -58,14 +58,14 @@ public class CanvasEllipse extends CanvasObject {
     }
 
     public static CanvasEllipse createFromSVG(String args) {
-        double cx = Double.parseDouble(CanvasObjectParser.parse("cx", args));
-        double cy = Double.parseDouble(CanvasObjectParser.parse("cy", args));
+        double cx = Double.parseDouble(CanvasObjectParser.parseKeyword("cx", args));
+        double cy = Double.parseDouble(CanvasObjectParser.parseKeyword("cy", args));
 
-        double rx = Double.parseDouble(CanvasObjectParser.parse("rx", args));
-        double ry = Double.parseDouble(CanvasObjectParser.parse("ry", args));
+        double rx = Double.parseDouble(CanvasObjectParser.parseKeyword("rx", args));
+        double ry = Double.parseDouble(CanvasObjectParser.parseKeyword("ry", args));
 
-        CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parse("fill", args));
-        CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parse("stroke", args));
+        CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args));
+        CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args));
         return new CanvasEllipse(new Point2D(cx, cy), rx, ry, fillColor, strokeColor);
     }
 
