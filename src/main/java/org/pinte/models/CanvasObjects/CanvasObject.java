@@ -37,6 +37,10 @@ public abstract class CanvasObject {
 
             case "ellipse":
                 return CanvasEllipse.createFromSVG(svgString);
+
+            case "polygon":
+                return CanvasPolygon.createFromSVG(svgString);
+
             default:
                 throw new IllegalArgumentException("Unknown object type '" + type + "' in SVG string.");
         }
