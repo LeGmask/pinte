@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
   * @author	---
   */
 
-public class CanvasRectangeTest {
+public class CanvasRectangleTest {
 
 	// TODO : Tests unitaires pour CanvasRectangle
 

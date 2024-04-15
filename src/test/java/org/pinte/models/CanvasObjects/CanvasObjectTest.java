@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
   * @author	---
   */
 
-public class CanvasColorObjectTest {
+public class CanvasObjectTest {
 
 	// TODO : Tests unitaires pour CanvasObject
 
