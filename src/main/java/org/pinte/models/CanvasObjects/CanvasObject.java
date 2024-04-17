@@ -2,6 +2,11 @@ package org.pinte.models.CanvasObjects;
 
 import javafx.scene.shape.Shape;
 
+/**
+ * CanvasObject abstract class to build canvas objects
+ *
+ * @author Louis Thevenet
+ */
 public abstract class CanvasObject {
 
     CanvasColor fillColor;

@@ -6,6 +6,11 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
+/**
+ * Polygon canvas object
+ *
+ * @author Louis Thevenet
+ */
 public class CanvasPolygon extends CanvasObject {
 
     private Point2D[] points;

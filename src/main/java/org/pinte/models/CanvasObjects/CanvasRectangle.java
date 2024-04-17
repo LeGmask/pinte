@@ -5,6 +5,11 @@ import org.pinte.models.Utils.CanvasObjectParser;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
 
+/**
+ * Rectangle canvas object
+ *
+ * @author Louis Thevenet
+ */
 public class CanvasRectangle extends CanvasObject {
     Point2D a, b, c, d;
 

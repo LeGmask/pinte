@@ -5,6 +5,11 @@ import org.pinte.models.Utils.CanvasObjectParser;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
 
+/**
+ * Ellipse canvas object
+ *
+ * @author Louis Thevenet
+ */
 public class CanvasEllipse extends CanvasObject {
     Point2D center;
     double rx, ry;

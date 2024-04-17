@@ -4,6 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.geometry.Point2D;
 
+/**
+ * CanvasObjectParser class used to parse SVG strings
+ *
+ * @author Louis Thevenet
+ */
 public class CanvasObjectParser {
 
     /**
