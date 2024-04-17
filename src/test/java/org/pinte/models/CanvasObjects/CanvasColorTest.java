@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import javafx.scene.paint.Color;
 
 /**
-  * Classe de test de CanvasObject
-  * 
-  * @author	Astrid Giuliani
-  */
+ * Classe de test de CanvasObject
+ *
+ * @author Astrid Giuliani
+ */
 
 public class CanvasColorTest {
 
-    //CanvasColor(r, g, b)
+    // CanvasColor(r, g, b)
     @Test
     public void testNormalUseCanvasColorRGB() {
         CanvasColor color = new CanvasColor(20, 50, 70);
@@ -40,7 +40,7 @@ public class CanvasColorTest {
     public void testNegativeGValueCanvasColorRGBThrowsIllegalArgumentException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor(30, -10, 70));
     }
-    
+
     @Test
     public void testNegativeBValueCanvasColorRGBThrowsIllegalArgumentException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor(30, 10, -70));
@@ -55,17 +55,23 @@ public class CanvasColorTest {
     public void testAbove255GValueCanvasColorRGBThrowsIllegalArgumentException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor(30, 256, 70));
     }
-    
+
     @Test
     public void testAbove255BValueCanvasColorRGBThrowsIllegalArgumentException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor(30, 10, 256));
     }
 
-
-    //CanvasColor(hex)
+    // CanvasColor(hex)
     @Test
     public void testNormalUseCanvasColorHex() {
         CanvasColor color = new CanvasColor("#143246");
+        Assertions.assertEquals("#143246", color.asHex());
+    }
+
+    // CanvasColor(hex)
+    @Test
+    public void testNormalUseCanvasColorHexNoHashInput() {
+        CanvasColor color = new CanvasColor("143246");
         Assertions.assertEquals("#143246", color.asHex());
     }
 
@@ -96,17 +102,12 @@ public class CanvasColorTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor("#123g43"));
     }
 
-    @Test
-    public void testWrongTypeArgumentCanvasColorHexThrowsIllegalArgumentException3() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor("#12af43"));
-    }
-
-
-    //toPaintColor()
+    // toPaintColor()
     @Test
     public void testNormalUseToPaintColor() {
         Assertions.assertEquals(Color.ALICEBLUE,
-                                new CanvasColor((int) (Color.ALICEBLUE.getRed()*255), (int) (Color.ALICEBLUE.getGreen()*255), (int) (Color.ALICEBLUE.getBlue()*255)).toPaintColor());
+                new CanvasColor((int) (Color.ALICEBLUE.getRed() * 255), (int) (Color.ALICEBLUE.getGreen() * 255),
+                        (int) (Color.ALICEBLUE.getBlue() * 255)).toPaintColor());
     }
 
 }
