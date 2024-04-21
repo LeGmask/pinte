@@ -78,4 +78,12 @@ public class CanvasColor {
     public Color toPaintColor() {
         return new Color((double) r / 255.0, (double) g / 255.0, (double) b / 255.0, 1.0);
     }
+
+    public String toString() {
+        return "Color [r=" + r + ", g=" + g + ", b=" + b + "]";
+    }
+
+    public boolean equals(CanvasColor c) {
+        return (this.r == c.r && this.g == c.g && this.b == c.b);
+    }
 }
