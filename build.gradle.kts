@@ -1,6 +1,7 @@
 plugins {
     id("application")
     id("org.openjfx.javafxplugin") version "0.1.0"
+    id("com.adarshr.test-logger") version "4.0.0"
 }
 
 group = "org.pinte"
