@@ -38,9 +38,7 @@ public class CanvasPolygon extends CanvasObject {
     }
 
     public String toSVG() {
-        return """
-                <polygon points="%s" fill="%s" stroke="%s"/>
-                """.formatted(
+        return "<polygon points=\"%s\" fill=\"%s\" stroke=\"%s\"/>".formatted(
                 pointsToString(),
                 this.fillColor.asHex(),
                 this.strokeColor.asHex());

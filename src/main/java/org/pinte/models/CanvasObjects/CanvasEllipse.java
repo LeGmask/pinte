@@ -82,9 +82,7 @@ public class CanvasEllipse extends CanvasObject {
     }
 
     public String toSVG() {
-        return """
-                <ellipse cx="%f" cy="%f" fill="%s" id="svg_1" rx="%f" ry="%f" stroke="%s"/>
-                    """.formatted(center.getX(), center.getY(), fillColor.asHex(), rx, ry, strokeColor.asHex());
+        return "<ellipse cx=\"%f\" cy=\"%f\" fill=\"%s\" id=\"svg_1\" rx=\"%f\" ry=\"%f\" stroke=\"%s\"/>"
+                .formatted(center.getX(), center.getY(), fillColor.asHex(), rx, ry, strokeColor.asHex());
     }
-
 }

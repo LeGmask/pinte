@@ -80,9 +80,7 @@ public class CanvasRectangle extends CanvasObject {
     }
 
     public String toSVG() {
-        return """
-                <rect fill="%s" height="%f" stroke="%s" width="%f" x="%f" y="%f"/>
-                """.formatted(
+        return "<rect fill=\"%s\" height=\"%f\" stroke=\"%s\" width=\"%f\" x=\"%f\" y=\"%f\"/>".formatted(
                 this.fillColor.asHex(),
                 this.a.distance(this.d),
                 this.strokeColor.asHex(),
