@@ -3,6 +3,7 @@ package org.pinte.models.CanvasObjects;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.pinte.models.Utils.CanvasObjectParser;
 
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Ellipse;
@@ -54,10 +55,20 @@ public class CanvasEllipseTest {
     @Test
     public void testSVGString() {
         CanvasEllipse ellipse = new CanvasEllipse(center, radiusX, radiusY, fillColor, strokeColor);
-        CanvasEllipse ellipse2 = (CanvasEllipse) CanvasObject.parseFromSVG(ellipse.toSVG());
+        String svgString = ellipse.toSVG();
+        Double cx = Double.parseDouble(CanvasObjectParser.parseKeyword("cx", svgString));
+        Double cy = Double.parseDouble(CanvasObjectParser.parseKeyword("cy", svgString));
+        Double rx = Double.parseDouble(CanvasObjectParser.parseKeyword("rx", svgString));
+        Double ry = Double.parseDouble(CanvasObjectParser.parseKeyword("ry", svgString));
+        CanvasColor fill = new CanvasColor(CanvasObjectParser.parseKeyword("fill", svgString));
+        CanvasColor stroke = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", svgString));
 
-        Assertions.assertEquals(ellipse.toSVG(), ellipse2.toSVG());
-        testEqual(ellipse2);
+        Assertions.assertEquals(cx, center.getX());
+        Assertions.assertEquals(cy, center.getY());
+        Assertions.assertEquals(rx, radiusX);
+        Assertions.assertEquals(ry, radiusY);
+        Assertions.assertEquals(fill.asHex(), fillColor.asHex());
+        Assertions.assertEquals(stroke.asHex(), strokeColor.asHex());
     }
 
     @Test
@@ -69,10 +80,10 @@ public class CanvasEllipseTest {
         s2.setFill(fillColor.toPaintColor());
         s2.setStroke(strokeColor.toPaintColor());
 
-        Assertions.assertTrue(s.getCenterX() == s2.getCenterX());
-        Assertions.assertTrue(s.getCenterY() == s2.getCenterY());
-        Assertions.assertTrue(s.getRadiusX() == s2.getRadiusX());
-        Assertions.assertTrue(s.getRadiusY() == s2.getRadiusY());
+        Assertions.assertEquals(s.getCenterX(), s2.getCenterX());
+        Assertions.assertEquals(s.getCenterY(), s2.getCenterY());
+        Assertions.assertEquals(s.getRadiusX(), s2.getRadiusX());
+        Assertions.assertEquals(s.getRadiusY(), s2.getRadiusY());
         Assertions.assertEquals(s.getFill(), s2.getFill());
         Assertions.assertEquals(s.getStroke(), s2.getStroke());
 
