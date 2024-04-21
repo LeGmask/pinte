@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Rectangle;
 
 /**
   * Classe de test de CanvasRectangle
@@ -16,7 +17,16 @@ public class CanvasRectangleTest {
 
   Point2D A, B, C, D, E, F, G;
   CanvasColor fillColor, strokeColor;
-  String rectangle1ToSVG;
+  int width, length;
+
+  void testEqual(CanvasRectangle rectangle, Point2D a, Point2D b, Point2D c, Point2D d) {
+    Assertions.assertEquals(rectangle.a, a);
+    Assertions.assertEquals(rectangle.b, b);
+    Assertions.assertEquals(rectangle.c, c);
+    Assertions.assertEquals(rectangle.d, d);
+    Assertions.assertTrue(rectangle.fillColor.equals(fillColor));
+    Assertions.assertTrue(rectangle.strokeColor.equals(strokeColor));
+}
 
   @BeforeEach
   public void setUp() {
@@ -34,23 +44,47 @@ public class CanvasRectangleTest {
     this.fillColor = new CanvasColor(0, 255, 0);
     this.strokeColor = new CanvasColor(0, 0, 255);
 
-    //Initialize results
-    this.rectangle1ToSVG = """
-      <rect fill="%s" height="%f" stroke="%s" width="%f" x="%f" y="%f"/>
-      """.formatted(
-      "#00FF00",
-      3.000000,
-      "#0000FF",
-      5.000000,
-      0.000000,
-      0.000000);
-  }
+    // Initialize lengths
+    this.width = 5;
+    this.length = 3;
 
+  }
   //CanvasRectangle(a, b, c, d, fillColor, strokeColor)
   @Test
-  public void testNormalUseCanvasRectangle() {
-    CanvasRectangle rectangle1 = new CanvasRectangle(A, B, C, D , fillColor, strokeColor);
-    Assertions.assertEquals(rectangle1ToSVG, rectangle1.toSVG());
+  public void testConstructorPoints() {
+    CanvasRectangle rectangle = new CanvasRectangle(A, B, C, D , fillColor, strokeColor);
+    testEqual(rectangle, A, B, C, D);
   }
 
+  @Test
+  public void testConstructorLengths() {
+    CanvasRectangle rectangle = new CanvasRectangle(A, width, length, fillColor, strokeColor);
+    testEqual(rectangle, A, B, C, D);
+  }
+
+  @Test
+  public void testSVGString() {
+    CanvasRectangle rectangle1 = new CanvasRectangle(A, B, C, D , fillColor, strokeColor);
+    CanvasRectangle rectangle2 = (CanvasRectangle) CanvasObject.parseFromSVG(rectangle1.toSVG());
+    
+    Assertions.assertEquals(rectangle1.toSVG(), rectangle2.toSVG());
+    testEqual(rectangle2, A, B, C, D);
+  }
+
+  @Test
+    public void testRender() {
+      CanvasRectangle rectangle1 = new CanvasRectangle(A, B, C, D , fillColor, strokeColor);
+
+      Rectangle r = (Rectangle) rectangle1.render();
+      Rectangle r2 = new Rectangle(A.getX(), A.getY(), width, length);
+      r2.setFill(fillColor.toPaintColor());
+      r2.setStroke(strokeColor.toPaintColor());
+
+      Assertions.assertTrue(r.getHeight() == r2.getHeight());
+      Assertions.assertTrue(r.getWidth() == r2.getWidth());
+      Assertions.assertTrue(r.getX() == r2.getX());
+      Assertions.assertTrue(r.getY() == r2.getY());
+      Assertions.assertEquals(r.getFill(), r2.getFill());
+      Assertions.assertEquals(r.getStroke(), r2.getStroke());
+    }
 }
