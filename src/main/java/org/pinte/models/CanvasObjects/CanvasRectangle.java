@@ -4,6 +4,8 @@ import org.pinte.models.Utils.CanvasObjectParser;
 
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 /**
  * Rectangle canvas object
@@ -80,13 +82,14 @@ public class CanvasRectangle extends CanvasObject {
     }
 
     public String toSVG() {
-        return "<rect fill=\"%s\" height=\"%f\" stroke=\"%s\" width=\"%f\" x=\"%f\" y=\"%f\"/>".formatted(
-                this.fillColor.asHex(),
-                this.a.distance(this.d),
-                this.strokeColor.asHex(),
-                this.a.distance(this.b),
-                this.a.getX(),
-                this.a.getY());
+        Dictionary<String, String> attributes = new Hashtable<>();
+        attributes.put("height", Double.toString(this.a.distance(d)));
+        attributes.put("width", Double.toString(this.a.distance(b)));
+        attributes.put("x", Double.toString(this.a.getX()));
+        attributes.put("y", Double.toString(this.a.getY()));
+        attributes.put("fill", this.fillColor.asHex());
+        attributes.put("stroke", this.strokeColor.asHex());
+        return toSVG("rect", attributes);
     }
 
     /**

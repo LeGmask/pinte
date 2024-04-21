@@ -5,6 +5,9 @@ import org.pinte.models.Utils.CanvasObjectParser;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 /**
  * Ellipse canvas object
  *
@@ -82,7 +85,13 @@ public class CanvasEllipse extends CanvasObject {
     }
 
     public String toSVG() {
-        return "<ellipse cx=\"%f\" cy=\"%f\" fill=\"%s\" id=\"svg_1\" rx=\"%f\" ry=\"%f\" stroke=\"%s\"/>"
-                .formatted(center.getX(), center.getY(), fillColor.asHex(), rx, ry, strokeColor.asHex());
+        Dictionary<String, String> d = new Hashtable<>();
+        d.put("cx", Double.toString(this.center.getX()));
+        d.put("cy", Double.toString(this.center.getY()));
+        d.put("rx", Double.toString(this.rx));
+        d.put("ry", Double.toString(this.ry));
+        d.put("fill", this.fillColor.asHex());
+        d.put("stroke", this.strokeColor.asHex());
+        return toSVG("ellipse", d);
     }
 }

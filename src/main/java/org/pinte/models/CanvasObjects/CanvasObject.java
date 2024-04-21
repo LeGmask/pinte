@@ -1,6 +1,8 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.scene.shape.Shape;
+import java.util.Dictionary;
+import java.util.Enumeration;
 
 /**
  * CanvasObject abstract class to build canvas objects
@@ -50,6 +52,24 @@ public abstract class CanvasObject {
                 throw new IllegalArgumentException("Unknown object type '" + type + "' in SVG string.");
         }
 
+    }
+
+    /**
+     * Creates a SVG string from a shape name and its attributes
+     *
+     * @param shape
+     * @param attributes <key,value>
+     * @return
+     */
+    public static String toSVG(String shape, Dictionary<String, String> attributes) {
+        String svgString = "<" + shape;
+        Enumeration<String> e = attributes.keys();
+        while (e.hasMoreElements()) {
+
+            String k = e.nextElement();
+            svgString += " " + k + "=\"" + attributes.get(k) + "\"";
+        }
+        return svgString + "/>";
     }
 
 }

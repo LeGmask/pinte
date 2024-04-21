@@ -5,6 +5,8 @@ import org.pinte.models.Utils.CanvasObjectParser;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 /**
  * Polygon canvas object
@@ -38,10 +40,12 @@ public class CanvasPolygon extends CanvasObject {
     }
 
     public String toSVG() {
-        return "<polygon points=\"%s\" fill=\"%s\" stroke=\"%s\"/>".formatted(
-                pointsToString(),
-                this.fillColor.asHex(),
-                this.strokeColor.asHex());
+        Dictionary<String, String> d = new Hashtable<>();
+        d.put("points", pointsToString());
+        d.put("fill", this.fillColor.asHex());
+        d.put("stroke", this.strokeColor.asHex());
+        return toSVG("polygon", d);
+
     }
 
     public static CanvasPolygon createFromSVG(String args) {
