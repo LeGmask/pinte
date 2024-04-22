@@ -64,7 +64,7 @@ public abstract class CanvasObject {
 	 * Creates an SVG string from a shape name and its attributes
 	 *
 	 * @param shape the shape name
-	 * @param attributes <key,value>
+	 * @param attributes [key,value]
 	 * @return the SVG string
 	 */
 	public static String toSVG(String shape, Dictionary<String, String> attributes) {
