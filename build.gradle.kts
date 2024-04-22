@@ -1,6 +1,7 @@
 plugins {
     id("application")
     id("org.openjfx.javafxplugin") version "0.1.0"
+    id("com.adarshr.test-logger") version "4.0.0"
 }
 
 group = "org.pinte"
@@ -13,6 +14,7 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 javafx {
