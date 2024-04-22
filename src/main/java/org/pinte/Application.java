@@ -9,8 +9,7 @@ public class Application extends javafx.application.Application {
 	@Override
 	public void start(Stage mainStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
-//		System.out.println(getClass().getResource("views/main.fxml"));
-		loader.setLocation(getClass().getResource("views/main.fxml"));
+		loader.setLocation(getClass().getResource("views/new.fxml")); // instantiate the new view
 		Parent root = loader.load();
 
 		Scene scene = new Scene(root);
