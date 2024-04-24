@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml/1"
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<BorderPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.pinte.controllers.Main">
-
     <fx:include source="menu.fxml"/>
-    <Label text="Hello, World!" layoutX="118" layoutY="71"/>
-</AnchorPane>
+
+    <left>
+        <Button fx:id="demo" text="Click me!" onAction="#handleDemo"/>
+    </left>
+    <center>
+        <Canvas fx:id="javafxCanvas"/>
+    </center>
+
+</BorderPane>
