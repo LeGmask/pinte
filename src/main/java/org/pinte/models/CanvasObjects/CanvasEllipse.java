@@ -83,14 +83,11 @@ public class CanvasEllipse extends CanvasObject {
 
 	/**
 	 * Renders the ellipse on the canvas
-	 *
-	 * @return the render of the ellipse
 	 */
-	public Shape render() {
-		javafx.scene.shape.Ellipse c = new javafx.scene.shape.Ellipse(center.getX(), center.getY(), rx, ry);
-		c.setFill(this.fillColor.toPaintColor());
-		c.setStroke(this.strokeColor.toPaintColor());
-		return c;
+	public void render() {
+		this.gc.setFill(this.fillColor.toPaintColor());
+		this.gc.setStroke(this.strokeColor.toPaintColor());
+		this.gc.fillOval(center.getX(), center.getY(), rx, ry);
 	}
 
 	/**
