@@ -1,6 +1,9 @@
 package org.pinte.models;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
+import org.pinte.models.CanvasObjects.CanvasColor;
+import org.pinte.models.CanvasObjects.CanvasEllipse;
 
 /**
  * Singleton class for the Canvas
@@ -61,6 +64,26 @@ public final class Canvas {
 	 */
 	public GraphicsContext getGraphicsContext2D() {
 		return this.javafxCanvas.getGraphicsContext2D();
+	}
+
+	/**
+	 * Clear the canvas
+	 */
+	public void clear() {
+		this.javafxCanvas.getGraphicsContext2D().clearRect(0, 0, this.javafxCanvas.getWidth(), this.javafxCanvas.getHeight());
+	}
+
+	/**
+	 * Render the canvas
+	 */
+	public void render() {
+		new CanvasEllipse(
+			new Point2D(400, 400),
+			100,
+			100,
+			new CanvasColor(255, 0, 0),
+			new CanvasColor(0, 0, 255)
+		).render();
 	}
 
 

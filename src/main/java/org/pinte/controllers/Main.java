@@ -23,12 +23,7 @@ public class Main {
 	}
 
 	public void handleDemo(ActionEvent actionEvent) {
-		new CanvasEllipse(
-			new Point2D(400, 400),
-			100,
-			100,
-			new CanvasColor(255, 0, 0),
-			new CanvasColor(0, 0, 255)
-		).render();
+		canvas.clear();
+		canvas.render();
 	}
 }
