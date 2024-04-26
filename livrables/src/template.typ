@@ -59,3 +59,19 @@
 
   body
 }
+
+#let create_user_story(titre, prio, esti, en-tant, je-souhaite, afin-de) = table(
+  columns: 2,
+  [Titre],
+  [#titre],
+  [Priorité],
+  [#prio],
+  [Estimation],
+  [#esti],
+  [En tant que],
+  [#en-tant],
+  [Je souhaite],
+  [#je-souhaite],
+  [afin de],
+  [#afin-de],
+)
