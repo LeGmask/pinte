@@ -28,6 +28,11 @@
             (jdk21.override {enableJavaFX = true;})
             gradle
             xorg.libXxf86vm
+            doxygen
+            doxygen_gui
+            graphviz
+            texliveFull
+            pdf2svg
           ];
         };
       };

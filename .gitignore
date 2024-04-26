@@ -16,6 +16,8 @@ src-gen/
 livrables/src/*.pdf
 livrables/src/*/*.pdf
 
+doxygen_output/
+
 # Created by https://www.toptal.com/developers/gitignore/api/java,gradle
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,gradle
 
