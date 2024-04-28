@@ -4,11 +4,11 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.Stage;
+import org.pinte.models.enregistrer;
 
 public class MenuBar {
 	public javafx.scene.control.MenuBar menuBar;
-	
+	public String path;
 	// on create
 	public void initialize() {
 		Menu menu = new Menu("Fichier");
@@ -28,19 +28,21 @@ public class MenuBar {
 
 		menuBar.getMenus().add(menu);
 		
-		choice1Item.setOnAction(event->{enregistrerss();});
-		choice1Item.setOnAction(event->{enregistrer();});
+		choice1Item.setOnAction(event->{chemin();});
+		choice2Item.setOnAction(event->{enregistrer();});
 	}
 	
-	public void enregistrerss(){
+	public void chemin(){
 		System.out.println("enregistrer");
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		directoryChooser.setTitle("Select Project Location");
-		System.out.println(directoryChooser.showDialog(null).getAbsolutePath());
+		path = directoryChooser.showDialog(null).getAbsolutePath();
+		enregistrer();
 	}
 
 	public void enregistrer(){
-		
+		enregistrer save = new enregistrer("path");
+		save.sauvegarder();
 	}
 
 }
