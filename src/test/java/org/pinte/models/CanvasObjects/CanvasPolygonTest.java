@@ -14,7 +14,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 
 /**
- * Classe de test de CanvasEllipse
+ * Classe de test de CanvasPolygon
  */
 public class CanvasPolygonTest {
 
