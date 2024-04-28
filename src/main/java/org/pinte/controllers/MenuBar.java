@@ -3,8 +3,12 @@ package org.pinte.controllers;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
+import javafx.scene.Scene;
 import javafx.stage.DirectoryChooser;
 import org.pinte.models.enregistrer;
+import javafx.stage.Stage;
 
 public class MenuBar {
 	public javafx.scene.control.MenuBar menuBar;
@@ -29,19 +33,30 @@ public class MenuBar {
 		menuBar.getMenus().add(menu);
 		
 		choice1Item.setOnAction(event->{chemin();});
-		choice2Item.setOnAction(event->{enregistrer();});
+		choice2Item.setOnAction(event->{if(path!=null){enregistrer();}});
 	}
-	
+	/**
+	 * ouvre les fênetres pour choisir le nom et l'emplacement du fichier à enregistrer et enregistre
+	 */
 	public void chemin(){
+		try{
 		System.out.println("enregistrer");
 		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Select Project Location");
+		directoryChooser.setTitle("Select Save Location");
 		path = directoryChooser.showDialog(null).getAbsolutePath();
-		enregistrer();
+		if(path!=null){
+			enregistrer();
+		}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
+	/**
+	 * appel la classe enregistrer
+	 */
 	public void enregistrer(){
-		enregistrer save = new enregistrer("path");
+		enregistrer save = new enregistrer(path);
 		save.sauvegarder();
 	}
 
