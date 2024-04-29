@@ -1,9 +1,10 @@
 package org.pinte.models;
 
-import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
-import org.pinte.models.CanvasObjects.CanvasColor;
-import org.pinte.models.CanvasObjects.CanvasEllipse;
+import org.pinte.models.CanvasObjects.CanvasObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Singleton class for the Canvas
@@ -20,9 +21,16 @@ public final class Canvas {
 	public javafx.scene.canvas.Canvas javafxCanvas;
 
 	/**
+	 * The objects list
+	 */
+	public List<CanvasObject> objects;
+
+
+	/**
 	 * Private constructor for the Canvas
 	 */
 	private Canvas() {
+		objects = new ArrayList<CanvasObject>(10);
 	}
 
 	/**
@@ -77,13 +85,18 @@ public final class Canvas {
 	 * Render the canvas
 	 */
 	public void render() {
-		new CanvasEllipse(
-			new Point2D(400, 400),
-			100,
-			100,
-			new CanvasColor(255, 0, 0),
-			new CanvasColor(0, 0, 255)
-		).render();
+		for (CanvasObject object : objects) {
+			object.render();
+		}
+	}
+
+	/**
+	 * Add an object to the canvas
+	 *
+	 * @param object the object to add
+	 */
+	public void add(CanvasObject object) {
+		objects.add(object);
 	}
 
 

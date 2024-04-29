@@ -22,6 +22,7 @@ public class Main {
 		canvas.setJavafxCanvas(javafxCanvas); // delegate the canvas to the singleton
 		canvas.resizeCanvas(800, 800); // resize the canvas
 
+
 		new AnimationTimer() {
 			public void handle(long now) {
 				canvas.clear();
@@ -31,6 +32,10 @@ public class Main {
 	}
 
 	public void handleDemo(ActionEvent actionEvent) {
-		// @TODO: add things to canvas ?
+		CanvasEllipse ellipse = new CanvasEllipse(
+			new Point2D(
+				Math.random() * 800,
+				Math.random() * 800), 10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
+		canvas.add(ellipse);
 	}
 }
