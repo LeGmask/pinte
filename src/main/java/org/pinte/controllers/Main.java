@@ -20,7 +20,7 @@ public class Main {
 
 	public void initialize() {
 		canvas.setJavafxCanvas(javafxCanvas); // delegate the canvas to the singleton
-		canvas.resizeCanvas(800, 800); // resize the canvas
+		canvas.setDim(800, 800); // resize the canvas
 
 
 		new AnimationTimer() {

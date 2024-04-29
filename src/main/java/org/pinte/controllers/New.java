@@ -6,8 +6,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.pinte.models.Canvas;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 import static org.pinte.Utils.JavaFX.getStageFromEvent;
 import static org.pinte.Utils.JavaFX.switchScene;
@@ -40,6 +42,11 @@ public class New {
 	 */
 	@FXML
 	public TextField projectLocation;
+
+	/**
+	 * Singleton instance of the Canvas
+	 */
+	private final Canvas canvas = Canvas.getInstance();
 
 	/**
 	 * Initialize the new project view
@@ -85,8 +92,11 @@ public class New {
 	 */
 	public void create(ActionEvent actionEvent) throws IOException {
 		switchScene(actionEvent, "../views/main.fxml");
-
-		// @TODO: create canvas
+		canvas.setDim(
+			Integer.parseInt(projectWidth.getText()),
+			Integer.parseInt(projectHeight.getText())
+		);
+		canvas.setPath(Path.of(projectLocation.getText() + "/" + projectName.getText() + ".svg"));
 	}
 
 	/**
@@ -100,7 +110,6 @@ public class New {
 		Stage stage = getStageFromEvent(actionEvent);
 
 		fileChooser.setTitle("Open Project");
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pinte Project", "*.pinte"));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Svg Files", "*.svg"));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
 

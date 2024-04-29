@@ -3,6 +3,8 @@ package org.pinte.models;
 import javafx.scene.canvas.GraphicsContext;
 import org.pinte.models.CanvasObjects.CanvasObject;
 
+import java.awt.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +21,26 @@ public final class Canvas {
 	 * The javafx canvas
 	 */
 	public javafx.scene.canvas.Canvas javafxCanvas;
+
+	/**
+	 * The javafx GraphicsContext
+	 */
 	public javafx.scene.canvas.GraphicsContext javafxGraphicsContext;
 
 	/**
 	 * The objects list
 	 */
 	public List<CanvasObject> objects;
+
+	/**
+	 * The dimension of the canvas
+	 */
+	private Dimension dim;
+
+	/**
+	 * Where the project should be saved
+	 */
+	private Path path;
 
 
 	/**
@@ -54,6 +70,11 @@ public final class Canvas {
 	public void setJavafxCanvas(javafx.scene.canvas.Canvas javafxCanvas) {
 		this.javafxCanvas = javafxCanvas;
 		this.javafxGraphicsContext = javafxCanvas.getGraphicsContext2D();
+
+		if (this.dim != null) {
+			this.javafxCanvas.setWidth(this.dim.getWidth());
+			this.javafxCanvas.setHeight(this.dim.getHeight());
+		}
 	}
 
 	/**
@@ -62,9 +83,17 @@ public final class Canvas {
 	 * @param width  the width of the canvas
 	 * @param height the height of the canvas
 	 */
-	public void resizeCanvas(int width, int height) {
-		javafxCanvas.setHeight(height);
-		javafxCanvas.setWidth(width);
+	public void setDim(int width, int height) {
+		this.dim = new Dimension(width, height);
+
+		if (this.javafxCanvas != null) {
+			this.javafxCanvas.setWidth(width);
+			this.javafxCanvas.setHeight(height);
+		}
+	}
+
+	public Dimension getDim() {
+		return this.dim;
 	}
 
 	/**
@@ -101,5 +130,21 @@ public final class Canvas {
 		objects.add(object);
 	}
 
+	/**
+	 * Set current project path
+	 *
+	 * @param path the path of the current project
+	 */
+	public void setPath(Path path) {
+		this.path = path;
+	}
 
+	/**
+	 * Get the current project path
+	 *
+	 * @return the path of the current project
+	 */
+	public Path getPath() {
+		return this.path;
+	}
 }
