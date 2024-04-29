@@ -36,6 +36,7 @@ doxygen_output/
 
 # Package Files #
 *.jar
+!livrables/*.jar
 *.war
 *.nar
 *.ear
