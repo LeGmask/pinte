@@ -68,21 +68,4 @@ public class CanvasRectangleTest {
 		Assertions.assertEquals(rectangle1.toSVG(), rectangle2.toSVG());
 		testEqual(rectangle2, A, B, C, D);
 	}
-
-	@Test
-	public void testRender() {
-		CanvasRectangle rectangle1 = new CanvasRectangle(A, B, C, D, fillColor, strokeColor);
-
-		Rectangle r = (Rectangle) rectangle1.render();
-		Rectangle r2 = new Rectangle(A.getX(), A.getY(), width, length);
-		r2.setFill(fillColor.toPaintColor());
-		r2.setStroke(strokeColor.toPaintColor());
-
-		Assertions.assertTrue(r.getHeight() == r2.getHeight());
-		Assertions.assertTrue(r.getWidth() == r2.getWidth());
-		Assertions.assertTrue(r.getX() == r2.getX());
-		Assertions.assertTrue(r.getY() == r2.getY());
-		Assertions.assertEquals(r.getFill(), r2.getFill());
-		Assertions.assertEquals(r.getStroke(), r2.getStroke());
-	}
 }

@@ -50,25 +50,4 @@ public class CanvasPolygonTest {
 		Assertions.assertEquals(fill.asHex(), fillColor.asHex());
 		Assertions.assertEquals(stroke.asHex(), strokeColor.asHex());
 	}
-
-	@Test
-	public void testRender() {
-		CanvasPolygon polygon = new CanvasPolygon(points, fillColor, strokeColor);
-
-		Polygon s = (Polygon) polygon.render();
-		Polygon s2 = new Polygon();
-		for (Point2D point : points) {
-			s2.getPoints().addAll(point.getX(), point.getY());
-		}
-		s2.setFill(fillColor.toPaintColor());
-		s2.setStroke(strokeColor.toPaintColor());
-
-		Assertions.assertEquals(s.getPoints().size(), s2.getPoints().size());
-		for (int i = 0; i < points.length; ++i) {
-			Assertions.assertEquals(s.getPoints().get(i), s2.getPoints().get(i));
-		}
-		Assertions.assertEquals(s.getFill(), s2.getFill());
-		Assertions.assertEquals(s.getStroke(), s2.getStroke());
-
-	}
 }

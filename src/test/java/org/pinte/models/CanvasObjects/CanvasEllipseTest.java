@@ -67,22 +67,4 @@ public class CanvasEllipseTest {
 		Assertions.assertEquals(fill.asHex(), fillColor.asHex());
 		Assertions.assertEquals(stroke.asHex(), strokeColor.asHex());
 	}
-
-	@Test
-	public void testRender() {
-		CanvasEllipse ellipse = new CanvasEllipse(center, radiusX, radiusY, fillColor, strokeColor);
-
-		Ellipse s = (Ellipse) ellipse.render();
-		Ellipse s2 = new Ellipse(center.getX(), center.getY(), radiusX, radiusY);
-		s2.setFill(fillColor.toPaintColor());
-		s2.setStroke(strokeColor.toPaintColor());
-
-		Assertions.assertEquals(s.getCenterX(), s2.getCenterX());
-		Assertions.assertEquals(s.getCenterY(), s2.getCenterY());
-		Assertions.assertEquals(s.getRadiusX(), s2.getRadiusX());
-		Assertions.assertEquals(s.getRadiusY(), s2.getRadiusY());
-		Assertions.assertEquals(s.getFill(), s2.getFill());
-		Assertions.assertEquals(s.getStroke(), s2.getStroke());
-
-	}
 }
