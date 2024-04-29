@@ -1,5 +1,6 @@
 package org.pinte.controllers;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -20,10 +21,16 @@ public class Main {
 	public void initialize() {
 		canvas.setJavafxCanvas(javafxCanvas); // delegate the canvas to the singleton
 		canvas.resizeCanvas(800, 800); // resize the canvas
+
+		new AnimationTimer() {
+			public void handle(long now) {
+				canvas.clear();
+				canvas.render();
+			}
+		}.start();
 	}
 
 	public void handleDemo(ActionEvent actionEvent) {
-		canvas.clear();
-		canvas.render();
+		// @TODO: add things to canvas ?
 	}
 }
