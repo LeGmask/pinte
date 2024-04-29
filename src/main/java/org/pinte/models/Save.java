@@ -1,10 +1,13 @@
 package org.pinte.models;
 import java.io.*;
+import org.pinte.models.CanvasObjects.CanvasObject;
+import java.util.List;
 
 public class Save{
 
     String savepath;
     String title;
+	Canvas canva = Canvas.getInstance();
     public Save(String path){
         this.savepath=path;
         this.title="NewFile";
@@ -22,18 +25,17 @@ public class Save{
     }
 
     private void write(String path) throws Exception{
+		List<CanvasObject> objects = canva.getCanvas();
         //écriture du nouveau fichier
         BufferedWriter file = new BufferedWriter(new FileWriter(path));
         file.write("<?xml version=\"1.0\"?>");
+		file.newLine();
+		file.write("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800px\" height=\"800px\" viewBox=\"0 0 800 800\">");
         file.newLine();
-        file.write("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1000px\" height=\"500px\" viewBox=\"0 0 1000 800\">");
-        file.newLine();
-        file.write("<text x=\"250\" y=\"150\" font-family=\"Verdana\" font-size=\"55\">");
-        file.newLine();
-        file.write("Hello world !");
-        file.newLine();
-        file.write("</text>");
-        file.newLine();
+		for(CanvasObject object : objects){
+			file.write(object.toSVG());
+			file.newLine();
+		}
         file.write("</svg>");
         file.close();
     }

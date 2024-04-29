@@ -131,6 +131,15 @@ public final class Canvas {
 	}
 
 	/**
+	 * Renvoi la liste des objets du Canvas
+	 *
+	 */
+	public List<CanvasObject> getCanvas(){
+		List<CanvasObject> list = this.objects;
+		return list;
+	}
+
+	/**
 	 * Set current project path
 	 *
 	 * @param path the path of the current project
