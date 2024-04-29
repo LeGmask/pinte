@@ -2,22 +2,42 @@ package org.pinte.models;
 import java.io.*;
 import org.pinte.models.CanvasObjects.CanvasObject;
 import java.util.List;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.GridPane;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.net.URL;
+import java.nio.file.Files;
 
 public class Save{
 
-    String savepath;
-    String title;
 	Canvas canva = Canvas.getInstance();
-    public Save(String path){
-        this.savepath=path;
-        this.title="NewFile";
+    public Save(){
+    }
+
+
+    public void SaveFile_as(){
+        try{
+			Stage primaryStage = new Stage();
+			URL url = getClass().getResource("../views/changepath.fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(url);
+			GridPane root =(GridPane) fxmlLoader.load();
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Test FXML");
+			primaryStage.show();
+        } catch(Exception e) {
+            System.out.println(e);
+        }
     }
 
     public void SaveFile(){
         try{
             //création du chemin vers le fichier
-            this.savepath=this.savepath + "/" + this.title + ".svg";
-            File f = new File(this.savepath);
+			OutputStream out = Files.newOutputStream(canva.getPath());
+			out.close();
+            File f = new File(canva.getPath().toString());
             create(f);
         } catch(Exception e) {
             System.out.println(e);
@@ -45,7 +65,7 @@ public class Save{
         if(f.createNewFile()){
             //nouveau fichier crée
             System.out.println("File created");
-            write(this.savepath);
+            write(canva.getPath().toString());
         } else {
             //le fichier existe déjà
             System.out.println("File already exist");

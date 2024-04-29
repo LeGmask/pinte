@@ -2,6 +2,7 @@ package org.pinte.controllers;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.DirectoryChooser;
 import org.pinte.models.Save;
@@ -11,15 +12,14 @@ public class MenuBar {
 	public String path;
 	// on create
 	public void initialize() {
+		Save save = new Save();
 		Menu menu = new Menu("Fichier");
 
-		RadioMenuItem choice1Item = new RadioMenuItem("enregistrer sous");
-		RadioMenuItem choice2Item = new RadioMenuItem("enregistrer");
+		MenuItem choice1Item = new MenuItem("enregistrer sous");
+		MenuItem choice2Item = new MenuItem("enregistrer");
 		RadioMenuItem choice3Item = new RadioMenuItem("Choice 3");
 
 		ToggleGroup toggleGroup = new ToggleGroup();
-		toggleGroup.getToggles().add(choice1Item);
-		toggleGroup.getToggles().add(choice2Item);
 		toggleGroup.getToggles().add(choice3Item);
 
 		menu.getItems().add(choice1Item);
@@ -28,32 +28,7 @@ public class MenuBar {
 
 		menuBar.getMenus().add(menu);
 		
-		choice1Item.setOnAction(event->{Path();});
-		choice2Item.setOnAction(event->{if(path!=null){CallSave();}});
+		choice1Item.setOnAction(event->{save.SaveFile_as();});
+		choice2Item.setOnAction(event->{save.SaveFile();});
 	}
-	/**
-	 * ouvre les fênetres pour choisir le nom et l'emplacement du fichier à enregistrer et enregistre
-	 */
-	public void Path(){
-		try{
-			System.out.println("enregistrer");
-			DirectoryChooser directoryChooser = new DirectoryChooser();
-			directoryChooser.setTitle("Select Save Location");
-			path = directoryChooser.showDialog(null).getAbsolutePath();
-			if(path!=null){
-				CallSave();
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-
-	/**
-	 * appel la classe enregistrer
-	 */
-	public void CallSave(){
-		Save save = new Save(path);
-		save.SaveFile();
-	}
-
 }
