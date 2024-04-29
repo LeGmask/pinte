@@ -3,3 +3,4 @@ org.pinte.controllers
 org.pinte.models
 org.pinte.models.CanvasObjects
 org.pinte.models.Utils
+org.pinte.Utils
