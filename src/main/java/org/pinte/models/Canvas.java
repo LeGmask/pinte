@@ -19,6 +19,7 @@ public final class Canvas {
 	 * The javafx canvas
 	 */
 	public javafx.scene.canvas.Canvas javafxCanvas;
+	public javafx.scene.canvas.GraphicsContext javafxGraphicsContext;
 
 	/**
 	 * The objects list
@@ -52,6 +53,7 @@ public final class Canvas {
 	 */
 	public void setJavafxCanvas(javafx.scene.canvas.Canvas javafxCanvas) {
 		this.javafxCanvas = javafxCanvas;
+		this.javafxGraphicsContext = javafxCanvas.getGraphicsContext2D();
 	}
 
 	/**
@@ -71,7 +73,7 @@ public final class Canvas {
 	 * @return the GraphicsContext2D of the canvas
 	 */
 	public GraphicsContext getGraphicsContext2D() {
-		return this.javafxCanvas.getGraphicsContext2D();
+		return javafxGraphicsContext;
 	}
 
 	/**
