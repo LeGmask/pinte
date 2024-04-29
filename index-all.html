@@ -49,9 +49,13 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
+<dt><a href="org/pinte/models/Canvas.html#add(org.pinte.models.CanvasObjects.CanvasObject)" class="member-name-link">add(CanvasObject)</a> - Method in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
+<dd>
+<div class="block">Add an object to the canvas</div>
+</dd>
 <dt><a href="org/pinte/Application.html" class="type-name-link" title="class in org.pinte">Application</a> - Class in <a href="org/pinte/package-summary.html">org.pinte</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/Application.html#%3Cinit%3E()" class="member-name-link">Application()</a> - Constructor for class org.pinte.<a href="org/pinte/Application.html" title="class in org.pinte">Application</a></dt>
@@ -63,6 +67,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
+<dt><a href="org/pinte/models/Canvas.html" class="type-name-link" title="class in org.pinte.models">Canvas</a> - Class in <a href="org/pinte/models/package-summary.html">org.pinte.models</a></dt>
+<dd>
+<div class="block">Singleton class for the Canvas</div>
+</dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasColor.html" class="type-name-link" title="class in org.pinte.models.CanvasObjects">CanvasColor</a> - Class in <a href="org/pinte/models/CanvasObjects/package-summary.html">org.pinte.models.CanvasObjects</a></dt>
 <dd>
 <div class="block">CanvasColor class to use with Canvas Objects</div>
@@ -126,6 +134,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Creates a rectangle with the given points and color.</div>
 </dd>
+<dt><a href="org/pinte/models/Canvas.html#clear()" class="member-name-link">clear()</a> - Method in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
+<dd>
+<div class="block">Clear the canvas</div>
+</dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasEllipse.html#createFromSVG(java.lang.String)" class="member-name-link">createFromSVG(String)</a> - Static method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasEllipse.html" title="class in org.pinte.models.CanvasObjects">CanvasEllipse</a></dt>
 <dd>
 <div class="block">Creates an ellipse object from an SVG string.</div>
@@ -139,6 +151,11 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates a rectangle from an SVG string</div>
 </dd>
 </dl>
+<h2 class="title" id="I:D">D</h2>
+<dl class="index">
+<dt><a href="org/pinte/controllers/Main.html#demo" class="member-name-link">demo</a> - Variable in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
+<dd>&nbsp;</dd>
+</dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
 <dt><a href="org/pinte/models/CanvasObjects/CanvasColor.html#equals(org.pinte.models.CanvasObjects.CanvasColor)" class="member-name-link">equals(CanvasColor)</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasColor.html" title="class in org.pinte.models.CanvasObjects">CanvasColor</a></dt>
@@ -148,17 +165,36 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
-<dt><a href="org/pinte/models/SVG.html#getInstance()" class="member-name-link">getInstance()</a> - Static method in class org.pinte.models.<a href="org/pinte/models/SVG.html" title="class in org.pinte.models">SVG</a></dt>
+<dt><a href="org/pinte/models/Canvas.html#getGraphicsContext2D()" class="member-name-link">getGraphicsContext2D()</a> - Method in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
+<dd>
+<div class="block">Get the GraphicsContext2D of the canvas</div>
+</dd>
+<dt><a href="org/pinte/models/Canvas.html#getInstance()" class="member-name-link">getInstance()</a> - Static method in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
+<dd>
+<div class="block">Singleton instance of the Canvas</div>
+</dd>
+</dl>
+<h2 class="title" id="I:H">H</h2>
+<dl class="index">
+<dt><a href="org/pinte/controllers/Main.html#handleDemo(javafx.event.ActionEvent)" class="member-name-link">handleDemo(ActionEvent)</a> - Method in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
+<dt><a href="org/pinte/controllers/Main.html#initialize()" class="member-name-link">initialize()</a> - Method in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/pinte/controllers/MenuBar.html#initialize()" class="member-name-link">initialize()</a> - Method in class org.pinte.controllers.<a href="org/pinte/controllers/MenuBar.html" title="class in org.pinte.controllers">MenuBar</a></dt>
 <dd>&nbsp;</dd>
 </dl>
-<h2 class="title" id="I:L">L</h2>
+<h2 class="title" id="I:J">J</h2>
 <dl class="index">
-<dt><a href="org/pinte/models/SVG.html#label" class="member-name-link">label</a> - Variable in class org.pinte.models.<a href="org/pinte/models/SVG.html" title="class in org.pinte.models">SVG</a></dt>
+<dt><a href="org/pinte/controllers/Main.html#javafxCanvas" class="member-name-link">javafxCanvas</a> - Variable in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/pinte/models/Canvas.html#javafxCanvas" class="member-name-link">javafxCanvas</a> - Variable in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
+<dd>
+<div class="block">The javafx canvas</div>
+</dd>
+<dt><a href="org/pinte/models/Canvas.html#javafxGraphicsContext" class="member-name-link">javafxGraphicsContext</a> - Variable in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
@@ -169,8 +205,6 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/controllers/Main.html#%3Cinit%3E()" class="member-name-link">Main()</a> - Constructor for class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/pinte/controllers/Main.html#menuBar" class="member-name-link">menuBar</a> - Variable in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="org/pinte/controllers/MenuBar.html#menuBar" class="member-name-link">menuBar</a> - Variable in class org.pinte.controllers.<a href="org/pinte/controllers/MenuBar.html" title="class in org.pinte.controllers">MenuBar</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/controllers/MenuBar.html" class="type-name-link" title="class in org.pinte.controllers">MenuBar</a> - Class in <a href="org/pinte/controllers/package-summary.html">org.pinte.controllers</a></dt>
@@ -180,6 +214,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:O">O</h2>
 <dl class="index">
+<dt><a href="org/pinte/models/Canvas.html#objects" class="member-name-link">objects</a> - Variable in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
+<dd>
+<div class="block">The objects list</div>
+</dd>
 <dt><a href="org/pinte/package-summary.html">org.pinte</a> - package org.pinte</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/controllers/package-summary.html">org.pinte.controllers</a> - package org.pinte.controllers</dt>
@@ -210,6 +248,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
+<dt><a href="org/pinte/models/Canvas.html#render()" class="member-name-link">render()</a> - Method in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
+<dd>
+<div class="block">Render the canvas</div>
+</dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasEllipse.html#render()" class="member-name-link">render()</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasEllipse.html" title="class in org.pinte.models.CanvasObjects">CanvasEllipse</a></dt>
 <dd>
 <div class="block">Renders the ellipse on the canvas</div>
@@ -226,18 +268,22 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Renders the rectangle as a JavaFX Rectangle object</div>
 </dd>
+<dt><a href="org/pinte/models/Canvas.html#resizeCanvas(int,int)" class="member-name-link">resizeCanvas(int, int)</a> - Method in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
+<dd>
+<div class="block">Resize the canvas</div>
+</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
+<dt><a href="org/pinte/models/Canvas.html#setJavafxCanvas(javafx.scene.canvas.Canvas)" class="member-name-link">setJavafxCanvas(Canvas)</a> - Method in class org.pinte.models.<a href="org/pinte/models/Canvas.html" title="class in org.pinte.models">Canvas</a></dt>
+<dd>
+<div class="block">Set the javafx canvas</div>
+</dd>
 <dt><a href="org/pinte/Application.html#start(javafx.stage.Stage)" class="member-name-link">start(Stage)</a> - Method in class org.pinte.<a href="org/pinte/Application.html" title="class in org.pinte">Application</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="org/pinte/models/SVG.html" class="type-name-link" title="class in org.pinte.models">SVG</a> - Class in <a href="org/pinte/models/package-summary.html">org.pinte.models</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
-<dt><a href="org/pinte/controllers/Main.html#test(javafx.event.ActionEvent)" class="member-name-link">test(ActionEvent)</a> - Method in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasColor.html#toPaintColor()" class="member-name-link">toPaintColor()</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasColor.html" title="class in org.pinte.models.CanvasObjects">CanvasColor</a></dt>
 <dd>
 <div class="block">Converts the color to a javafx color object</div>
@@ -265,7 +311,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates an SVG string from a shape name and its attributes</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>
