@@ -1,6 +1,8 @@
 package org.pinte.models.CanvasObjects;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.shape.Shape;
+import org.pinte.models.Canvas;
 
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -9,6 +11,11 @@ import java.util.Enumeration;
  * CanvasObject abstract class to build canvas objects
  */
 public abstract class CanvasObject {
+
+	/**
+	 * Canvas instance
+	 */
+	GraphicsContext gc = Canvas.getInstance().getGraphicsContext2D();
 
 	/**
 	 * Fill color of the object
@@ -23,7 +30,7 @@ public abstract class CanvasObject {
 	/**
 	 * Constructor for a canvas object
 	 *
-	 * @param fillColor color to fill the object
+	 * @param fillColor   color to fill the object
 	 * @param strokeColor color for the stroke of the object
 	 */
 	public CanvasObject(CanvasColor fillColor, CanvasColor strokeColor) {
@@ -34,7 +41,7 @@ public abstract class CanvasObject {
 	/**
 	 * Returns a shape that can be rendered on the canvas
 	 */
-	public abstract Shape render();
+	public abstract void render();
 
 	/**
 	 * Returns the object as an SVG string
@@ -63,7 +70,7 @@ public abstract class CanvasObject {
 	/**
 	 * Creates an SVG string from a shape name and its attributes
 	 *
-	 * @param shape the shape name
+	 * @param shape      the shape name
 	 * @param attributes [key,value]
 	 * @return the SVG string
 	 */

@@ -81,14 +81,14 @@ public class CanvasRectangle extends CanvasObject {
 
 	/**
 	 * Renders the rectangle as a JavaFX Rectangle object
-	 *
-	 * @return the rendered rectangle
 	 */
-	public Shape render() {
-		javafx.scene.shape.Rectangle r = new javafx.scene.shape.Rectangle(this.a.getX(), this.a.getY(), this.a.distance(b), this.a.distance(d));
-		r.setFill(this.fillColor.toPaintColor());
-		r.setStroke(this.strokeColor.toPaintColor());
-		return r;
+	public void render() {
+		gc.setFill(this.fillColor.toPaintColor());
+		gc.setStroke(this.strokeColor.toPaintColor());
+		gc.fillRect(
+			this.a.getX(), this.a.getY(),
+			this.a.distance(b), this.a.distance(d)
+		);
 	}
 
 	/**

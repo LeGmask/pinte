@@ -33,17 +33,24 @@ public class CanvasPolygon extends CanvasObject {
 
 	/**
 	 * Renders the polygon as a JavaFX Polygon object
-	 *
-	 * @return the rendered polygon
 	 */
-	public Shape render() {
-		Polygon polygon = new Polygon();
-		polygon.setFill(this.fillColor.toPaintColor());
-		polygon.setStroke(this.strokeColor.toPaintColor());
-		for (Point2D point : points) {
-			polygon.getPoints().addAll(point.getX(), point.getY());
+	public void render() {
+		gc.setFill(this.fillColor.toPaintColor());
+		gc.setStroke(this.strokeColor.toPaintColor());
+
+		double[] points_x = new double[points.length];
+		double[] points_y = new double[points.length];
+
+		for (int i = 0; i < points.length; i++) {
+			points_x[i] = points[i].getX();
+			points_y[i] = points[i].getY();
 		}
-		return polygon;
+
+		gc.fillPolygon(
+			points_x,
+			points_y,
+			points.length
+		);
 	}
 
 	/**
@@ -57,7 +64,6 @@ public class CanvasPolygon extends CanvasObject {
 		d.put("fill", this.fillColor.asHex());
 		d.put("stroke", this.strokeColor.asHex());
 		return toSVG("polygon", d);
-
 	}
 
 	/**
