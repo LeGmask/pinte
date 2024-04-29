@@ -6,8 +6,9 @@
 <?import javafx.scene.control.Button?>
 <BorderPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.pinte.controllers.Main">
-    <fx:include source="menu.fxml"/>
-
+    <top>
+        <fx:include source="menu.fxml"/>
+    </top>
     <left>
         <Button fx:id="demo" text="Click me!" onAction="#handleDemo"/>
     </left>

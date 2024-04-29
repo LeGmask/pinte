@@ -36,13 +36,13 @@ public class MenuBar {
 	 */
 	public void Path(){
 		try{
-		System.out.println("enregistrer");
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Select Save Location");
-		path = directoryChooser.showDialog(null).getAbsolutePath();
-		if(path!=null){
-			CallSave();
-		}
+			System.out.println("enregistrer");
+			DirectoryChooser directoryChooser = new DirectoryChooser();
+			directoryChooser.setTitle("Select Save Location");
+			path = directoryChooser.showDialog(null).getAbsolutePath();
+			if(path!=null){
+				CallSave();
+			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
