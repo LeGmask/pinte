@@ -18,13 +18,20 @@ public class ChangePath {
 	@FXML
 	public TextField projectName;
 
-		/**
+	/**
 	 * Project location field
 	 */
 	@FXML
 	public TextField projectLocation;
+
+	/**
+	 * Canva
+	 */
 	Canvas canva = Canvas.getInstance();
 
+	/**
+	 * initialize the default parameters of the Change path window
+	 */
 	public void initialize(){
 		Path oldpath=canva.getPath();
 		String[] dossiers = oldpath.toString().split("/");
@@ -50,6 +57,11 @@ public class ChangePath {
 		projectLocation.setText(directoryChooser.showDialog(stage).getAbsolutePath());
 	}
 
+	/**
+	 * Cancel saving
+	 * 
+	 * @param actionEvent Action event
+	 */
 	public void cancel(ActionEvent actionEvent) {
 		Stage stage = getStageFromEvent(actionEvent);
 		stage.close();
@@ -58,6 +70,7 @@ public class ChangePath {
 	/**
 	 * Save the file in the specified location
 	 * 
+	 * @param actionEvent Action event
 	 */
 	public void CallSave(ActionEvent actionEvent){
 		canva.setPath(Path.of(projectLocation.getText() + "/" + projectName.getText() + ".svg"));

@@ -10,13 +10,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-
+<!--Create the grid that will contain token-->
 <GridPane fx:controller="org.pinte.controllers.ChangePath"
           xmlns:fx="http://javafx.com/fxml" alignment="center"
           hgap="10" vgap="10">
     <padding>
         <Insets top="40" right="40" bottom="40" left="40"/>
     </padding>
+
+    <!--configure the column of the grid-->
     <columnConstraints>
         <ColumnConstraints minWidth="100" prefWidth="100"
                            maxWidth="Infinity" halignment="RIGHT">
@@ -38,15 +40,19 @@
         </GridPane.margin>
     </Label>
 
+    <!-- Add Name Label -->
     <Label text="Name:"
            GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <!-- Add Name TextField -->
     <TextField fx:id="projectName"
                GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
+    <!-- Add Location Label -->
     <Label text="Save location:"
            GridPane.columnIndex="0" GridPane.rowIndex="2"/>
     <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <!-- Add Location TextField -->
         <TextField fx:id="projectLocation" HBox.hgrow="ALWAYS"/>
+        <!-- Add Browse Location Button -->
         <Button text="Browse"
                 onAction="#browse">
             <HBox.margin>
@@ -55,14 +61,15 @@
         </Button>
     </HBox>
 
-
+    <!-- Add Box containing Button -->
     <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <!-- Add Cancel Button -->
         <Button text="Cancel" onAction="#cancel"
         />
         <Pane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
 
         <HBox>
-
+            <!-- Add Save Button -->
             <Button text="Save"
                     onAction="#CallSave"/>
         </HBox>

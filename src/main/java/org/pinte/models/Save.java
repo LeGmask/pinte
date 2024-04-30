@@ -10,13 +10,24 @@ import java.net.URL;
 import java.nio.file.Files;
 
 public class Save{
-
-	boolean saving=false;
+	/**
+	 * Saving as boolean
+	 */
+	boolean savingas=false;
+	/**
+	 * Canva
+	 */
 	Canvas canva = Canvas.getInstance();
+
+	/**
+	 * Constructor of Save.java
+	 */
     public Save(){
     }
 
-
+	/**
+	 * Opening the window to change the name and/or location of the saving file and save
+	 */
     public void SaveFile_as(){
         try{
 			Stage primaryStage = new Stage();
@@ -33,20 +44,30 @@ public class Save{
         }
     }
 
-    public void SaveFile(boolean saving){
+	/**
+	 * Save the file
+	 * 
+	 * @param savingas Saving as or saving
+	 */
+    public void SaveFile(boolean savingas){
         try{
             //création du chemin vers le fichier
             File f = new File(canva.getPath().toString());
-			this.saving=saving;
+			this.savingas=savingas;
             create(f);
         } catch(Exception e) {
             System.out.println(e);
         }
     }
 
+	/**
+	 * Write the information of the canva in the file on svg format
+	 * 
+	 * @param path path of the file to save
+	 * @throws Exception all exception
+	 */
     private void write(String path) throws Exception{
 		List<CanvasObject> objects = canva.getCanvas();
-        //écriture du nouveau fichier
         BufferedWriter file = new BufferedWriter(new FileWriter(path));
         file.write("<?xml version=\"1.0\"?>");
 		file.newLine();
@@ -60,16 +81,20 @@ public class Save{
         file.close();
     }
 
+	/**
+	 * create a new file to save the canva
+	 * 
+	 * @param f File that will be created
+	 * @throws Exception all exception
+	 */
     private void create(File f) throws Exception{
-        //création du nouveau fichier
+        //create the new file
         if(f.createNewFile()){
-            //nouveau fichier crée
-            System.out.println("File created");
+            //new file created with success
             write(canva.getPath().toString());
         } else {
-            //le fichier existe déjà
-            System.out.println("File already exist");
-			if(this.saving==false){
+            //File already existing
+			if(this.savingas==false){
 				try{
 					Stage primaryStage = new Stage();
 					URL url = getClass().getResource("../views/warning.fxml");
@@ -85,20 +110,23 @@ public class Save{
 				}
 			} else {
 				delete();
-				this.saving=false;
+				this.savingas=false;
 			}
         }
     }
 
+	/**
+	 * Delete the file to create it anew
+	 * 
+	 * @throws Exception all exception
+	 */
     public void delete() throws Exception{
-		OutputStream out = Files.newOutputStream(canva.getPath());
-		out.close();
 		File f = new File(canva.getPath().toString());
         if(f.delete()){
-            System.out.println("File deleted with success");
+            //File deleted with success
             create(f);
         }else {
-            System.out.println("Failed to delete");
+            //failing to delete the file
         }
     }
 }

@@ -10,13 +10,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-
+<!--Create the grid that will contain token-->
 <GridPane fx:controller="org.pinte.controllers.Warning"
           xmlns:fx="http://javafx.com/fxml" alignment="center"
           hgap="10" vgap="10">
     <padding>
         <Insets top="40" right="40" bottom="40" left="40"/>
     </padding>
+
+    <!--configure the column of the grid-->
     <columnConstraints>
         <ColumnConstraints minWidth="100" prefWidth="100"
                            maxWidth="Infinity" halignment="RIGHT">
@@ -37,6 +39,8 @@
             <Insets top="20" bottom="20"/>
         </GridPane.margin>
     </Label>
+
+    <!-- Add Message Label -->
     <Label text="êtes vous sure de vouloir remplacer ce fichier ?" GridPane.columnIndex="0"
            GridPane.rowIndex="0" GridPane.columnSpan="3"
            GridPane.rowSpan="8" GridPane.halignment="CENTER">
@@ -48,16 +52,18 @@
         </GridPane.margin>
     </Label>
 
-
+    <!-- Add Box containing Button -->
     <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+
+        <!-- Add Cancel Button -->
         <Button text="Cancel" onAction="#cancel"
         />
         <Pane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
 
         <HBox>
-
+            <!-- Add Save Button -->
             <Button text="Save"
-                   onAction="#erase" />
+                   onAction="#replace" />
         </HBox>
     </HBox>
 

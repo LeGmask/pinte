@@ -16,7 +16,12 @@ import org.pinte.models.Save;
 import static org.pinte.Utils.JavaFX.getStageFromEvent;
 
 public class Warning {
-	
+
+	/**
+	 * Cancel Saving and go back to the change path window
+	 * 
+	 * @param actionEvent  Action event
+	 */
 	public void cancel(ActionEvent actionEvent) {
 		try{
 			Stage stage = getStageFromEvent(actionEvent);
@@ -36,10 +41,11 @@ public class Warning {
 	}
 
 	/**
-	 * Save the file in the specified location
+	 * replace the file in the specified location by the new file
 	 * 
+	 * @param actionEvent  Action event
 	 */
-	public void erase(ActionEvent actionEvent){
+	public void replace(ActionEvent actionEvent){
 		try{
 			Stage stage = getStageFromEvent(actionEvent);
 			Save save = new Save();
