@@ -62,7 +62,7 @@ public class ChangePath {
 	public void CallSave(ActionEvent actionEvent){
 		canva.setPath(Path.of(projectLocation.getText() + "/" + projectName.getText() + ".svg"));
 		Save save = new Save();
-		save.SaveFile();
+		save.SaveFile(false);
 		Stage stage = getStageFromEvent(actionEvent);
 		stage.close();
 	}

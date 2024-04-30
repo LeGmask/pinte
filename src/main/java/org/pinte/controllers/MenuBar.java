@@ -29,6 +29,6 @@ public class MenuBar {
 		menuBar.getMenus().add(menu);
 		
 		choice1Item.setOnAction(event->{save.SaveFile_as();});
-		choice2Item.setOnAction(event->{save.SaveFile();});
+		choice2Item.setOnAction(event->{save.SaveFile(true);});
 	}
 }

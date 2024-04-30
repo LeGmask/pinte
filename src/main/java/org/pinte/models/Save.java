@@ -11,6 +11,7 @@ import java.nio.file.Files;
 
 public class Save{
 
+	boolean saving=false;
 	Canvas canva = Canvas.getInstance();
     public Save(){
     }
@@ -25,19 +26,18 @@ public class Save{
 			GridPane root =(GridPane) fxmlLoader.load();
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Test FXML");
+			primaryStage.setTitle("Enregistrer sous");
 			primaryStage.show();
         } catch(Exception e) {
             System.out.println(e);
         }
     }
 
-    public void SaveFile(){
+    public void SaveFile(boolean saving){
         try{
             //création du chemin vers le fichier
-			OutputStream out = Files.newOutputStream(canva.getPath());
-			out.close();
             File f = new File(canva.getPath().toString());
+			this.saving=saving;
             create(f);
         } catch(Exception e) {
             System.out.println(e);
@@ -69,11 +69,31 @@ public class Save{
         } else {
             //le fichier existe déjà
             System.out.println("File already exist");
-            delete(f);
+			if(this.saving==false){
+				try{
+					Stage primaryStage = new Stage();
+					URL url = getClass().getResource("../views/warning.fxml");
+					FXMLLoader fxmlLoader = new FXMLLoader();
+					fxmlLoader.setLocation(url);
+					GridPane root =(GridPane) fxmlLoader.load();
+					Scene scene = new Scene(root);
+					primaryStage.setScene(scene);
+					primaryStage.setTitle("Warning!");
+					primaryStage.show();
+				} catch(Exception e) {
+					System.out.println(e);
+				}
+			} else {
+				delete();
+				this.saving=false;
+			}
         }
     }
 
-    private void delete(File f) throws Exception{
+    public void delete() throws Exception{
+		OutputStream out = Files.newOutputStream(canva.getPath());
+		out.close();
+		File f = new File(canva.getPath().toString());
         if(f.delete()){
             System.out.println("File deleted with success");
             create(f);
