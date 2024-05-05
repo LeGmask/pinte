@@ -55,9 +55,9 @@ public class CanvasContextualMenu {
      *
      * @param e
      * @param canvas
-     * @param object
+     * @param objects
      */
-    protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, List<CanvasObject> object) {
+    protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, List<CanvasObject> objects) {
         switch (e.getButton()) {
             case PRIMARY:
                 // shape selection here
@@ -67,7 +67,7 @@ public class CanvasContextualMenu {
                 contextMenu.setOnShowing(new EventHandler<WindowEvent>() {
                     public void handle(WindowEvent e) {
                         System.out.println("showing shape context menu for");
-                        for (CanvasObject shape : object) {
+                        for (CanvasObject shape : objects) {
                             System.out.println(shape.toSVG());
                         }
                     }
