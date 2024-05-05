@@ -86,8 +86,8 @@ public class CanvasEllipse extends CanvasObject {
     public void render() {
         this.gc.setFill(this.fillColor.toPaintColor());
         this.gc.setStroke(this.strokeColor.toPaintColor());
-        this.gc.fillOval(center.getX(), center.getY(), rx, ry);
-        this.gc.strokeOval(center.getX(), center.getY(), rx, ry);
+        this.gc.fillOval(center.getX() - rx / 2, center.getY() - ry / 2, rx, ry);
+        this.gc.strokeOval(center.getX() - rx / 2, center.getY() - ry / 2, rx, ry);
     }
 
     /**
