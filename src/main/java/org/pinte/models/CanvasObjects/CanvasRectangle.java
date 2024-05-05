@@ -85,6 +85,10 @@ public class CanvasRectangle extends CanvasObject {
         gc.fillRect(
                 this.a.getX(), this.a.getY(),
                 this.a.distance(b), this.a.distance(d));
+        gc.strokeRect(
+                this.a.getX(), this.a.getY(),
+                this.a.distance(b), this.a.distance(d));
+
     }
 
     /**

@@ -28,27 +28,6 @@ public class CanvasPolygon extends CanvasObject {
     }
 
     /**
-     * Renders the polygon as a JavaFX Polygon object
-     */
-    public void render() {
-        gc.setFill(this.fillColor.toPaintColor());
-        gc.setStroke(this.strokeColor.toPaintColor());
-
-        double[] points_x = new double[points.length];
-        double[] points_y = new double[points.length];
-
-        for (int i = 0; i < points.length; i++) {
-            points_x[i] = points[i].getX();
-            points_y[i] = points[i].getY();
-        }
-
-        gc.fillPolygon(
-                points_x,
-                points_y,
-                points.length);
-    }
-
-    /**
      * Converts the polygon to an SVG string
      *
      * @return the SVG representation of the polygon
@@ -101,5 +80,27 @@ public class CanvasPolygon extends CanvasObject {
             }
         }
         return isInside;
+    }
+
+    /**
+     * Renders the polygon as a JavaFX Polygon object
+     */
+    public void render() {
+        gc.setFill(this.fillColor.toPaintColor());
+        gc.setStroke(this.strokeColor.toPaintColor());
+
+        double[] points_x = new double[points.length];
+        double[] points_y = new double[points.length];
+
+        for (int i = 0; i < points.length; i++) {
+            points_x[i] = points[i].getX();
+            points_y[i] = points[i].getY();
+        }
+
+        gc.fillPolygon(
+                points_x,
+                points_y,
+                points.length);
+        gc.strokePolygon(points_x, points_y, points.length);
     }
 }
