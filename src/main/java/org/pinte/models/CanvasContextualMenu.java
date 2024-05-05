@@ -22,9 +22,9 @@ public class CanvasContextualMenu {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                List<CanvasObject> objects = isOnShape(e, canvas);
-                if (!objects.isEmpty()) {
-                    shapeContextualMenu(e, canvas, objects);
+                List<CanvasObject> pointedShapes = isOnShape(e, canvas);
+                if (!pointedShapes.isEmpty()) {
+                    shapeContextualMenu(e, canvas, pointedShapes);
                 } else {
                     canvasContextualMenu(e, canvas);
                 }
@@ -55,19 +55,21 @@ public class CanvasContextualMenu {
      *
      * @param e
      * @param canvas
-     * @param objects
+     * @param pointedShapes
      */
-    protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, List<CanvasObject> objects) {
+    protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, List<CanvasObject> pointedShapes) {
         switch (e.getButton()) {
             case PRIMARY:
-                // shape selection here
+                for (CanvasObject object : pointedShapes) {
+                    object.isSelected = !object.isSelected;
+                }
                 break;
             case SECONDARY:
                 final ContextMenu contextMenu = new ContextMenu();
                 contextMenu.setOnShowing(new EventHandler<WindowEvent>() {
                     public void handle(WindowEvent e) {
                         System.out.println("showing shape context menu for");
-                        for (CanvasObject shape : objects) {
+                        for (CanvasObject shape : pointedShapes) {
                             System.out.println(shape.toSVG());
                         }
                     }

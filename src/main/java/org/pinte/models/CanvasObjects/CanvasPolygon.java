@@ -113,6 +113,7 @@ public class CanvasPolygon extends CanvasObject {
             points_y[i] = points[i].getY();
         }
 
+        this.setUpDrawingParameters();
 
         gc.fillPolygon(
                 points_x,
