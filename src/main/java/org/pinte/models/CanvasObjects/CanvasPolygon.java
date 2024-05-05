@@ -2,6 +2,7 @@ package org.pinte.models.CanvasObjects;
 
 import org.pinte.models.Utils.CanvasObjectParser;
 import javafx.geometry.Point2D;
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -71,23 +72,38 @@ public class CanvasPolygon extends CanvasObject {
 
     @Override
     public boolean contains(double x, double y) {
-        int i, j = 0;
-        boolean isInside = true;
-        for (i = 0; i < points.length - 1; j = i++) {
-            if ((points[i].getY() > y) != (points[j].getY() > y) && (x < (points[j].getX() - points[i].getX())
-                    * (y - points[i].getY()) / (points[j].getY() - points[i].getY()) + points[i].getX())) {
-                isInside = !isInside;
+        int num_vertices = points.length;
+        boolean inside = false;
+
+        Point2D p1 = points[0], p2;
+        for (int i = 1; i <= num_vertices; i++) {
+            p2 = points[i % num_vertices];
+
+            if (y > Math.min(p1.getY(), p2.getY())) {
+                if (y <= Math.max(p1.getY(), p2.getY())) {
+                    if (x <= Math.max(p1.getX(), p2.getX())) {
+                        double x_intersection = (y - p1.getY()) * (p2.getX() - p1.getX())
+                                / (p2.getY() - p1.getY())
+                                + p1.getX();
+
+                        if (p1.getX() == p2.getX()
+                                || x <= x_intersection) {
+                            inside = !inside;
+                        }
+                    }
+                }
             }
+
+            p1 = p2;
         }
-        return isInside;
+
+        return inside;
     }
 
     /**
      * Renders the polygon as a JavaFX Polygon object
      */
     public void render() {
-        gc.setFill(this.fillColor.toPaintColor());
-        gc.setStroke(this.strokeColor.toPaintColor());
 
         double[] points_x = new double[points.length];
         double[] points_y = new double[points.length];
@@ -97,10 +113,12 @@ public class CanvasPolygon extends CanvasObject {
             points_y[i] = points[i].getY();
         }
 
+
         gc.fillPolygon(
                 points_x,
                 points_y,
                 points.length);
         gc.strokePolygon(points_x, points_y, points.length);
     }
+
 }
