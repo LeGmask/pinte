@@ -1,9 +1,7 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.Shape;
 import org.pinte.models.Canvas;
-
 import java.util.Dictionary;
 import java.util.Enumeration;
 
@@ -12,77 +10,86 @@ import java.util.Enumeration;
  */
 public abstract class CanvasObject {
 
-	/**
-	 * Canvas instance
-	 */
-	GraphicsContext gc = Canvas.getInstance().getGraphicsContext2D();
+    /**
+     * Canvas instance
+     */
+    GraphicsContext gc = Canvas.getInstance().getGraphicsContext2D();
 
-	/**
-	 * Fill color of the object
-	 */
-	CanvasColor fillColor;
+    /**
+     * Fill color of the object
+     */
+    CanvasColor fillColor;
 
-	/**
-	 * Stroke color of the object
-	 */
-	CanvasColor strokeColor;
+    /**
+     * Stroke color of the object
+     */
+    CanvasColor strokeColor;
 
-	/**
-	 * Constructor for a canvas object
-	 *
-	 * @param fillColor   color to fill the object
-	 * @param strokeColor color for the stroke of the object
-	 */
-	public CanvasObject(CanvasColor fillColor, CanvasColor strokeColor) {
-		this.fillColor = fillColor;
-		this.strokeColor = strokeColor;
-	}
+    /**
+     * Constructor for a canvas object
+     *
+     * @param fillColor   color to fill the object
+     * @param strokeColor color for the stroke of the object
+     */
+    public CanvasObject(CanvasColor fillColor, CanvasColor strokeColor) {
+        this.fillColor = fillColor;
+        this.strokeColor = strokeColor;
+    }
 
-	/**
-	 * Returns a shape that can be rendered on the canvas
-	 */
-	public abstract void render();
+    /**
+     * Returns true if the object contains the given coordinates, false otherwise
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+    public abstract boolean contains(double x, double y);
 
-	/**
-	 * Returns the object as an SVG string
-	 */
-	public abstract String toSVG();
+    /**
+     * Returns a shape that can be rendered on the canvas
+     */
+    public abstract void render();
 
-	/**
-	 * Creates a CanvasObject from an SVG string
-	 *
-	 * @param svgString the SVG string to parse
-	 * @return a CanvasObject parsed from the SVG string
-	 * @throws IllegalArgumentException if the SVG string is invalid
-	 */
-	public static CanvasObject parseFromSVG(String svgString) throws IllegalArgumentException {
-		var split = svgString.replace("<", "").split(" ");
-		var type = split[0];
+    /**
+     * Returns the object as an SVG string
+     */
+    public abstract String toSVG();
 
-		return switch (type) {
-			case "rect" -> CanvasRectangle.createFromSVG(svgString);
-			case "ellipse" -> CanvasEllipse.createFromSVG(svgString);
-			case "polygon" -> CanvasPolygon.createFromSVG(svgString);
-			default -> throw new IllegalArgumentException("Unknown object type '" + type + "' in SVG string.");
-		};
-	}
+    /**
+     * Creates a CanvasObject from an SVG string
+     *
+     * @param svgString the SVG string to parse
+     * @return a CanvasObject parsed from the SVG string
+     * @throws IllegalArgumentException if the SVG string is invalid
+     */
+    public static CanvasObject parseFromSVG(String svgString) throws IllegalArgumentException {
+        var split = svgString.replace("<", "").split(" ");
+        var type = split[0];
 
-	/**
-	 * Creates an SVG string from a shape name and its attributes
-	 *
-	 * @param shape      the shape name
-	 * @param attributes [key,value]
-	 * @return the SVG string
-	 */
-	public static String toSVG(String shape, Dictionary<String, String> attributes) {
-		String svgString = "<" + shape;
-		Enumeration<String> e = attributes.keys();
-		while (e.hasMoreElements()) {
+        return switch (type) {
+            case "rect" -> CanvasRectangle.createFromSVG(svgString);
+            case "ellipse" -> CanvasEllipse.createFromSVG(svgString);
+            case "polygon" -> CanvasPolygon.createFromSVG(svgString);
+            default -> throw new IllegalArgumentException("Unknown object type '" + type + "' in SVG string.");
+        };
+    }
 
-			String k = e.nextElement();
-			svgString += " " + k + "=\"" + attributes.get(k) + "\"";
-		}
-		return svgString + "/>";
-	}
+    /**
+     * Creates an SVG string from a shape name and its attributes
+     *
+     * @param shape      the shape name
+     * @param attributes [key,value]
+     * @return the SVG string
+     */
+    public static String toSVG(String shape, Dictionary<String, String> attributes) {
+        String svgString = "<" + shape;
+        Enumeration<String> e = attributes.keys();
+        while (e.hasMoreElements()) {
+
+            String k = e.nextElement();
+            svgString += " " + k + "=\"" + attributes.get(k) + "\"";
+        }
+        return svgString + "/>";
+    }
 
 }
