@@ -1,5 +1,8 @@
 package org.pinte.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.pinte.models.CanvasObjects.CanvasObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,9 +22,9 @@ public class CanvasContextualMenu {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                var object = isOnShape(e, canvas);
-                if (object != null) {
-                    shapeContextualMenu(e, canvas, object);
+                List<CanvasObject> objects = isOnShape(e, canvas);
+                if (!objects.isEmpty()) {
+                    shapeContextualMenu(e, canvas, objects);
                 } else {
                     canvasContextualMenu(e, canvas);
                 }
@@ -31,22 +34,30 @@ public class CanvasContextualMenu {
     }
 
     /**
-     * Returns the shape that was clicked on or null if none found.
+     * Returns the list of objects that are on the mouse position
      *
      * @param e
      * @param canvas
      * @return
      */
-    protected static CanvasObject isOnShape(MouseEvent e, Canvas canvas) {
+    protected static List<CanvasObject> isOnShape(MouseEvent e, Canvas canvas) {
+        List<CanvasObject> shapes = new ArrayList<CanvasObject>();
         for (CanvasObject shape : canvas.objects) {
             if (shape.contains(e.getX(), e.getY())) {
-                return shape;
+                shapes.add(shape);
             }
         }
-        return null;
+        return shapes;
     }
 
-    protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, CanvasObject object) {
+    /**
+     * Creates the contextual menu for the shapes
+     *
+     * @param e
+     * @param canvas
+     * @param object
+     */
+    protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, List<CanvasObject> object) {
         switch (e.getButton()) {
             case PRIMARY:
                 // shape selection here
@@ -55,7 +66,10 @@ public class CanvasContextualMenu {
                 final ContextMenu contextMenu = new ContextMenu();
                 contextMenu.setOnShowing(new EventHandler<WindowEvent>() {
                     public void handle(WindowEvent e) {
-                        System.out.println("showing shape context menu");
+                        System.out.println("showing shape context menu for");
+                        for (CanvasObject shape : object) {
+                            System.out.println(shape.toSVG());
+                        }
                     }
                 });
                 contextMenu.setOnShown(new EventHandler<WindowEvent>() {
@@ -87,6 +101,12 @@ public class CanvasContextualMenu {
 
     }
 
+    /**
+     * Creates the contextual menu for the canvas
+     *
+     * @param e
+     * @param canvas
+     */
     protected static void canvasContextualMenu(MouseEvent e, Canvas canvas) {
         switch (e.getButton()) {
             case PRIMARY:
