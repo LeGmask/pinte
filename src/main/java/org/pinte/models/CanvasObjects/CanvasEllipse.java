@@ -3,7 +3,6 @@ package org.pinte.models.CanvasObjects;
 import org.pinte.models.Utils.CanvasObjectParser;
 
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Shape;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -88,6 +87,7 @@ public class CanvasEllipse extends CanvasObject {
         this.gc.setStroke(this.strokeColor.toPaintColor());
         this.gc.fillOval(center.getX() - rx / 2, center.getY() - ry / 2, rx, ry);
         this.gc.strokeOval(center.getX() - rx / 2, center.getY() - ry / 2, rx, ry);
+
     }
 
     /**
@@ -104,5 +104,12 @@ public class CanvasEllipse extends CanvasObject {
         d.put("fill", this.fillColor.asHex());
         d.put("stroke", this.strokeColor.asHex());
         return toSVG("ellipse", d);
+    }
+
+    @Override
+    public boolean contains(double x, double y) {
+        double p = ((double) Math.pow((x - center.getX()), 2) / (double) Math.pow(rx, ry))
+                + ((double) Math.pow((y - center.getY()), 2) / (double) Math.pow(ry, 2));
+        return p <= 1;
     }
 }

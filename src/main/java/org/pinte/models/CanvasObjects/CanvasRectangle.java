@@ -1,10 +1,7 @@
 package org.pinte.models.CanvasObjects;
 
 import org.pinte.models.Utils.CanvasObjectParser;
-
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Shape;
-
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -91,6 +88,7 @@ public class CanvasRectangle extends CanvasObject {
         gc.strokeRect(
                 this.a.getX(), this.a.getY(),
                 this.a.distance(b), this.a.distance(d));
+
     }
 
     /**
@@ -122,6 +120,11 @@ public class CanvasRectangle extends CanvasObject {
         double sideAB = Math.sqrt(Math.pow(p2.getX() - p1.getX(), 2) + Math.pow(p2.getY() - p1.getY(), 2));
         double sideCD = Math.sqrt(Math.pow(p4.getX() - p3.getX(), 2) + Math.pow(p4.getY() - p3.getY(), 2));
         return sideAB == sideCD;
+    }
+
+    @Override
+    public boolean contains(double x, double y) {
+        return x >= this.a.getX() && y <= this.a.getY() && x < this.b.getX() && y > this.d.getY();
     }
 
 }

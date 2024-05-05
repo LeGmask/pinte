@@ -1,11 +1,7 @@
 package org.pinte.models.CanvasObjects;
 
 import org.pinte.models.Utils.CanvasObjectParser;
-
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Shape;
-
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -29,28 +25,6 @@ public class CanvasPolygon extends CanvasObject {
     public CanvasPolygon(Point2D[] points, CanvasColor fillColor, CanvasColor strokeColor) {
         super(fillColor, strokeColor);
         this.points = points;
-    }
-
-    /**
-     * Renders the polygon as a JavaFX Polygon object
-     */
-    public void render() {
-        gc.setFill(this.fillColor.toPaintColor());
-        gc.setStroke(this.strokeColor.toPaintColor());
-
-        double[] points_x = new double[points.length];
-        double[] points_y = new double[points.length];
-
-        for (int i = 0; i < points.length; i++) {
-            points_x[i] = points[i].getX();
-            points_y[i] = points[i].getY();
-        }
-
-        gc.fillPolygon(
-                points_x,
-                points_y,
-                points.length);
-        gc.strokePolygon(points_x, points_y, points.length);
     }
 
     /**
@@ -93,5 +67,40 @@ public class CanvasPolygon extends CanvasObject {
                     point.getY());
         }
         return result.trim(); // remove trailing space
+    }
+
+    @Override
+    public boolean contains(double x, double y) {
+        int i, j = 0;
+        boolean isInside = true;
+        for (i = 0; i < points.length - 1; j = i++) {
+            if ((points[i].getY() > y) != (points[j].getY() > y) && (x < (points[j].getX() - points[i].getX())
+                    * (y - points[i].getY()) / (points[j].getY() - points[i].getY()) + points[i].getX())) {
+                isInside = !isInside;
+            }
+        }
+        return isInside;
+    }
+
+    /**
+     * Renders the polygon as a JavaFX Polygon object
+     */
+    public void render() {
+        gc.setFill(this.fillColor.toPaintColor());
+        gc.setStroke(this.strokeColor.toPaintColor());
+
+        double[] points_x = new double[points.length];
+        double[] points_y = new double[points.length];
+
+        for (int i = 0; i < points.length; i++) {
+            points_x[i] = points[i].getX();
+            points_y[i] = points[i].getY();
+        }
+
+        gc.fillPolygon(
+                points_x,
+                points_y,
+                points.length);
+        gc.strokePolygon(points_x, points_y, points.length);
     }
 }
