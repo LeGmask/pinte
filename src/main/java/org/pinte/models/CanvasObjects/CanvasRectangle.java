@@ -71,8 +71,8 @@ public class CanvasRectangle extends CanvasObject {
         super(fillColor, strokeColor);
         this.a = a;
         this.b = new Point2D(a.getX() + width, a.getY());
-        this.c = new Point2D(a.getX() + width, a.getY() - height);
-        this.d = new Point2D(a.getX(), a.getY() - height);
+        this.c = new Point2D(a.getX() + width, a.getY() + height);
+        this.d = new Point2D(a.getX(), a.getY() + height);
 
     }
 
@@ -80,8 +80,9 @@ public class CanvasRectangle extends CanvasObject {
      * Renders the rectangle as a JavaFX Rectangle object
      */
     public void render() {
-        gc.setFill(this.fillColor.toPaintColor());
-        gc.setStroke(this.strokeColor.toPaintColor());
+
+        this.setUpDrawingParameters();
+
         gc.fillRect(
                 this.a.getX(), this.a.getY(),
                 this.a.distance(b), this.a.distance(d));
@@ -122,9 +123,22 @@ public class CanvasRectangle extends CanvasObject {
         return sideAB == sideCD;
     }
 
+    private double dotProduct(Point2D a, Point2D b) {
+        return a.getX() * b.getX() + a.getY() * b.getY();
+    }
+
     @Override
     public boolean contains(double x, double y) {
-        return x >= this.a.getX() && y <= this.a.getY() && x < this.b.getX() && y > this.d.getY();
+        Point2D AM = new Point2D(x, y).subtract(a);
+        Point2D AB = b.subtract(a);
+        Point2D AD = d.subtract(a);
+
+        double AMAB = dotProduct(AM, AB);
+        double ABAB = dotProduct(AB, AB);
+        double AMAD = dotProduct(AM, AD);
+        double ADAD = dotProduct(AD, AD);
+
+        return 0 < AMAB && AMAB < ABAB && 0 < AMAD && AMAD < ADAD;
     }
 
 }
