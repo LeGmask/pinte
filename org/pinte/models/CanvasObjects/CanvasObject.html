@@ -227,6 +227,37 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="parseFromSVG(java.lang.String)">
+<h3>parseFromSVG</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a></span>&nbsp;<span class="element-name">parseFromSVG</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;svgString)</span>
+                                 throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Creates a CanvasObject from an SVG string</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>svgString</code> - the SVG string to parse</dd>
+<dt>Returns:</dt>
+<dd>a CanvasObject parsed from the SVG string</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the SVG string is invalid</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="toSVG(java.lang.String,java.util.Dictionary)">
+<h3>toSVG</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toSVG</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;shape,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Dictionary.html" title="class or interface in java.util" class="external-link">Dictionary</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;attributes)</span></div>
+<div class="block">Creates an SVG string from a shape name and its attributes</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>shape</code> - the shape name</dd>
+<dd><code>attributes</code> - [key,value]</dd>
+<dt>Returns:</dt>
+<dd>the SVG string</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="contains(double,double)">
 <h3>contains</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">contains</span><wbr><span class="parameters">(double&nbsp;x,
@@ -258,37 +289,6 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="setUpDrawingParameters()">
 <h3>setUpDrawingParameters</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setUpDrawingParameters</span>()</div>
-</section>
-</li>
-<li>
-<section class="detail" id="parseFromSVG(java.lang.String)">
-<h3>parseFromSVG</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a></span>&nbsp;<span class="element-name">parseFromSVG</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;svgString)</span>
-                                 throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
-<div class="block">Creates a CanvasObject from an SVG string</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>svgString</code> - the SVG string to parse</dd>
-<dt>Returns:</dt>
-<dd>a CanvasObject parsed from the SVG string</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the SVG string is invalid</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="toSVG(java.lang.String,java.util.Dictionary)">
-<h3>toSVG</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toSVG</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;shape,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Dictionary.html" title="class or interface in java.util" class="external-link">Dictionary</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;attributes)</span></div>
-<div class="block">Creates an SVG string from a shape name and its attributes</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>shape</code> - the shape name</dd>
-<dd><code>attributes</code> - [key,value]</dd>
-<dt>Returns:</dt>
-<dd>the SVG string</dd>
-</dl>
 </section>
 </li>
 </ul>
