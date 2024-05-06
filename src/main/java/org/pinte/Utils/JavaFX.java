@@ -20,7 +20,7 @@ public class JavaFX {
 	 * Switch the scene of the window where the event was triggered
 	 *
 	 * @param event the event
-	 * @param fxml the string pointing to the fxml file
+	 * @param fxml  the string pointing to the fxml file
 	 * @throws java.io.IOException if the file is not found
 	 */
 	public static void switchScene(javafx.event.ActionEvent event, String fxml) throws java.io.IOException {

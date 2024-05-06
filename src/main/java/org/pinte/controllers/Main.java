@@ -12,35 +12,35 @@ import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasEllipse;
 
 public class Main {
-    @FXML
-    public javafx.scene.canvas.Canvas javafxCanvas;
+	@FXML
+	public javafx.scene.canvas.Canvas javafxCanvas;
 
-    @FXML
-    public Button demo;
+	@FXML
+	public Button demo;
 
-    Canvas canvas = Canvas.getInstance();
+	Canvas canvas = Canvas.getInstance();
 
-    public void initialize() {
-        canvas.setJavafxCanvas(javafxCanvas); // delegate the canvas to the singleton
-        canvas.setDim(800, 800); // resize the canvas
+	public void initialize() {
+		canvas.setJavafxCanvas(javafxCanvas); // delegate the canvas to the singleton
+		canvas.setDim(800, 800); // resize the canvas
 
-        canvas.javafxCanvas.addEventHandler(MouseEvent.MOUSE_RELEASED,
-                CanvasContextualMenu.getContextualMenu(canvas));
+		canvas.javafxCanvas.addEventHandler(MouseEvent.MOUSE_RELEASED,
+			CanvasContextualMenu.getContextualMenu(canvas));
 
-        new AnimationTimer() {
-            public void handle(long now) {
-                canvas.clear();
-                canvas.render();
-            }
-        }.start();
-    }
+		new AnimationTimer() {
+			public void handle(long now) {
+				canvas.clear();
+				canvas.render();
+			}
+		}.start();
+	}
 
-    public void handleDemo(ActionEvent actionEvent) {
-        CanvasEllipse ellipse = new CanvasEllipse(
-                new Point2D(
-                        Math.random() * 800,
-                        Math.random() * 800),
-                10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
-        canvas.add(ellipse);
-    }
+	public void handleDemo(ActionEvent actionEvent) {
+		CanvasEllipse ellipse = new CanvasEllipse(
+			new Point2D(
+				Math.random() * 800,
+				Math.random() * 800),
+			10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
+		canvas.add(ellipse);
+	}
 }

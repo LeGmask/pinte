@@ -11,8 +11,8 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<GridPane fx:controller="org.pinte.controllers.New"
-          xmlns:fx="http://javafx.com/fxml" alignment="center"
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="org.pinte.controllers.New" alignment="center"
           hgap="10" vgap="10">
     <padding>
         <Insets top="40" right="40" bottom="40" left="40"/>

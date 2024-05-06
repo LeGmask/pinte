@@ -1,8 +1,8 @@
 package org.pinte.models.CanvasObjects;
 
+import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import javafx.scene.paint.Color;
 
 /**
  * Classe de test de CanvasObject

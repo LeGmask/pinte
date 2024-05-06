@@ -131,20 +131,20 @@ public final class Canvas {
 	}
 
 	/**
-	 * Set current project path
-	 *
-	 * @param path the path of the current project
-	 */
-	public void setPath(Path path) {
-		this.path = path;
-	}
-
-	/**
 	 * Get the current project path
 	 *
 	 * @return the path of the current project
 	 */
 	public Path getPath() {
 		return this.path;
+	}
+
+	/**
+	 * Set current project path
+	 *
+	 * @param path the path of the current project
+	 */
+	public void setPath(Path path) {
+		this.path = path;
 	}
 }

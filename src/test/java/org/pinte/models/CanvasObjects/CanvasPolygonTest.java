@@ -1,26 +1,24 @@
 package org.pinte.models.CanvasObjects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Arrays;
-
+import javafx.geometry.Point2D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.pinte.models.Utils.CanvasObjectParser;
 
-import javafx.geometry.Point2D;
-import javafx.scene.shape.Polygon;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Classe de test de CanvasPolygon
  */
 public class CanvasPolygonTest {
 
-	private Point2D[] points;
 	CanvasColor fillColor, strokeColor;
 	String SVGString;
+	private Point2D[] points;
 
 	@BeforeEach
 	public void setUp() {
