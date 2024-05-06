@@ -3,7 +3,6 @@ package org.pinte.models.CanvasObjects;
 import org.pinte.models.Utils.CanvasObjectParser;
 
 import javafx.geometry.Point2D;
-
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -83,11 +82,9 @@ public class CanvasEllipse extends CanvasObject {
      * Renders the ellipse on the canvas
      */
     public void render() {
-        this.gc.setFill(this.fillColor.toPaintColor());
-        this.gc.setStroke(this.strokeColor.toPaintColor());
-        this.gc.fillOval(center.getX() - rx / 2, center.getY() - ry / 2, rx, ry);
-        this.gc.strokeOval(center.getX() - rx / 2, center.getY() - ry / 2, rx, ry);
-
+        this.setUpDrawingParameters();
+        this.gc.fillOval(center.getX() - rx, center.getY() - ry, 2 * rx, 2 * ry);
+        this.gc.strokeOval(center.getX() - rx, center.getY() - ry, 2 * rx, 2 * ry);
     }
 
     /**
@@ -108,8 +105,8 @@ public class CanvasEllipse extends CanvasObject {
 
     @Override
     public boolean contains(double x, double y) {
-        double p = ((double) Math.pow((x - center.getX()), 2) / (double) Math.pow(rx, ry))
-                + ((double) Math.pow((y - center.getY()), 2) / (double) Math.pow(ry, 2));
+        double p = (Math.pow((x - center.getX()), 2) / Math.pow(rx, 2))
+                + (Math.pow((y - center.getY()), 2) / Math.pow(ry, 2));
         return p <= 1;
     }
 }

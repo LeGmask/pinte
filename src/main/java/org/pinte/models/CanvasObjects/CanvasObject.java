@@ -1,6 +1,8 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 import org.pinte.models.Canvas;
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -24,6 +26,11 @@ public abstract class CanvasObject {
      * Stroke color of the object
      */
     CanvasColor strokeColor;
+
+    /**
+     * Is the object selected
+     */
+    public boolean isSelected = false;
 
     /**
      * Constructor for a canvas object
@@ -54,6 +61,21 @@ public abstract class CanvasObject {
      * Returns the object as an SVG string
      */
     public abstract String toSVG();
+
+    protected void setUpDrawingParameters() {
+
+        gc.setFill(this.fillColor.toPaintColor());
+        gc.setStroke(this.strokeColor.toPaintColor());
+
+        gc.setLineWidth(1.0);
+        gc.setLineDashes(null);
+
+        if (this.isSelected) {
+            gc.setStroke(Color.YELLOW);
+            gc.setLineWidth(2);
+            gc.setLineDashes(new double[] { 5 });
+        }
+    }
 
     /**
      * Creates a CanvasObject from an SVG string
