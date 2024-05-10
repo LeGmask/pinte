@@ -93,7 +93,20 @@ public class CanvasContextualMenu {
 						System.out.println("Reshaped");
 					}
 				});
-				contextMenu.getItems().addAll(item1, item2);
+				// dummy items for now
+				MenuItem item3 = new MenuItem("Delete");
+				item3.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						for (CanvasObject object : pointedShapes) {
+							if (object.isSelected == True) {
+								object.destruct();
+							}
+						}
+						System.out.println("Delete");
+					}
+				});
+				
+				contextMenu.getItems().addAll(item1, item2, item3);
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 
