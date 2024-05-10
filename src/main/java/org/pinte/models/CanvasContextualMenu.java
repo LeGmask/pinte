@@ -93,16 +93,17 @@ public class CanvasContextualMenu {
 						System.out.println("Reshaped");
 					}
 				});
-				// dummy items for now
 				MenuItem item3 = new MenuItem("Delete");
 				item3.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
 						for (CanvasObject object : pointedShapes) {
 							if (object.isSelected == True) {
-								object.destruct();
+								pointedShapes.remove(object);
+								free(object);
+								System.out.println("Deleted");
 							}
 						}
-						System.out.println("Delete");
+						
 					}
 				});
 				
