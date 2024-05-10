@@ -99,6 +99,7 @@ public class CanvasContextualMenu {
 						for (CanvasObject object : pointedShapes) {
 							if (object.isSelected == True) {
 								pointedShapes.remove(object);
+								// Je sais pas encore trop comment faire pour remplacer tout par du blanc
 								
 								System.out.println("Deleted");
 							}
