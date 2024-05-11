@@ -23,6 +23,11 @@ public final class Canvas {
 	public javafx.scene.canvas.Canvas javafxCanvas;
 
 	/**
+	 *  There is a file unrelated at the end of the path
+	 */
+	private boolean safePath=false;
+
+	/**
 	 * The javafx GraphicsContext
 	 */
 	public javafx.scene.canvas.GraphicsContext javafxGraphicsContext;
@@ -155,5 +160,13 @@ public final class Canvas {
 	 */
 	public Path getPath() {
 		return this.path;
+	}
+
+	public void setSafePath(boolean safe){
+		this.safePath=safe;
+	}
+
+	public boolean getSafePath(){
+		return this.safePath;
 	}
 }

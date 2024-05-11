@@ -49,7 +49,7 @@ public class Warning {
 		try{
 			Stage stage = getStageFromEvent(actionEvent);
 			Save save = new Save();
-			save.delete();
+			save.reecrire();
 			stage.close();
 		} catch (Exception e){
 			System.out.println(e);
