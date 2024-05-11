@@ -1,7 +1,7 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.Shape;
+import javafx.scene.paint.Color;
 import org.pinte.models.Canvas;
 
 import java.util.Dictionary;
@@ -13,15 +13,17 @@ import java.util.Enumeration;
 public abstract class CanvasObject {
 
 	/**
+	 * Is the object selected
+	 */
+	public boolean isSelected = false;
+	/**
 	 * Canvas instance
 	 */
 	GraphicsContext gc = Canvas.getInstance().getGraphicsContext2D();
-
 	/**
 	 * Fill color of the object
 	 */
 	CanvasColor fillColor;
-
 	/**
 	 * Stroke color of the object
 	 */
@@ -37,16 +39,6 @@ public abstract class CanvasObject {
 		this.fillColor = fillColor;
 		this.strokeColor = strokeColor;
 	}
-
-	/**
-	 * Returns a shape that can be rendered on the canvas
-	 */
-	public abstract void render();
-
-	/**
-	 * Returns the object as an SVG string
-	 */
-	public abstract String toSVG();
 
 	/**
 	 * Creates a CanvasObject from an SVG string
@@ -83,6 +75,40 @@ public abstract class CanvasObject {
 			svgString += " " + k + "=\"" + attributes.get(k) + "\"";
 		}
 		return svgString + "/>";
+	}
+
+	/**
+	 * Returns true if the object contains the given coordinates, false otherwise
+	 *
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public abstract boolean contains(double x, double y);
+
+	/**
+	 * Returns a shape that can be rendered on the canvas
+	 */
+	public abstract void render();
+
+	/**
+	 * Returns the object as an SVG string
+	 */
+	public abstract String toSVG();
+
+	protected void setUpDrawingParameters() {
+
+		gc.setFill(this.fillColor.toPaintColor());
+		gc.setStroke(this.strokeColor.toPaintColor());
+
+		gc.setLineWidth(1.0);
+		gc.setLineDashes(null);
+
+		if (this.isSelected) {
+			gc.setStroke(Color.YELLOW);
+			gc.setLineWidth(2);
+			gc.setLineDashes(new double[]{5});
+		}
 	}
 
 }

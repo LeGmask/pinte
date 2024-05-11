@@ -1,11 +1,10 @@
 package org.pinte.models.Utils;
 
-import java.util.Arrays;
-
+import javafx.geometry.Point2D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javafx.geometry.Point2D;
+import java.util.Arrays;
 
 /**
  * Classe de test de CanvasObjectParser

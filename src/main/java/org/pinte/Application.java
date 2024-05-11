@@ -6,6 +6,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Application extends javafx.application.Application {
+	public static void main(String[] args) {
+		launch();
+	}
+
 	@Override
 	public void start(Stage mainStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
@@ -17,9 +21,5 @@ public class Application extends javafx.application.Application {
 		mainStage.setTitle("pinte");
 		mainStage.setScene(scene);
 		mainStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch();
 	}
 }

@@ -5,7 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import org.pinte.models.Canvas;
+import org.pinte.models.CanvasContextualMenu;
 import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasEllipse;
 
@@ -22,6 +24,8 @@ public class Main {
 		canvas.setJavafxCanvas(javafxCanvas); // delegate the canvas to the singleton
 		canvas.setDim(800, 800); // resize the canvas
 
+		canvas.javafxCanvas.addEventHandler(MouseEvent.MOUSE_RELEASED,
+			CanvasContextualMenu.getContextualMenu(canvas));
 
 		new AnimationTimer() {
 			public void handle(long now) {
@@ -35,7 +39,8 @@ public class Main {
 		CanvasEllipse ellipse = new CanvasEllipse(
 			new Point2D(
 				Math.random() * 800,
-				Math.random() * 800), 10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
+				Math.random() * 800),
+			10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
 		canvas.add(ellipse);
 	}
 }

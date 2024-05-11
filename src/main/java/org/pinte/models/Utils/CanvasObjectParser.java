@@ -1,9 +1,9 @@
 package org.pinte.models.Utils;
 
+import javafx.geometry.Point2D;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javafx.geometry.Point2D;
 
 /**
  * CanvasObjectParser class used to parse SVG strings

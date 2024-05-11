@@ -1,10 +1,7 @@
 package org.pinte.models.CanvasObjects;
 
-import org.pinte.models.Utils.CanvasObjectParser;
-
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Shape;
+import org.pinte.models.Utils.CanvasObjectParser;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -32,25 +29,17 @@ public class CanvasPolygon extends CanvasObject {
 	}
 
 	/**
-	 * Renders the polygon as a JavaFX Polygon object
+	 * Creates a CanvasPolygon object from an SVG string
+	 *
+	 * @param args the SVG string to parse
+	 * @return a CanvasPolygon object parsed from the SVG string
 	 */
-	public void render() {
-		gc.setFill(this.fillColor.toPaintColor());
-		gc.setStroke(this.strokeColor.toPaintColor());
+	public static CanvasPolygon createFromSVG(String args) {
+		Point2D[] points = CanvasObjectParser.parsePoints(args);
 
-		double[] points_x = new double[points.length];
-		double[] points_y = new double[points.length];
-
-		for (int i = 0; i < points.length; i++) {
-			points_x[i] = points[i].getX();
-			points_y[i] = points[i].getY();
-		}
-
-		gc.fillPolygon(
-			points_x,
-			points_y,
-			points.length
-		);
+		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args));
+		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args));
+		return new CanvasPolygon(points, fillColor, strokeColor);
 	}
 
 	/**
@@ -67,20 +56,6 @@ public class CanvasPolygon extends CanvasObject {
 	}
 
 	/**
-	 * Creates a CanvasPolygon object from an SVG string
-	 *
-	 * @param args the SVG string to parse
-	 * @return a CanvasPolygon object parsed from the SVG string
-	 */
-	public static CanvasPolygon createFromSVG(String args) {
-		Point2D[] points = CanvasObjectParser.parsePoints(args);
-
-		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args));
-		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args));
-		return new CanvasPolygon(points, fillColor, strokeColor);
-	}
-
-	/**
 	 * Converts the array of points to a string in SVG points format
 	 *
 	 * @return the string representation of the points "x1,y1 x2,y2 ..."
@@ -94,4 +69,57 @@ public class CanvasPolygon extends CanvasObject {
 		}
 		return result.trim(); // remove trailing space
 	}
+
+	@Override
+	public boolean contains(double x, double y) {
+		int num_vertices = points.length;
+		boolean inside = false;
+
+		Point2D p1 = points[0], p2;
+		for (int i = 1; i <= num_vertices; i++) {
+			p2 = points[i % num_vertices];
+
+			if (y > Math.min(p1.getY(), p2.getY())) {
+				if (y <= Math.max(p1.getY(), p2.getY())) {
+					if (x <= Math.max(p1.getX(), p2.getX())) {
+						double x_intersection = (y - p1.getY()) * (p2.getX() - p1.getX())
+							/ (p2.getY() - p1.getY())
+							+ p1.getX();
+
+						if (p1.getX() == p2.getX()
+							|| x <= x_intersection) {
+							inside = !inside;
+						}
+					}
+				}
+			}
+
+			p1 = p2;
+		}
+
+		return inside;
+	}
+
+	/**
+	 * Renders the polygon as a JavaFX Polygon object
+	 */
+	public void render() {
+
+		double[] points_x = new double[points.length];
+		double[] points_y = new double[points.length];
+
+		for (int i = 0; i < points.length; i++) {
+			points_x[i] = points[i].getX();
+			points_y[i] = points[i].getY();
+		}
+
+		this.setUpDrawingParameters();
+
+		gc.fillPolygon(
+			points_x,
+			points_y,
+			points.length);
+		gc.strokePolygon(points_x, points_y, points.length);
+	}
+
 }

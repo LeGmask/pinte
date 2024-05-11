@@ -1,12 +1,10 @@
 package org.pinte.models.CanvasObjects;
 
+import javafx.geometry.Point2D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.pinte.models.Utils.CanvasObjectParser;
-
-import javafx.geometry.Point2D;
-import javafx.scene.shape.Ellipse;
 
 /**
  * Classe de test de CanvasEllipse

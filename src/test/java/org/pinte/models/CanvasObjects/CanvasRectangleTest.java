@@ -1,11 +1,9 @@
 package org.pinte.models.CanvasObjects;
 
+import javafx.geometry.Point2D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javafx.geometry.Point2D;
-import javafx.scene.shape.Rectangle;
 
 /**
  * Classe de test de CanvasRectangle
@@ -31,13 +29,13 @@ public class CanvasRectangleTest {
 		// Initialize points
 		this.A = new Point2D(0, 0);
 		this.B = new Point2D(5, 0);
-		this.C = new Point2D(5, -3);
-		this.D = new Point2D(0, -3);
+		this.C = new Point2D(5, 3);
+		this.D = new Point2D(0, 3);
 		this.E = new Point2D(10.2, 3.4);
 		this.F = new Point2D(0, 3.4);
 		this.G = new Point2D(10.2, 0);
 
-		//Initialize Colors
+		// Initialize Colors
 		this.fillColor = new CanvasColor(0, 255, 0);
 		this.strokeColor = new CanvasColor(0, 0, 255);
 
@@ -47,7 +45,7 @@ public class CanvasRectangleTest {
 
 	}
 
-	//CanvasRectangle(a, b, c, d, fillColor, strokeColor)
+	// CanvasRectangle(a, b, c, d, fillColor, strokeColor)
 	@Test
 	public void testConstructorPoints() {
 		CanvasRectangle rectangle = new CanvasRectangle(A, B, C, D, fillColor, strokeColor);

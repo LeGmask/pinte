@@ -20,33 +20,29 @@ import static org.pinte.Utils.JavaFX.switchScene;
  */
 public class New {
 	/**
+	 * Singleton instance of the Canvas
+	 */
+	private final Canvas canvas = Canvas.getInstance();
+	/**
 	 * Project name field
 	 */
 	@FXML
 	public TextField projectName;
-
 	/**
 	 * Project width field
 	 */
 	@FXML
 	public TextField projectWidth;
-
 	/**
 	 * Project height field
 	 */
 	@FXML
 	public TextField projectHeight;
-
 	/**
 	 * Project location field
 	 */
 	@FXML
 	public TextField projectLocation;
-
-	/**
-	 * Singleton instance of the Canvas
-	 */
-	private final Canvas canvas = Canvas.getInstance();
 
 	/**
 	 * Initialize the new project view

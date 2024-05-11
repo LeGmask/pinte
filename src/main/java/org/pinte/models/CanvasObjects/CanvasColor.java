@@ -13,16 +13,6 @@ public class CanvasColor {
 
 
 	/**
-	 * Checks if the color component is between 0 and 255
-	 *
-	 * @param c color component
-	 * @return true if the color component is between 0 and 255
-	 */
-	private boolean isColorConform(int c) {
-		return c >= 0 && c <= 255;
-	}
-
-	/**
 	 * Creates a new CanvasColor from RGB components
 	 *
 	 * @param r red component
@@ -59,6 +49,16 @@ public class CanvasColor {
 		this.r = r;
 		this.g = g;
 		this.b = b;
+	}
+
+	/**
+	 * Checks if the color component is between 0 and 255
+	 *
+	 * @param c color component
+	 * @return true if the color component is between 0 and 255
+	 */
+	private boolean isColorConform(int c) {
+		return c >= 0 && c <= 255;
 	}
 
 	/**

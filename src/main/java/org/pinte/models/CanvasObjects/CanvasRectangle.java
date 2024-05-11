@@ -1,9 +1,7 @@
 package org.pinte.models.CanvasObjects;
 
-import org.pinte.models.Utils.CanvasObjectParser;
-
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Shape;
+import org.pinte.models.Utils.CanvasObjectParser;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -44,6 +42,24 @@ public class CanvasRectangle extends CanvasObject {
 	}
 
 	/**
+	 * Creates a rectangle with the given point, width, height and color.
+	 *
+	 * @param a           The top left corner of the rectangle
+	 * @param width       The width of the rectangle
+	 * @param height      The height of the rectanglet
+	 * @param fillColor   The color to fill the rectangle with
+	 * @param strokeColor The color of the outline
+	 */
+	public CanvasRectangle(Point2D a, double width, double height, CanvasColor fillColor, CanvasColor strokeColor) {
+		super(fillColor, strokeColor);
+		this.a = a;
+		this.b = new Point2D(a.getX() + width, a.getY());
+		this.c = new Point2D(a.getX() + width, a.getY() + height);
+		this.d = new Point2D(a.getX(), a.getY() + height);
+
+	}
+
+	/**
 	 * Creates a rectangle from an SVG string
 	 *
 	 * @param args the SVG string to parse
@@ -62,33 +78,19 @@ public class CanvasRectangle extends CanvasObject {
 	}
 
 	/**
-	 * Creates a rectangle with the given point, width, height and color.
-	 *
-	 * @param a           The top left corner of the rectangle
-	 * @param width       The width of the rectangle
-	 * @param height      The height of the rectanglet
-	 * @param fillColor   The color to fill the rectangle with
-	 * @param strokeColor The color of the outline
-	 */
-	public CanvasRectangle(Point2D a, double width, double height, CanvasColor fillColor, CanvasColor strokeColor) {
-		super(fillColor, strokeColor);
-		this.a = a;
-		this.b = new Point2D(a.getX() + width, a.getY());
-		this.c = new Point2D(a.getX() + width, a.getY() - height);
-		this.d = new Point2D(a.getX(), a.getY() - height);
-
-	}
-
-	/**
 	 * Renders the rectangle as a JavaFX Rectangle object
 	 */
 	public void render() {
-		gc.setFill(this.fillColor.toPaintColor());
-		gc.setStroke(this.strokeColor.toPaintColor());
+
+		this.setUpDrawingParameters();
+
 		gc.fillRect(
 			this.a.getX(), this.a.getY(),
-			this.a.distance(b), this.a.distance(d)
-		);
+			this.a.distance(b), this.a.distance(d));
+		gc.strokeRect(
+			this.a.getX(), this.a.getY(),
+			this.a.distance(b), this.a.distance(d));
+
 	}
 
 	/**
@@ -120,6 +122,24 @@ public class CanvasRectangle extends CanvasObject {
 		double sideAB = Math.sqrt(Math.pow(p2.getX() - p1.getX(), 2) + Math.pow(p2.getY() - p1.getY(), 2));
 		double sideCD = Math.sqrt(Math.pow(p4.getX() - p3.getX(), 2) + Math.pow(p4.getY() - p3.getY(), 2));
 		return sideAB == sideCD;
+	}
+
+	private double dotProduct(Point2D a, Point2D b) {
+		return a.getX() * b.getX() + a.getY() * b.getY();
+	}
+
+	@Override
+	public boolean contains(double x, double y) {
+		Point2D AM = new Point2D(x, y).subtract(a);
+		Point2D AB = b.subtract(a);
+		Point2D AD = d.subtract(a);
+
+		double AMAB = dotProduct(AM, AB);
+		double ABAB = dotProduct(AB, AB);
+		double AMAD = dotProduct(AM, AD);
+		double ADAD = dotProduct(AD, AD);
+
+		return 0 < AMAB && AMAB < ABAB && 0 < AMAD && AMAD < ADAD;
 	}
 
 }
