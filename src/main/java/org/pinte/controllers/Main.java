@@ -8,8 +8,7 @@ import javafx.scene.control.Button;
 import org.pinte.models.Canvas;
 import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasEllipse;
-import org.pinte.models.states.State;
-import org.pinte.models.states.noActionState;
+import org.pinte.models.states.*;
 
 public class Main {
 	@FXML
@@ -17,6 +16,15 @@ public class Main {
 
 	@FXML
 	public Button demo;
+
+	@FXML
+	public Button selection;
+
+	@FXML
+	public Button addCircle;
+
+	@FXML
+	public Button addRectangle;
 
 	Canvas canvas = Canvas.getInstance();
 
@@ -29,8 +37,7 @@ public class Main {
 		canvas.setJavafxCanvas(javafxCanvas); // delegate the canvas to the singleton
 		canvas.setDim(800, 800); // resize the canvas
 
-		status = new noActionState();
-		status.initialize();
+		status = new selectionState();
 
 		new AnimationTimer() {
 			public void handle(long now) {
@@ -47,5 +54,17 @@ public class Main {
 				Math.random() * 800),
 			10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
 		canvas.add(ellipse);
+	}
+
+	public void handleSelection(ActionEvent actionEvent) {
+		status = new selectionState();
+	}
+
+	public void handleAjoutCercle(ActionEvent actionEvent) {
+		status = new addCircleState();
+	}
+
+	public void handleAjoutRectangle(ActionEvent actionEvent) {
+		status = new addRectangleState();
 	}
 }

@@ -2,9 +2,8 @@ package org.pinte.models.states;
 
 import org.pinte.models.CanvasContextualMenu;
 
-public class noActionState extends State{
-	@Override
-	public void initialize() {
+public class selectionState extends State{
+	public selectionState() {
 		canvas.javafxCanvas.setOnMouseClicked(CanvasContextualMenu.getContextualMenu(canvas));
 	}
 }
