@@ -35,12 +35,12 @@ public class ChangePath {
 	 */
 	public void initialize() {
 		Path oldpath = canva.getPath();
-		String[] dossiers = oldpath.toString().split("/");
-		String newpath = dossiers[0];
-		for (int i = 1; i < dossiers.length - 1; i++) {
-			newpath = newpath + "/" + dossiers[i];
+		String[] directory = oldpath.toString().split("/");
+		String newpath = directory[0];
+		for (int i = 1; i < directory.length - 1; i++) {
+			newpath = newpath + "/" + directory[i];
 		}
-		String newname = dossiers[dossiers.length - 1];
+		String newname = directory[directory.length - 1];
 		newname = newname.replaceAll(".svg", "");
 		projectName.setText(newname);
 		projectLocation.setText(newpath);

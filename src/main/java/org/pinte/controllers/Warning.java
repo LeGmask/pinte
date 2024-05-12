@@ -45,7 +45,7 @@ public class Warning {
 		try {
 			Stage stage = getStageFromEvent(actionEvent);
 			Save save = new Save();
-			save.reecrire();
+			save.replace();
 			stage.close();
 		} catch (Exception e) {
 			System.out.println(e);

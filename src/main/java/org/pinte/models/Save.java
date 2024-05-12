@@ -32,7 +32,8 @@ public class Save {
 	}
 
 	/**
-	 * Opening the window to change the name and/or location of the saving file and save
+	 * Opening the window to change the name and/or 
+	 * location of the saving file and save
 	 */
 	public void SaveFile_as() {
 		try {
@@ -103,11 +104,12 @@ public class Save {
 	}
 
 	/**
-	 * Delete the file to create it anew
+	 * change the parameter for the write function to erase the content 
+	 * of the file and replace it
 	 *
 	 * @throws Exception all exception
 	 */
-	public void reecrire() throws Exception {
+	public void replace() throws Exception {
 		exist = true;
 		canva.setSafePath(true);
 		write();

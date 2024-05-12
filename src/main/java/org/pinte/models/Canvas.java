@@ -30,7 +30,7 @@ public final class Canvas {
 	 */
 	public List<CanvasObject> objects;
 	/**
-	 * There is a file unrelated at the end of the path
+	 * There is a file opened by the app at the end of the path
 	 */
 	private boolean safePath = false;
 	/**
@@ -157,10 +157,20 @@ public final class Canvas {
 		this.path = path;
 	}
 
+	/**
+	 * Get if the path don't point to an unrelatd file
+	 * 
+	 * @return boolean that answer previous statement
+	 */
 	public boolean getSafePath() {
 		return this.safePath;
 	}
 
+	/**
+	 * Set if the path led to an unrelated file
+	 * 
+	 * @param safe boolean that answer previous statement
+	 */
 	public void setSafePath(boolean safe) {
 		this.safePath = safe;
 	}
