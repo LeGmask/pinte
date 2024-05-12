@@ -1,29 +1,37 @@
 package org.pinte.controllers;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.MenuItem;
+import org.pinte.models.Save;
 
 public class MenuBar {
+	/**
+	 * menu bar
+	 */
+	@FXML
 	public javafx.scene.control.MenuBar menuBar;
 
-	// on create
+	/**
+	 * initialize the toolbar of the application
+	 */
 	public void initialize() {
-		Menu menu = new Menu("Menu 1");
+		Save save = new Save();
+		Menu menu = new Menu("Fichier");
 
-		RadioMenuItem choice1Item = new RadioMenuItem("Choice 1");
-		RadioMenuItem choice2Item = new RadioMenuItem("Choice 2");
-		RadioMenuItem choice3Item = new RadioMenuItem("Choice 3");
+		// Items of the toolbar
+		MenuItem menuItemSaveAs = new MenuItem("Enregistrer sous");
+		MenuItem menuItemSave = new MenuItem("Enregistrer");
 
-		ToggleGroup toggleGroup = new ToggleGroup();
-		toggleGroup.getToggles().add(choice1Item);
-		toggleGroup.getToggles().add(choice2Item);
-		toggleGroup.getToggles().add(choice3Item);
-
-		menu.getItems().add(choice1Item);
-		menu.getItems().add(choice2Item);
-		menu.getItems().add(choice3Item);
-
+		// adding menu to the menu bar
 		menuBar.getMenus().add(menu);
+
+		// adding events to the items
+		menuItemSaveAs.setOnAction(event -> {
+			save.SaveFile_as();
+		});
+		menuItemSave.setOnAction(event -> {
+			save.SaveFile(true);
+		});
 	}
 }

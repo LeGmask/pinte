@@ -21,17 +21,18 @@ public final class Canvas {
 	 * The javafx canvas
 	 */
 	public javafx.scene.canvas.Canvas javafxCanvas;
-
 	/**
 	 * The javafx GraphicsContext
 	 */
 	public javafx.scene.canvas.GraphicsContext javafxGraphicsContext;
-
 	/**
 	 * The objects list
 	 */
 	public List<CanvasObject> objects;
-
+	/**
+	 * There is a file opened by the app at the end of the path
+	 */
+	private boolean safePath = false;
 	/**
 	 * The dimension of the canvas
 	 */
@@ -131,6 +132,14 @@ public final class Canvas {
 	}
 
 	/**
+	 * Renvoi la liste des objets du Canvas
+	 */
+	public List<CanvasObject> getCanvas() {
+		List<CanvasObject> list = this.objects;
+		return list;
+	}
+
+	/**
 	 * Get the current project path
 	 *
 	 * @return the path of the current project
@@ -146,5 +155,23 @@ public final class Canvas {
 	 */
 	public void setPath(Path path) {
 		this.path = path;
+	}
+
+	/**
+	 * Get if the path don't point to an unrelatd file
+	 * 
+	 * @return boolean that answer previous statement
+	 */
+	public boolean getSafePath() {
+		return this.safePath;
+	}
+
+	/**
+	 * Set if the path led to an unrelated file
+	 * 
+	 * @param safe boolean that answer previous statement
+	 */
+	public void setSafePath(boolean safe) {
+		this.safePath = safe;
 	}
 }
