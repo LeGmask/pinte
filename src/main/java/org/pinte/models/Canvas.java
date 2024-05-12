@@ -21,22 +21,18 @@ public final class Canvas {
 	 * The javafx canvas
 	 */
 	public javafx.scene.canvas.Canvas javafxCanvas;
-
-	/**
-	 *  There is a file unrelated at the end of the path
-	 */
-	private boolean safePath=false;
-
 	/**
 	 * The javafx GraphicsContext
 	 */
 	public javafx.scene.canvas.GraphicsContext javafxGraphicsContext;
-
 	/**
 	 * The objects list
 	 */
 	public List<CanvasObject> objects;
-
+	/**
+	 * There is a file unrelated at the end of the path
+	 */
+	private boolean safePath = false;
 	/**
 	 * The dimension of the canvas
 	 */
@@ -137,9 +133,8 @@ public final class Canvas {
 
 	/**
 	 * Renvoi la liste des objets du Canvas
-	 *
 	 */
-	public List<CanvasObject> getCanvas(){
+	public List<CanvasObject> getCanvas() {
 		List<CanvasObject> list = this.objects;
 		return list;
 	}
@@ -162,11 +157,11 @@ public final class Canvas {
 		this.path = path;
 	}
 
-	public void setSafePath(boolean safe){
-		this.safePath=safe;
+	public boolean getSafePath() {
+		return this.safePath;
 	}
 
-	public boolean getSafePath(){
-		return this.safePath;
+	public void setSafePath(boolean safe) {
+		this.safePath = safe;
 	}
 }

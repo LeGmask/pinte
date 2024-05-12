@@ -1,10 +1,9 @@
 package org.pinte.controllers;
 
 import javafx.scene.control.Menu;
-import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
-import javafx.stage.DirectoryChooser;
 import org.pinte.models.Save;
 
 public class MenuBar {
@@ -15,7 +14,6 @@ public class MenuBar {
 
 	/**
 	 * initialize the toolbar of the application
-	 * 
 	 */
 	public void initialize() {
 		Save save = new Save();
@@ -45,11 +43,15 @@ public class MenuBar {
 		 * adding menu to the menubar
 		 */
 		menuBar.getMenus().add(menu);
-		
+
 		/**
 		 * Event that trigger when button is on
 		 */
-		choice1Item.setOnAction(event->{save.SaveFile_as();});
-		choice2Item.setOnAction(event->{save.SaveFile(true);});
+		choice1Item.setOnAction(event -> {
+			save.SaveFile_as();
+		});
+		choice2Item.setOnAction(event -> {
+			save.SaveFile(true);
+		});
 	}
 }
