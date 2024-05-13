@@ -13,27 +13,27 @@ public class addRectangleState extends State {
 	Point2D p1, p2;
 
 	public addRectangleState() {
-		canvas.javafxCanvas.setOnMouseClicked(registerTopLeftCorner());
+		canvas.javafxCanvas.setOnMouseClicked(registerP1());
 	}
 
-	public EventHandler<MouseEvent> registerTopLeftCorner() {
+	public EventHandler<MouseEvent> registerP1() {
 		return new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
 				p1 = new Point2D(e.getX(), e.getY());
-				canvas.javafxCanvas.setOnMouseClicked(registerTopRightCorner());
+				canvas.javafxCanvas.setOnMouseClicked(registerP2());
 			}
 		};
 	}
 
-	public EventHandler<MouseEvent> registerTopRightCorner() {
+	public EventHandler<MouseEvent> registerP2() {
 		return new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
 				p2 = new Point2D(e.getX(), e.getY());
 				canvas.add(rectangleFrom2Points(p1, p2, new CanvasColor(0, 0, 0),
 														new CanvasColor(255, 0, 0)));
-				canvas.javafxCanvas.setOnMouseClicked(registerTopLeftCorner());
+				canvas.javafxCanvas.setOnMouseClicked(registerP1());
 			}
 		};
 	}
