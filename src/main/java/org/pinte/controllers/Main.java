@@ -24,6 +24,9 @@ public class Main {
 	public Button addCircle;
 
 	@FXML
+	public Button addEllipse;
+
+	@FXML
 	public Button addRectangle;
 
 	Canvas canvas = Canvas.getInstance();
@@ -60,11 +63,15 @@ public class Main {
 		status = new selectionState();
 	}
 
-	public void handleAjoutCercle(ActionEvent actionEvent) {
+	public void handleAddCircle(ActionEvent actionEvent) {
 		status = new addCircleState();
 	}
 
-	public void handleAjoutRectangle(ActionEvent actionEvent) {
+	public void handleAddRectangle(ActionEvent actionEvent) {
 		status = new addRectangleState();
+	}
+
+	public void handleAddEllipse(ActionEvent actionEvent) {
+		status = new addEllipseState();
 	}
 }
