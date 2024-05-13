@@ -79,6 +79,60 @@ public class CanvasEllipse extends CanvasObject {
 	}
 
 	/**
+	 * Get ellipse center
+	 *
+	 * @return center of the ellipse
+	 */
+	public Point2D getCenter() {
+		return this.center;
+	}
+
+	/**
+	 * Get ellipse rx
+	 *
+	 * @return rx
+	 */
+	public double getRx() {
+		return this.rx;
+	}
+
+	/**
+	 * Get ellipse ry
+	 *
+	 * @return radius in y direction
+	 */
+	public double getRy() {
+		return this.ry;
+	}
+
+	/**
+	 * Set ellipse center
+	 *
+	 * @param center center of the ellipse
+	 */
+	public void setCenter(Point2D center) {
+		this.center = center;
+	}
+
+	/**
+	 * Set ellipse rx
+	 *
+	 * @param rx radius in x direction
+	 */
+	public void setRx(double rx) {
+		this.rx = rx;
+	}
+
+	/**
+	 * Set ellipse ry
+	 *
+	 * @param ry radius in y direction
+	 */
+	public void setRy(double ry) {
+		this.ry = ry;
+	}
+
+	/**
 	 * Renders the ellipse on the canvas
 	 */
 	public void render() {

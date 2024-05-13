@@ -7,6 +7,7 @@ import java.awt.*;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Singleton class for the Canvas
@@ -173,5 +174,12 @@ public final class Canvas {
 	 */
 	public void setSafePath(boolean safe) {
 		this.safePath = safe;
+	}
+
+	/**
+	 * Remove last object added to the canvas
+	 */
+	public void removeLast() {
+		this.objects.removeLast();
 	}
 }

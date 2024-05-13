@@ -60,18 +60,22 @@ public class Main {
 	}
 
 	public void handleSelection(ActionEvent actionEvent) {
+		status.exitState();
 		status = new selectionState();
 	}
 
 	public void handleAddCircle(ActionEvent actionEvent) {
+		status.exitState();
 		status = new addCircleState();
 	}
 
 	public void handleAddRectangle(ActionEvent actionEvent) {
+		status.exitState();
 		status = new addRectangleState();
 	}
 
 	public void handleAddEllipse(ActionEvent actionEvent) {
+		status.exitState();
 		status = new addEllipseState();
 	}
 }

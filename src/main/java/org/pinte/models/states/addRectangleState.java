@@ -16,6 +16,10 @@ public class addRectangleState extends State {
 		canvas.javafxCanvas.setOnMouseClicked(registerP1());
 	}
 
+	public void exitState() {
+		canvas.javafxCanvas.removeEventHandler(MouseEvent.MOUSE_CLICKED, registerP1());
+	}
+
 	public EventHandler<MouseEvent> registerP1() {
 		return new EventHandler<MouseEvent>() {
 			@Override

@@ -9,4 +9,9 @@ public abstract class State {
 
 	Canvas canvas = Canvas.getInstance();
 
+	/**
+	 * Exit state by removing introduced handlers
+	 */
+	public abstract void exitState();
+
 }
