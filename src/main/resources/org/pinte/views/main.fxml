@@ -15,5 +15,12 @@
     <center>
         <Canvas fx:id="javafxCanvas"/>
     </center>
-
+    <right>
+        <VBox spacing="10">
+            <Button fx:id="selection" text="Selection" onAction="#handleSelection"/>
+            <Button fx:id="addCircle" text="Circle" onAction="#handleAddCircle"/>
+            <Button fx:id="addEllipse" text="Ellipse" onAction="#handleAddEllipse"/>
+            <Button fx:id="addRectangle" text="Rectangle" onAction="#handleAddRectangle"/>
+        </VBox>
+    </right>
 </BorderPane>
