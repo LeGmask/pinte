@@ -8,22 +8,38 @@ import org.pinte.models.CanvasObjects.CanvasEllipse;
 
 
 public class addCircleState extends State{
+	/**
+	 * Center of the circle to be added
+	 */
+	Point2D center;
+
+	/**
+	 * Point located on the circle to be added
+	 */
+	Point2D p;
+
 	public addCircleState() {
-		canvas.javafxCanvas.setOnMouseClicked(ajouterCercle());
+		canvas.javafxCanvas.setOnMouseClicked(registerCenter());
 	}
 
-	public EventHandler<MouseEvent> ajouterCercle() {
+	public EventHandler<MouseEvent> registerCenter() {
 		return new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
-				CanvasEllipse ellipse = new CanvasEllipse(
-					new Point2D(
-						e.getX(),
-						e.getY()),
-					10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
-				canvas.add(ellipse);
+				center = new Point2D(e.getX(), e.getY());
+				canvas.javafxCanvas.setOnMouseClicked(registerPointOnCircle());
+			}
+		};
+	}
 
-
+	public EventHandler<MouseEvent> registerPointOnCircle() {
+		return new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				p = new Point2D(e.getX(), e.getY());
+				canvas.add(new CanvasEllipse(center, p.distance(center), new CanvasColor(0, 0, 0),
+											 new CanvasColor(255, 0, 0)));
+				canvas.javafxCanvas.setOnMouseClicked(registerCenter());
 			}
 		};
 	}
