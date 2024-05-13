@@ -23,6 +23,10 @@ public class MenuBar {
 		MenuItem menuItemSaveAs = new MenuItem("Enregistrer sous");
 		MenuItem menuItemSave = new MenuItem("Enregistrer");
 
+		//adding items to the menu
+		menu.getItems().add(menuItemSave);
+		menu.getItems().add(menuItemSaveAs);
+		
 		// adding menu to the menu bar
 		menuBar.getMenus().add(menu);
 
