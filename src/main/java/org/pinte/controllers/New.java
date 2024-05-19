@@ -7,6 +7,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.pinte.models.Canvas;
+import org.pinte.models.Open;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -102,16 +103,8 @@ public class New {
 	 * @throws IOException If the main view is not found
 	 */
 	public void open(ActionEvent actionEvent) throws IOException {
-		FileChooser fileChooser = new FileChooser();
-		Stage stage = getStageFromEvent(actionEvent);
-
-		fileChooser.setTitle("Open Project");
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Svg Files", "*.svg"));
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
-
-		fileChooser.showOpenDialog(stage);
-
-		// @TODO: parse project + create canvas and switch to main view
 		switchScene(actionEvent, "../views/main.fxml");
+		Open open = new Open();
+		open.choose();
 	}
 }
