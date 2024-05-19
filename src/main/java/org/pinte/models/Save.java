@@ -46,7 +46,7 @@ public class Save {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Enregistrer sous");
 			primaryStage.show();
-		} catch (Exception e) {
+		} catch (java.io.IOException e) {
 			System.out.println(e);
 		}
 	}
@@ -75,7 +75,7 @@ public class Save {
 			} else {
 				write();
 			}
-		} catch (Exception e) {
+		} catch (java.io.IOException e) {
 			System.out.println(e);
 		}
 	}
@@ -84,9 +84,9 @@ public class Save {
 	 * Write the information of the canva in the file on svg format
 	 *
 	 * @param path path of the file to save
-	 * @throws Exception all exception
+	 * @throws java.io.IOException failed or interrupted I/O operations
 	 */
-	private void write() throws Exception {
+	private void write() throws java.io.IOException {
 		List<CanvasObject> objects = canva.getCanvas();
 		List<String> objectsstr = new ArrayList<>();
 		objectsstr.add("<?xml version=\"1.0\"?>");
@@ -107,9 +107,9 @@ public class Save {
 	 * change the parameter for the write function to erase the content 
 	 * of the file and replace it
 	 *
-	 * @throws Exception all exception
+	 * @throws java.io.IOException failed or interrupted I/O operations
 	 */
-	public void replace() throws Exception {
+	public void replace() throws java.io.IOException {
 		exist = true;
 		canva.setSafePath(true);
 		write();
