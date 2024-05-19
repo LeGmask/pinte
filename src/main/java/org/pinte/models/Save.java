@@ -90,7 +90,7 @@ public class Save {
 		List<CanvasObject> objects = canva.getCanvas();
 		List<String> objectsstr = new ArrayList<>();
 		objectsstr.add("<?xml version=\"1.0\"?>");
-		objectsstr.add("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800px\" height=\"800px\" viewBox=\"0 0 800 800\">");
+		objectsstr.add("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\""+ canva.getDim().getWidth() +"px\" height=\""+ canva.getDim().getWidth() + "px\" viewBox=\"0 0 "+canva.getDim().getWidth() +" "+ canva.getDim().getHeight() +"\">");
 		for (CanvasObject object : objects) {
 			objectsstr.add(object.toSVG());
 		}
