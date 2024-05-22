@@ -96,15 +96,16 @@ public class CanvasContextualMenu {
 				MenuItem item3 = new MenuItem("Delete");
 				item3.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
-						for (CanvasObject object : pointedShapes) {
+						ArrayList<Object> selectionned = new ArrayListe<Object>();
+						for (CanvasObject object : canvas.object) {
 							if (object.isSelected == True) {
-								pointedShapes.remove(object);
-								// Je sais pas encore trop comment faire pour remplacer tout par du blanc
-								
-								System.out.println("Deleted");
+								selectionned.add(object);
 							}
 						}
-						
+						for (CanvasObject object : selectionned) {
+							canvas.object.remove(object);
+							system.out.println("Deleted");
+						}
 					}
 				});
 				
