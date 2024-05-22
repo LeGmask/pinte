@@ -96,7 +96,7 @@ public class CanvasContextualMenu {
 				MenuItem item3 = new MenuItem("Delete");
 				item3.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
-						ArrayList<Object> selectionned = new ArrayListe<Object>();
+						List<CanvasObject> selectionned = new List<CanvasObject>();
 						for (CanvasObject object : canvas.object) {
 							if (object.isSelected == True) {
 								selectionned.add(object);
