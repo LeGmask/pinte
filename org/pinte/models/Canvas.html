@@ -104,24 +104,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a></code></div>
-<div class="col-second even-row-color"><code><a href="#ghostObject" class="member-name-link">ghostObject</a></code></div>
+<div class="col-first even-row-color"><code><a href="CanvasObjects/CanvasColor.html" title="class in org.pinte.models.CanvasObjects">CanvasColor</a></code></div>
+<div class="col-second even-row-color"><code><a href="#colorSelect" class="member-name-link">colorSelect</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">La couleur actuellement utilisée</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#ghostObject" class="member-name-link">ghostObject</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">An object used to show information about selection, shape drawing, etc...</div>
 </div>
-<div class="col-first odd-row-color"><code>javafx.scene.canvas.Canvas</code></div>
-<div class="col-second odd-row-color"><code><a href="#javafxCanvas" class="member-name-link">javafxCanvas</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>javafx.scene.canvas.Canvas</code></div>
+<div class="col-second even-row-color"><code><a href="#javafxCanvas" class="member-name-link">javafxCanvas</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">The javafx canvas</div>
 </div>
-<div class="col-first even-row-color"><code>javafx.scene.canvas.GraphicsContext</code></div>
-<div class="col-second even-row-color"><code><a href="#javafxGraphicsContext" class="member-name-link">javafxGraphicsContext</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>javafx.scene.canvas.GraphicsContext</code></div>
+<div class="col-second odd-row-color"><code><a href="#javafxGraphicsContext" class="member-name-link">javafxGraphicsContext</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The javafx GraphicsContext</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#objects" class="member-name-link">objects</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#objects" class="member-name-link">objects</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">The objects list</div>
 </div>
 </div>
@@ -153,19 +158,27 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Renvoi la liste des objets du Canvas</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desktop/java/awt/Dimension.html" title="class or interface in java.awt" class="external-link">Dimension</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDim()" class="member-name-link">getDim</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javafx.scene.canvas.GraphicsContext</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGraphicsContext2D()" class="member-name-link">getGraphicsContext2D</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="CanvasObjects/CanvasColor.html" title="class in org.pinte.models.CanvasObjects">CanvasColor</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCopyColorSelect()" class="member-name-link">getCopyColorSelect</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">getteur pour la couleur séléctionnée</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desktop/java/awt/Dimension.html" title="class or interface in java.awt" class="external-link">Dimension</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDim()" class="member-name-link">getDim</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javafx.scene.canvas.GraphicsContext</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGraphicsContext2D()" class="member-name-link">getGraphicsContext2D</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the GraphicsContext2D of the canvas</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Canvas.html" title="class in org.pinte.models">Canvas</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getInstance()" class="member-name-link">getInstance</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Canvas.html" title="class in org.pinte.models">Canvas</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getInstance()" class="member-name-link">getInstance</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Singleton instance of the Canvas</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getName()" class="member-name-link">getName</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPath()" class="member-name-link">getPath</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -203,13 +216,16 @@ loadScripts(document, 'script');</script>
 <div class="block">Set the javafx canvas</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPath(java.nio.file.Path)" class="member-name-link">setPath</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;path)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setName(java.lang.String)" class="member-name-link">setName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPath(java.nio.file.Path)" class="member-name-link">setPath</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;path)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set current project path</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSafePath(boolean)" class="member-name-link">setSafePath</a><wbr>(boolean&nbsp;safe)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSafePath(boolean)" class="member-name-link">setSafePath</a><wbr>(boolean&nbsp;safe)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set if the path led to an unrelated file</div>
 </div>
 </div>
@@ -248,6 +264,13 @@ loadScripts(document, 'script');</script>
 <h3>objects</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a>&gt;</span>&nbsp;<span class="element-name">objects</span></div>
 <div class="block">The objects list</div>
+</section>
+</li>
+<li>
+<section class="detail" id="colorSelect">
+<h3>colorSelect</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="CanvasObjects/CanvasColor.html" title="class in org.pinte.models.CanvasObjects">CanvasColor</a></span>&nbsp;<span class="element-name">colorSelect</span></div>
+<div class="block">La couleur actuellement utilisée</div>
 </section>
 </li>
 <li>
@@ -408,6 +431,29 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>safe</code> - boolean that answer previous statement</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getName()">
+<h3>getName</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getName</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="setName(java.lang.String)">
+<h3>setName</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setName</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getCopyColorSelect()">
+<h3>getCopyColorSelect</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="CanvasObjects/CanvasColor.html" title="class in org.pinte.models.CanvasObjects">CanvasColor</a></span>&nbsp;<span class="element-name">getCopyColorSelect</span>()</div>
+<div class="block">getteur pour la couleur séléctionnée</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>une couleur qui a les mêmes attributs que la couleur sélectionnée</dd>
 </dl>
 </section>
 </li>
