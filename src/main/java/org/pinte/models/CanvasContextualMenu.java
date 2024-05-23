@@ -8,13 +8,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 import org.pinte.models.CanvasObjects.CanvasObject;
 import org.pinte.models.states.translateState;
-import org.pinte.models.states.State;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CanvasContextualMenu {
-
 	/**
 	 * Creates a context menu for the canvas
 	 *
@@ -61,7 +59,6 @@ public class CanvasContextualMenu {
 	 * @param pointedShapes
 	 */
 	protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, List<CanvasObject> pointedShapes) {
-
 		switch (e.getButton()) {
 			case PRIMARY:
 				if (e.isControlDown()) {
@@ -88,7 +85,6 @@ public class CanvasContextualMenu {
 
 					translateState translateState = new translateState(toMove, e);
 					translateState.enterTranslateState();
-
 				}
 				break;
 			case SECONDARY:

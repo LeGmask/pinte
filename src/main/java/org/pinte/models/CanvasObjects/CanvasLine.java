@@ -23,6 +23,25 @@ public class CanvasLine extends CanvasObject {
 		this.b = b;
 	}
 
+	/**
+	 * Creates a line from an SVG string
+	 *
+	 * @param args the SVG string to parse
+	 * @return a CanvasLine parsed from the SVG string
+	 */
+	public static CanvasLine createFromSVG(String args) {
+		double x1 = Double.parseDouble(CanvasObjectParser.parseKeyword("x1", args));
+		double y1 = Double.parseDouble(CanvasObjectParser.parseKeyword("y1", args));
+		double x2 = Double.parseDouble(CanvasObjectParser.parseKeyword("x2", args));
+		double y2 = Double.parseDouble(CanvasObjectParser.parseKeyword("y2", args));
+		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
+			CanvasObjectParser.parseKeyword("fill-opacity", args));
+		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
+			CanvasObjectParser.parseKeyword("stroke-opacity", args));
+
+		return new CanvasLine(new Point2D(x1, y1), new Point2D(x2, y2), fillColor, strokeColor);
+	}
+
 	private double dotProduct(Point2D a, Point2D b) {
 		return a.getX() * b.getX() + a.getY() * b.getY();
 	}
@@ -59,8 +78,8 @@ public class CanvasLine extends CanvasObject {
 		} else {
 			// Projection is on the segment
 			Point2D projectionPoint = new Point2D(
-					a.getX() + projection * ab.getX(),
-					a.getY() + projection * ab.getY());
+				a.getX() + projection * ab.getX(),
+				a.getY() + projection * ab.getY());
 			distance = length(p.subtract(projectionPoint));
 		}
 
@@ -89,24 +108,5 @@ public class CanvasLine extends CanvasObject {
 	public void translate(Point2D p) {
 		a = a.add(p);
 		b = b.add(p);
-	}
-
-	/**
-	 * Creates a line from an SVG string
-	 *
-	 * @param args the SVG string to parse
-	 * @return a CanvasLine parsed from the SVG string
-	 */
-	public static CanvasLine createFromSVG(String args) {
-		double x1 = Double.parseDouble(CanvasObjectParser.parseKeyword("x1", args));
-		double y1 = Double.parseDouble(CanvasObjectParser.parseKeyword("y1", args));
-		double x2 = Double.parseDouble(CanvasObjectParser.parseKeyword("x2", args));
-		double y2 = Double.parseDouble(CanvasObjectParser.parseKeyword("y2", args));
-		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
-				CanvasObjectParser.parseKeyword("fill-opacity", args));
-		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
-				CanvasObjectParser.parseKeyword("stroke-opacity", args));
-
-		return new CanvasLine(new Point2D(x1, y1), new Point2D(x2, y2), fillColor, strokeColor);
 	}
 }

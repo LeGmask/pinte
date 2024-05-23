@@ -1,7 +1,6 @@
 package org.pinte.models;
 
 import javafx.scene.canvas.GraphicsContext;
-
 import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasObject;
 
@@ -31,16 +30,21 @@ public final class Canvas {
 	 * The objects list
 	 */
 	public List<CanvasObject> objects;
-	
+
 	/**
-	 * La couleur actuellement utilisée 
+	 * La couleur actuellement utilisée
 	 */
 	public CanvasColor colorSelect;
-	
+
 	/**
 	 * An object used to show information about selection, shape drawing, etc...
 	 */
 	public CanvasObject ghostObject = null;
+
+	/**
+	 * The name of the project
+	 */
+	private String name;
 
 	/**
 	 * There is a file opened by the app at the end of the path
@@ -60,7 +64,7 @@ public final class Canvas {
 	 * Private constructor for the Canvas
 	 */
 	private Canvas() {
-		objects = new ArrayList<CanvasObject>(10);
+		objects = new ArrayList<>(10);
 	}
 
 	/**
@@ -123,7 +127,7 @@ public final class Canvas {
 	 */
 	public void clear() {
 		this.javafxCanvas.getGraphicsContext2D().clearRect(0, 0, this.javafxCanvas.getWidth(),
-				this.javafxCanvas.getHeight());
+			this.javafxCanvas.getHeight());
 	}
 
 	/**
@@ -167,8 +171,7 @@ public final class Canvas {
 	 * Renvoi la liste des objets du Canvas
 	 */
 	public List<CanvasObject> getCanvas() {
-		List<CanvasObject> list = this.objects;
-		return list;
+		return this.objects;
 	}
 
 	/**
@@ -206,17 +209,23 @@ public final class Canvas {
 	public void setSafePath(boolean safe) {
 		this.safePath = safe;
 	}
-	
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	/**
 	 * getteur pour la couleur séléctionnée
-	 * 
+	 *
 	 * @return une couleur qui a les mêmes attributs que la couleur sélectionnée
 	 */
 	public CanvasColor getCopyColorSelect() {
-		return new CanvasColor(this.colorSelect.getRed(),this.colorSelect.getGreen(),this.colorSelect.getBlue(),this.colorSelect.getAlpha());
+		return new CanvasColor(this.colorSelect.getRed(), this.colorSelect.getGreen(), this.colorSelect.getBlue(), this.colorSelect.getAlpha());
 	}
-	
-	
-	
-	
+
+
 }

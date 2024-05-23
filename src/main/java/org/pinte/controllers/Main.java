@@ -3,11 +3,8 @@ package org.pinte.controllers;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import org.pinte.models.Canvas;
-import org.pinte.models.CanvasObjects.CanvasColor;
-import org.pinte.models.CanvasObjects.CanvasEllipse;
 import org.pinte.models.states.*;
 
 public class Main {
