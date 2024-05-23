@@ -104,19 +104,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>javafx.scene.canvas.Canvas</code></div>
-<div class="col-second even-row-color"><code><a href="#javafxCanvas" class="member-name-link">javafxCanvas</a></code></div>
+<div class="col-first even-row-color"><code><a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a></code></div>
+<div class="col-second even-row-color"><code><a href="#ghostObject" class="member-name-link">ghostObject</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">An object used to show information about selection, shape drawing, etc...</div>
+</div>
+<div class="col-first odd-row-color"><code>javafx.scene.canvas.Canvas</code></div>
+<div class="col-second odd-row-color"><code><a href="#javafxCanvas" class="member-name-link">javafxCanvas</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The javafx canvas</div>
 </div>
-<div class="col-first odd-row-color"><code>javafx.scene.canvas.GraphicsContext</code></div>
-<div class="col-second odd-row-color"><code><a href="#javafxGraphicsContext" class="member-name-link">javafxGraphicsContext</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>javafx.scene.canvas.GraphicsContext</code></div>
+<div class="col-second even-row-color"><code><a href="#javafxGraphicsContext" class="member-name-link">javafxGraphicsContext</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">The javafx GraphicsContext</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#objects" class="member-name-link">objects</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#objects" class="member-name-link">objects</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The objects list</div>
 </div>
 </div>
@@ -172,15 +177,25 @@ loadScripts(document, 'script');</script>
 <div class="block">Get if the path don't point to an unrelatd file</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#render()" class="member-name-link">render</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeGhostObject()" class="member-name-link">removeGhostObject</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Render the canvas</div>
+<div class="block">Delete the ghost object of the canvas</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDim(int,int)" class="member-name-link">setDim</a><wbr>(int&nbsp;width,
- int&nbsp;height)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#render()" class="member-name-link">render</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Render the canvas</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDim(int,int)" class="member-name-link">setDim</a><wbr>(int&nbsp;width,
+ int&nbsp;height)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Resize the canvas</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGhostObject(org.pinte.models.CanvasObjects.CanvasObject)" class="member-name-link">setGhostObject</a><wbr>(<a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a>&nbsp;ghostObject)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the ghost object of the canvas</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setJavafxCanvas(javafx.scene.canvas.Canvas)" class="member-name-link">setJavafxCanvas</a><wbr>(javafx.scene.canvas.Canvas&nbsp;javafxCanvas)</code></div>
@@ -233,6 +248,13 @@ loadScripts(document, 'script');</script>
 <h3>objects</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a>&gt;</span>&nbsp;<span class="element-name">objects</span></div>
 <div class="block">The objects list</div>
+</section>
+</li>
+<li>
+<section class="detail" id="ghostObject">
+<h3>ghostObject</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a></span>&nbsp;<span class="element-name">ghostObject</span></div>
+<div class="block">An object used to show information about selection, shape drawing, etc...</div>
 </section>
 </li>
 </ul>
@@ -318,6 +340,24 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>object</code> - the object to add</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setGhostObject(org.pinte.models.CanvasObjects.CanvasObject)">
+<h3>setGhostObject</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setGhostObject</span><wbr><span class="parameters">(<a href="CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a>&nbsp;ghostObject)</span></div>
+<div class="block">Set the ghost object of the canvas</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>ghostObject</code> - the new ghost object</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="removeGhostObject()">
+<h3>removeGhostObject</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeGhostObject</span>()</div>
+<div class="block">Delete the ghost object of the canvas</div>
 </section>
 </li>
 <li>
