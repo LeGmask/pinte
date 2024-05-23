@@ -27,6 +27,14 @@ public class translateState extends State {
             @Override
             public void handle(MouseEvent e) {
                 p2 = new Point2D(e.getX(), e.getY());
+
+                canvas.removeGhostObject();
+                CanvasObject ellipse = new CanvasEllipse(p2,
+                        10, 10,
+                        new CanvasColor(255, 255, 255, 0), new CanvasColor(128, 128, 0, 1));
+
+                ellipse.isSelected = true;
+                canvas.setGhostObject(ellipse);
             }
         };
     }
