@@ -32,7 +32,7 @@ public class addRectangleState extends State {
 						CanvasObject rect = rectangleFrom2Points(p1,
 								new Point2D(event.getX(), event.getY()),
 
-								new CanvasColor(0, 0, 0, 0), new CanvasColor(128, 128, 0, 1));
+								canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
 
 						rect.isSelected = true;
 						canvas.setGhostObject(rect);
@@ -49,8 +49,8 @@ public class addRectangleState extends State {
 			@Override
 			public void handle(MouseEvent e) {
 				p2 = new Point2D(e.getX(), e.getY());
-				canvas.add(rectangleFrom2Points(p1, p2, new CanvasColor(0, 0, 0),
-						new CanvasColor(255, 0, 0)));
+				canvas.add(rectangleFrom2Points(p1, p2, canvas.getCopyColorSelect(),
+						canvas.getCopyColorSelect()));
 				canvas.javafxCanvas.setOnMouseClicked(registerP1());
 				canvas.javafxCanvas.setOnMouseMoved(null);
 				canvas.removeGhostObject();

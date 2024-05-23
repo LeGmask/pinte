@@ -1,6 +1,8 @@
 package org.pinte.models;
 
 import javafx.scene.canvas.GraphicsContext;
+
+import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasObject;
 
 import java.awt.*;
@@ -29,7 +31,12 @@ public final class Canvas {
 	 * The objects list
 	 */
 	public List<CanvasObject> objects;
-
+	
+	/**
+	 * La couleur actuellement utilisée 
+	 */
+	public CanvasColor colorSelect;
+	
 	/**
 	 * An object used to show information about selection, shape drawing, etc...
 	 */
@@ -76,7 +83,7 @@ public final class Canvas {
 	public void setJavafxCanvas(javafx.scene.canvas.Canvas javafxCanvas) {
 		this.javafxCanvas = javafxCanvas;
 		this.javafxGraphicsContext = javafxCanvas.getGraphicsContext2D();
-
+		this.colorSelect = new CanvasColor(120, 120, 250, 101);
 		if (this.dim != null) {
 			this.javafxCanvas.setWidth(this.dim.getWidth());
 			this.javafxCanvas.setHeight(this.dim.getHeight());
@@ -199,4 +206,17 @@ public final class Canvas {
 	public void setSafePath(boolean safe) {
 		this.safePath = safe;
 	}
+	
+	/**
+	 * getteur pour la couleur séléctionnée
+	 * 
+	 * @return une couleur qui a les mêmes attributs que la couleur sélectionnée
+	 */
+	public CanvasColor getCopyColorSelect() {
+		return new CanvasColor(this.colorSelect.getRed(),this.colorSelect.getGreen(),this.colorSelect.getBlue(),this.colorSelect.getAlpha());
+	}
+	
+	
+	
+	
 }
