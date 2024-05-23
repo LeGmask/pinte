@@ -61,50 +61,51 @@ public class CanvasColorTest {
 	// CanvasColor(hex)
 	@Test
 	public void testNormalUseCanvasColorHex() {
-		CanvasColor color = new CanvasColor("#143246");
+		CanvasColor color = new CanvasColor("#143246", "1.0");
 		Assertions.assertEquals("#143246", color.asHex());
 	}
 
 	// CanvasColor(hex)
 	@Test
 	public void testNormalUseCanvasColorHexNoHashInput() {
-		CanvasColor color = new CanvasColor("143246");
+		CanvasColor color = new CanvasColor("143246", "0.6");
 		Assertions.assertEquals("#143246", color.asHex());
 	}
 
 	@Test
 	public void testNormalUseCanvasColorHexWhite() {
-		CanvasColor color = new CanvasColor("#FFFFFF");
+		CanvasColor color = new CanvasColor("#FFFFFF", "0.6");
 		Assertions.assertEquals("#FFFFFF", color.asHex());
 	}
 
 	@Test
 	public void testNormalUseCanvasColorHexBlack() {
-		CanvasColor color = new CanvasColor("#000000");
+		CanvasColor color = new CanvasColor("#000000", "0.6");
 		Assertions.assertEquals("#000000", color.asHex());
 	}
 
 	@Test
 	public void testWrongSizeArgumentCanvasColorHexThrowsIllegalArgumentException() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor("error"));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor("error", "0.5"));
 	}
 
 	@Test
 	public void testWrongTypeArgumentCanvasColorHexThrowsIllegalArgumentException() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor("1111111"));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor("1111111", ""));
 	}
 
 	@Test
 	public void testWrongTypeArgumentCanvasColorHexThrowsIllegalArgumentException2() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor("#123g43"));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> new CanvasColor("#123g43", "0.56"));
 	}
 
 	// toPaintColor()
 	@Test
 	public void testNormalUseToPaintColor() {
 		Assertions.assertEquals(Color.ALICEBLUE,
-			new CanvasColor((int) (Color.ALICEBLUE.getRed() * 255), (int) (Color.ALICEBLUE.getGreen() * 255),
-				(int) (Color.ALICEBLUE.getBlue() * 255)).toPaintColor());
+				new CanvasColor((int) (Color.ALICEBLUE.getRed() * 255), (int) (Color.ALICEBLUE.getGreen() * 255),
+						(int) (Color.ALICEBLUE.getBlue() * 255), (int) (Color.ALICEBLUE.getOpacity() * 255))
+						.toPaintColor());
 	}
 
 }

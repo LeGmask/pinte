@@ -36,8 +36,10 @@ public class CanvasPolygonTest {
 		CanvasPolygon polygon = new CanvasPolygon(points, fillColor, strokeColor);
 		String svgString = polygon.toSVG();
 		Point2D[] parsedPoints = CanvasObjectParser.parsePoints(svgString);
-		CanvasColor fill = new CanvasColor(CanvasObjectParser.parseKeyword("fill", svgString));
-		CanvasColor stroke = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", svgString));
+		CanvasColor fill = new CanvasColor(CanvasObjectParser.parseKeyword("fill", svgString),
+				CanvasObjectParser.parseKeyword("fill-opacity", svgString));
+		CanvasColor stroke = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", svgString),
+				CanvasObjectParser.parseKeyword("stroke-opacity", svgString));
 
 		assertEquals(parsedPoints.length, points.length);
 

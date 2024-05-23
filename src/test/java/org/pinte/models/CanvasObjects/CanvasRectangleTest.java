@@ -61,7 +61,8 @@ public class CanvasRectangleTest {
 	@Test
 	public void testSVGString() {
 		CanvasRectangle rectangle1 = new CanvasRectangle(A, B, C, D, fillColor, strokeColor);
-		CanvasRectangle rectangle2 = (CanvasRectangle) CanvasObject.parseFromSVG(rectangle1.toSVG());
+		String str = rectangle1.toSVG();
+		CanvasRectangle rectangle2 = (CanvasRectangle) CanvasObject.parseFromSVG(str);
 
 		Assertions.assertEquals(rectangle1.toSVG(), rectangle2.toSVG());
 		testEqual(rectangle2, A, B, C, D);

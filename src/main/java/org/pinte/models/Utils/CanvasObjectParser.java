@@ -21,10 +21,11 @@ public class CanvasObjectParser {
 		Matcher m = pattern.matcher(svgString);
 
 		if (!m.find()) {
-			throw new IllegalArgumentException("Pattern " + pattern + " not found in SVG String : " + svgString);
+			return "";
 		}
+		String res = m.group();
 
-		return m.group();
+		return res;
 	}
 
 	/**
@@ -35,6 +36,7 @@ public class CanvasObjectParser {
 	 * @return the data without the keyword
 	 */
 	private static String fixMatchedText(String matchedText, String keyword) {
+		matchedText = matchedText.strip();
 		matchedText = matchedText.replace(keyword, "");
 		matchedText = matchedText.replace("=", "");
 		matchedText = matchedText.replace("\"", "");
@@ -47,11 +49,10 @@ public class CanvasObjectParser {
 	 *
 	 * @param keyword   the keyword to search for
 	 * @param svgString the string to search in
-	 * @return the value for the specified keyword
-	 * @throws IllegalArgumentException if the keyword is not found
+	 * @return the value for the specified keyword, "" if not found
 	 */
-	public static String parseKeyword(String keyword, String svgString) throws IllegalArgumentException {
-		Pattern p = Pattern.compile(keyword + "=\"\\S*\""); // parses strings of the form : pattern="value"
+	public static String parseKeyword(String keyword, String svgString) {
+		Pattern p = Pattern.compile(" " + keyword + "=\"\\S*\""); // parses strings of the form : pattern="value"
 		String matchedText = parsePattern(p, svgString);
 		return fixMatchedText(matchedText, keyword);
 	}

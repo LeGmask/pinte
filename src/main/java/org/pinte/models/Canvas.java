@@ -29,6 +29,12 @@ public final class Canvas {
 	 * The objects list
 	 */
 	public List<CanvasObject> objects;
+
+	/**
+	 * An object used to show information about selection, shape drawing, etc...
+	 */
+	public CanvasObject ghostObject = null;
+
 	/**
 	 * There is a file opened by the app at the end of the path
 	 */
@@ -42,7 +48,6 @@ public final class Canvas {
 	 * Where the project should be saved
 	 */
 	private Path path;
-
 
 	/**
 	 * Private constructor for the Canvas
@@ -110,7 +115,8 @@ public final class Canvas {
 	 * Clear the canvas
 	 */
 	public void clear() {
-		this.javafxCanvas.getGraphicsContext2D().clearRect(0, 0, this.javafxCanvas.getWidth(), this.javafxCanvas.getHeight());
+		this.javafxCanvas.getGraphicsContext2D().clearRect(0, 0, this.javafxCanvas.getWidth(),
+				this.javafxCanvas.getHeight());
 	}
 
 	/**
@@ -119,6 +125,9 @@ public final class Canvas {
 	public void render() {
 		for (CanvasObject object : objects) {
 			object.render();
+		}
+		if (ghostObject != null) {
+			ghostObject.render();
 		}
 	}
 
@@ -129,6 +138,22 @@ public final class Canvas {
 	 */
 	public void add(CanvasObject object) {
 		objects.add(object);
+	}
+
+	/**
+	 * Set the ghost object of the canvas
+	 *
+	 * @param ghostObject the new ghost object
+	 */
+	public void setGhostObject(CanvasObject ghostObject) {
+		this.ghostObject = ghostObject;
+	}
+
+	/**
+	 * Delete the ghost object of the canvas
+	 */
+	public void removeGhostObject() {
+		ghostObject = null;
 	}
 
 	/**
@@ -159,7 +184,7 @@ public final class Canvas {
 
 	/**
 	 * Get if the path don't point to an unrelatd file
-	 * 
+	 *
 	 * @return boolean that answer previous statement
 	 */
 	public boolean getSafePath() {
@@ -168,7 +193,7 @@ public final class Canvas {
 
 	/**
 	 * Set if the path led to an unrelated file
-	 * 
+	 *
 	 * @param safe boolean that answer previous statement
 	 */
 	public void setSafePath(boolean safe) {

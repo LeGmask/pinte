@@ -73,8 +73,10 @@ public class CanvasEllipse extends CanvasObject {
 		double rx = Double.parseDouble(CanvasObjectParser.parseKeyword("rx", args));
 		double ry = Double.parseDouble(CanvasObjectParser.parseKeyword("ry", args));
 
-		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args));
-		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args));
+		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
+				CanvasObjectParser.parseKeyword("fill-opacity", args));
+		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
+				CanvasObjectParser.parseKeyword("stroke-opacity", args));
 		return new CanvasEllipse(new Point2D(cx, cy), rx, ry, fillColor, strokeColor);
 	}
 
@@ -99,14 +101,16 @@ public class CanvasEllipse extends CanvasObject {
 		d.put("rx", Double.toString(this.rx));
 		d.put("ry", Double.toString(this.ry));
 		d.put("fill", this.fillColor.asHex());
+		d.put("fill-opacity", this.fillColor.opacityString());
 		d.put("stroke", this.strokeColor.asHex());
+		d.put("stroke-opacity", this.strokeColor.opacityString());
 		return toSVG("ellipse", d);
 	}
 
 	@Override
 	public boolean contains(double x, double y) {
 		double p = (Math.pow((x - center.getX()), 2) / Math.pow(rx, 2))
-			+ (Math.pow((y - center.getY()), 2) / Math.pow(ry, 2));
+				+ (Math.pow((y - center.getY()), 2) / Math.pow(ry, 2));
 		return p <= 1;
 	}
 }
