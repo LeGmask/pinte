@@ -32,7 +32,7 @@ public class addLineState extends State {
 						canvas.removeGhostObject();
 
 						CanvasObject line = new CanvasLine(p1, new Point2D(event.getX(), event.getY()),
-							new CanvasColor(0, 0, 0, 0), new CanvasColor(128, 128, 0, 1));
+								canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
 
 						line.isSelected = true;
 						canvas.setGhostObject(line);
@@ -50,7 +50,7 @@ public class addLineState extends State {
 			public void handle(MouseEvent e) {
 				p2 = new Point2D(e.getX(), e.getY());
 				canvas.add(new CanvasLine(p1, p2, new CanvasColor(0, 0, 0),
-					new CanvasColor(255, 0, 0)));
+						new CanvasColor(255, 0, 0)));
 				canvas.javafxCanvas.setOnMouseClicked(registerP1());
 				canvas.javafxCanvas.setOnMouseMoved(null);
 				canvas.removeGhostObject();
