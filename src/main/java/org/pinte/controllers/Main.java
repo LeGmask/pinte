@@ -29,6 +29,9 @@ public class Main {
 	@FXML
 	public Button addRectangle;
 
+	@FXML
+	public Button addLine;
+
 	Canvas canvas = Canvas.getInstance();
 
 	/**
@@ -73,5 +76,9 @@ public class Main {
 
 	public void handleAddEllipse(ActionEvent actionEvent) {
 		status = new addEllipseState();
+	}
+
+	public void handleAddLine(ActionEvent actionEvent) {
+		status = new addLineState();
 	}
 }

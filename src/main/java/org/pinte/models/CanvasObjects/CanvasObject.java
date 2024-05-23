@@ -12,7 +12,6 @@ import java.util.Enumeration;
  * CanvasObject abstract class to build canvas objects
  */
 public abstract class CanvasObject {
-
     /**
      * Is the object selected
      */
@@ -118,5 +117,4 @@ public abstract class CanvasObject {
             gc.setLineDashes(new double[] { 5 });
         }
     }
-
 }
