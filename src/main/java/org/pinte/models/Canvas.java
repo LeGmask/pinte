@@ -1,6 +1,8 @@
 package org.pinte.models;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.Clipboard;
+
 import org.pinte.models.CanvasObjects.CanvasObject;
 
 import java.awt.*;
@@ -29,6 +31,11 @@ public final class Canvas {
 	 * The objects list
 	 */
 	public List<CanvasObject> objects;
+
+  /**
+   * The system clipboard to copy paste
+   */
+  public final Clipboard clipboard = Clipboard.getSystemClipboard();
 
 	/**
 	 * An object used to show information about selection, shape drawing, etc...
@@ -199,4 +206,11 @@ public final class Canvas {
 	public void setSafePath(boolean safe) {
 		this.safePath = safe;
 	}
+
+  /**
+   * Return the clipboard of the canvas
+   */
+  public Clipboard getClipboard() {
+    return clipboard;
+  }
 }

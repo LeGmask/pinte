@@ -1,6 +1,8 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.geometry.Point2D;
+import javafx.scene.effect.Light.Point;
+
 import org.pinte.models.Utils.CanvasObjectParser;
 
 import java.util.Dictionary;
@@ -59,6 +61,14 @@ public class CanvasEllipse extends CanvasObject {
 		this.rx = Math.abs(a.getX() - this.center.getX());
 		this.ry = Math.abs(a.getY() - this.center.getY());
 	}
+
+  /**
+   * Change the center of the ellipse
+   * @param center new center
+   */
+  public void setCenter(Point2D center) {
+    this.center = center;
+  }
 
 	/**
 	 * Creates an ellipse object from an SVG string.

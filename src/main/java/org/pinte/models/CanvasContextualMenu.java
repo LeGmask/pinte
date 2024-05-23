@@ -2,10 +2,16 @@ package org.pinte.models;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
+
+import org.pinte.models.CanvasObjects.CanvasEllipse;
 import org.pinte.models.CanvasObjects.CanvasObject;
 
 import java.util.ArrayList;
@@ -84,7 +90,11 @@ public class CanvasContextualMenu {
                 MenuItem item1 = new MenuItem("Copy");
                 item1.setOnAction(new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent e) {
-                        System.out.println("Copied");
+                        final ClipboardContent content = new ClipboardContent();
+                        content.putString(pointedShapes.getLast().toSVG());
+                        canvas.getClipboard().setContent(content);
+                        System.out.println("Copied :");
+                        System.out.println(pointedShapes.getLast().toSVG());
                     }
                 });
                 MenuItem item2 = new MenuItem("Reshape");
@@ -126,20 +136,36 @@ public class CanvasContextualMenu {
                     }
                 });
 
-                // dummy items for now
-                MenuItem item1 = new MenuItem("Resize");
-                item1.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent e) {
-                        System.out.println("Resized");
+        
+                MenuItem itemPaste = new MenuItem("Paste");
+                itemPaste.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent ev) {
+            
+                        //If there is something to paste
+                        if (canvas.getClipboard().hasString()) {
+                          
+                            // Convert SVG to CanvasObject
+                            String shapeToPasteSVG = canvas.getClipboard().getString();
+                            CanvasEllipse shapeToPaste = CanvasEllipse.createFromSVG(shapeToPasteSVG);
+
+                            // Need do paste where the mouse is
+                            Double mouseX = e.getX();
+                            Double mouseY = e.getY();
+
+                            // Change center
+                            shapeToPaste.setCenter(new Point2D(mouseX, mouseY));
+
+                            //Paste to the canvas
+                            canvas.add(shapeToPaste);
+                            System.out.println("Paste");
+
+                        } else {
+                            System.out.println("Nothing to paste");
+                        }
                     }
                 });
-                MenuItem item2 = new MenuItem("Save");
-                item2.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent e) {
-                        System.out.println("Saved");
-                    }
-                });
-                contextMenu.getItems().addAll(item1, item2);
+
+                contextMenu.getItems().addAll(itemPaste);
                 contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
                 break;
 
