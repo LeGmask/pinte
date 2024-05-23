@@ -60,7 +60,7 @@ public final class Canvas {
 	 * Private constructor for the Canvas
 	 */
 	private Canvas() {
-		objects = new ArrayList<CanvasObject>(10);
+		objects = new ArrayList<>(10);
 	}
 
 	/**
@@ -167,8 +167,7 @@ public final class Canvas {
 	 * Renvoi la liste des objets du Canvas
 	 */
 	public List<CanvasObject> getCanvas() {
-		List<CanvasObject> list = this.objects;
-		return list;
+		 return this.objects;
 	}
 
 	/**
