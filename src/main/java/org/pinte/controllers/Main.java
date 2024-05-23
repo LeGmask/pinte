@@ -26,6 +26,9 @@ public class Main {
 	@FXML
 	public Button addLine;
 
+	@FXML
+	public Button addPolygon;
+
 	Canvas canvas = Canvas.getInstance();
 
 	/**
@@ -65,5 +68,9 @@ public class Main {
 
 	public void handleAddLine(ActionEvent actionEvent) {
 		status = new addLineState();
+	}
+
+	public void handleAddPolygon(ActionEvent actionEvent) {
+		status = new addPolygonState();
 	}
 }
