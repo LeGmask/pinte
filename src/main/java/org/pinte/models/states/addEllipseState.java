@@ -3,7 +3,6 @@ package org.pinte.models.states;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
-import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasEllipse;
 import org.pinte.models.CanvasObjects.CanvasObject;
 

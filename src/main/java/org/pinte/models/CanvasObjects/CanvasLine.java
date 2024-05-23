@@ -78,8 +78,8 @@ public class CanvasLine extends CanvasObject {
 		} else {
 			// Projection is on the segment
 			Point2D projectionPoint = new Point2D(
-					a.getX() + projection * ab.getX(),
-					a.getY() + projection * ab.getY());
+				a.getX() + projection * ab.getX(),
+				a.getY() + projection * ab.getY());
 			distance = length(p.subtract(projectionPoint));
 		}
 

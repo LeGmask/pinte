@@ -103,9 +103,9 @@ public class CanvasColorTest {
 	@Test
 	public void testNormalUseToPaintColor() {
 		Assertions.assertEquals(Color.ALICEBLUE,
-				new CanvasColor((int) (Color.ALICEBLUE.getRed() * 255), (int) (Color.ALICEBLUE.getGreen() * 255),
-						(int) (Color.ALICEBLUE.getBlue() * 255), (int) (Color.ALICEBLUE.getOpacity() * 255))
-						.toPaintColor());
+			new CanvasColor((int) (Color.ALICEBLUE.getRed() * 255), (int) (Color.ALICEBLUE.getGreen() * 255),
+				(int) (Color.ALICEBLUE.getBlue() * 255), (int) (Color.ALICEBLUE.getOpacity() * 255))
+				.toPaintColor());
 	}
 
 }

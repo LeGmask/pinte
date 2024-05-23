@@ -1,7 +1,6 @@
 package org.pinte.models;
 
 import javafx.scene.canvas.GraphicsContext;
-
 import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasObject;
 
@@ -172,7 +171,7 @@ public final class Canvas {
 	 * Renvoi la liste des objets du Canvas
 	 */
 	public List<CanvasObject> getCanvas() {
-		 return this.objects;
+		return this.objects;
 	}
 
 	/**
@@ -211,12 +210,12 @@ public final class Canvas {
 		this.safePath = safe;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getName() {
 		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -225,10 +224,8 @@ public final class Canvas {
 	 * @return une couleur qui a les mêmes attributs que la couleur sélectionnée
 	 */
 	public CanvasColor getCopyColorSelect() {
-		return new CanvasColor(this.colorSelect.getRed(),this.colorSelect.getGreen(),this.colorSelect.getBlue(),this.colorSelect.getAlpha());
+		return new CanvasColor(this.colorSelect.getRed(), this.colorSelect.getGreen(), this.colorSelect.getBlue(), this.colorSelect.getAlpha());
 	}
-
-
 
 
 }

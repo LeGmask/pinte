@@ -3,11 +3,8 @@ package org.pinte.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-
 import org.pinte.models.Coloration;
 import org.pinte.models.Save;
-
-import static org.pinte.Utils.JavaFX.getStageFromEvent;
 
 public class MenuBar {
 	/**
@@ -132,9 +129,9 @@ public class MenuBar {
 		menuItemOpaq4.setOnAction(event -> {
 			coloration.Opaq(102);
 		});
-			menuItemOpaq6.setOnAction(event -> {
-		coloration.Opaq(153);
-			});
+		menuItemOpaq6.setOnAction(event -> {
+			coloration.Opaq(153);
+		});
 		menuItemOpaq8.setOnAction(event -> {
 			coloration.Opaq(204);
 		});
