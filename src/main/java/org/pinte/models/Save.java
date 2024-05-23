@@ -32,7 +32,7 @@ public class Save {
 	}
 
 	/**
-	 * Opening the window to change the name and/or 
+	 * Opening the window to change the name and/or
 	 * location of the saving file and save
 	 */
 	public void SaveFile_as() {
@@ -104,7 +104,7 @@ public class Save {
 	}
 
 	/**
-	 * change the parameter for the write function to erase the content 
+	 * change the parameter for the write function to erase the content
 	 * of the file and replace it
 	 *
 	 * @throws Exception all exception

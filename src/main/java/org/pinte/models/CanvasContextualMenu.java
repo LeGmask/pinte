@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CanvasContextualMenu {
-
 	/**
 	 * Creates a context menu for the canvas
 	 *
@@ -61,15 +60,13 @@ public class CanvasContextualMenu {
 	 * @param pointedShapes
 	 */
 	protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, List<CanvasObject> pointedShapes) {
-
 		switch (e.getButton()) {
 			case PRIMARY:
 				if (e.isControlDown()) {
-					pointedShapes.getLast().isSelected = !pointedShapes.getLast().isSelected;
-				} else {
-					List<CanvasObject> toMove = new ArrayList<CanvasObject>();
-					// is one is selected, move all selected. else move the most recent one
-					boolean oneSelected = false;
+					pointedShapes.getLast().isSelected = !pointedShapes.getLast().isSelected;} else {
+                    List<CanvasObject> toMove = new ArrayList<CanvasObject>();
+                    // is one is selected, move all selected. else move the most recent one
+                    boolean oneSelected = false;
 
 					oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
 
@@ -86,9 +83,8 @@ public class CanvasContextualMenu {
 
 					canvas.javafxCanvas.removeEventHandler(MouseEvent.MOUSE_CLICKED, getContextualMenu(canvas));
 
-					translateState translateState = new translateState(toMove, e);
-					translateState.enterTranslateState();
-
+                    translateState translateState = new translateState(toMove, e);
+                    translateState.enterTranslateState();
 				}
 				break;
 			case SECONDARY:

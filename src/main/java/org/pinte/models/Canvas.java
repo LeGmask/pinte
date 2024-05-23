@@ -123,7 +123,7 @@ public final class Canvas {
 	 */
 	public void clear() {
 		this.javafxCanvas.getGraphicsContext2D().clearRect(0, 0, this.javafxCanvas.getWidth(),
-				this.javafxCanvas.getHeight());
+			this.javafxCanvas.getHeight());
 	}
 
 	/**

@@ -37,10 +37,10 @@ public class CanvasPolygon extends CanvasObject {
     public static CanvasPolygon createFromSVG(String args) {
         Point2D[] points = CanvasObjectParser.parsePoints(args);
 
-        CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
-                CanvasObjectParser.parseKeyword("fill-opacity", args));
-        CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
-                CanvasObjectParser.parseKeyword("stroke-opacity", args));
+		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
+			CanvasObjectParser.parseKeyword("fill-opacity", args));
+		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
+			CanvasObjectParser.parseKeyword("stroke-opacity", args));
 
         return new CanvasPolygon(points, fillColor, strokeColor);
     }
@@ -61,20 +61,20 @@ public class CanvasPolygon extends CanvasObject {
         return toSVG("polygon", d);
     }
 
-    /**
-     * Converts the array of points to a string in SVG points format
-     *
-     * @return the string representation of the points "x1,y1 x2,y2 ..."
-     */
-    private String pointsToString() {
-        String result = "";
-        for (Point2D point : points) {
-            result += "%s,%s ".formatted(
-                    point.getX(),
-                    point.getY());
-        }
-        return result.trim(); // remove trailing space
-    }
+	/**
+	 * Converts the array of points to a string in SVG points format
+	 *
+	 * @return the string representation of the points "x1,y1 x2,y2 ..."
+	 */
+	private String pointsToString() {
+		String result = "";
+		for (Point2D point : points) {
+			result += "%s,%s ".formatted(
+				point.getX(),
+				point.getY());
+		}
+		return result.trim(); // remove trailing space
+	}
 
     @Override
     public boolean contains(double x, double y) {
@@ -85,20 +85,20 @@ public class CanvasPolygon extends CanvasObject {
         for (int i = 1; i <= num_vertices; i++) {
             p2 = points[i % num_vertices];
 
-            if (y > Math.min(p1.getY(), p2.getY())) {
-                if (y <= Math.max(p1.getY(), p2.getY())) {
-                    if (x <= Math.max(p1.getX(), p2.getX())) {
-                        double x_intersection = (y - p1.getY()) * (p2.getX() - p1.getX())
-                                / (p2.getY() - p1.getY())
-                                + p1.getX();
+			if (y > Math.min(p1.getY(), p2.getY())) {
+				if (y <= Math.max(p1.getY(), p2.getY())) {
+					if (x <= Math.max(p1.getX(), p2.getX())) {
+						double x_intersection = (y - p1.getY()) * (p2.getX() - p1.getX())
+							/ (p2.getY() - p1.getY())
+							+ p1.getX();
 
-                        if (p1.getX() == p2.getX()
-                                || x <= x_intersection) {
-                            inside = !inside;
-                        }
-                    }
-                }
-            }
+						if (p1.getX() == p2.getX()
+							|| x <= x_intersection) {
+							inside = !inside;
+						}
+					}
+				}
+			}
 
             p1 = p2;
         }
@@ -127,11 +127,11 @@ public class CanvasPolygon extends CanvasObject {
 
         this.setUpDrawingParameters();
 
-        gc.fillPolygon(
-                points_x,
-                points_y,
-                points.length);
-        gc.strokePolygon(points_x, points_y, points.length);
-    }
+		gc.fillPolygon(
+			points_x,
+			points_y,
+			points.length);
+		gc.strokePolygon(points_x, points_y, points.length);
+	}
 
 }

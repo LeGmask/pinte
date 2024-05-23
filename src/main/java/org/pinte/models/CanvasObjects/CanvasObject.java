@@ -150,7 +150,7 @@ public abstract class CanvasObject {
         if (this.isSelected) {
             gc.setStroke(Color.YELLOW);
             gc.setLineWidth(2);
-            gc.setLineDashes(new double[] { 5 });
+            gc.setLineDashes(new double[]{5});
         }
     }
 }

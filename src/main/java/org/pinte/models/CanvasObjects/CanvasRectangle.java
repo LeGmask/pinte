@@ -59,21 +59,21 @@ public class CanvasRectangle extends CanvasObject {
 
     }
 
-    /**
-     * Creates a rectangle from an SVG string
-     *
-     * @param args the SVG string to parse
-     * @return a CanvasRectangle parsed from the SVG string
-     */
-    public static CanvasRectangle createFromSVG(String args) {
-        double x = Double.parseDouble(CanvasObjectParser.parseKeyword("x", args));
-        double y = Double.parseDouble(CanvasObjectParser.parseKeyword("y", args));
-        double w = Double.parseDouble(CanvasObjectParser.parseKeyword("width", args));
-        double h = Double.parseDouble(CanvasObjectParser.parseKeyword("height", args));
-        CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
-                CanvasObjectParser.parseKeyword("fill-opacity", args));
-        CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
-                CanvasObjectParser.parseKeyword("stroke-opacity", args));
+	/**
+	 * Creates a rectangle from an SVG string
+	 *
+	 * @param args the SVG string to parse
+	 * @return a CanvasRectangle parsed from the SVG string
+	 */
+	public static CanvasRectangle createFromSVG(String args) {
+		double x = Double.parseDouble(CanvasObjectParser.parseKeyword("x", args));
+		double y = Double.parseDouble(CanvasObjectParser.parseKeyword("y", args));
+		double w = Double.parseDouble(CanvasObjectParser.parseKeyword("width", args));
+		double h = Double.parseDouble(CanvasObjectParser.parseKeyword("height", args));
+		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
+			CanvasObjectParser.parseKeyword("fill-opacity", args));
+		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
+			CanvasObjectParser.parseKeyword("stroke-opacity", args));
 
         return new CanvasRectangle(new Point2D(x, y), w, h, fillColor, strokeColor);
     }
@@ -85,12 +85,12 @@ public class CanvasRectangle extends CanvasObject {
 
         this.setUpDrawingParameters();
 
-        gc.fillRect(
-                this.a.getX(), this.a.getY(),
-                this.a.distance(b), this.a.distance(d));
-        gc.strokeRect(
-                this.a.getX(), this.a.getY(),
-                this.a.distance(b), this.a.distance(d));
+		gc.fillRect(
+			this.a.getX(), this.a.getY(),
+			this.a.distance(b), this.a.distance(d));
+		gc.strokeRect(
+			this.a.getX(), this.a.getY(),
+			this.a.distance(b), this.a.distance(d));
 
     }
 
