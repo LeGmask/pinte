@@ -1,6 +1,8 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.geometry.Point2D;
+import javafx.scene.effect.Light.Point;
+
 import org.pinte.models.Utils.CanvasObjectParser;
 
 import java.util.Dictionary;
@@ -58,6 +60,26 @@ public class CanvasRectangle extends CanvasObject {
 		this.d = new Point2D(a.getX(), a.getY() + height);
 
 	}
+
+    
+
+    /**
+     * Change the positions of the corners (for the copy/paste)
+     * @param a           The top left corner of the rectangle
+	   * @param b           The top right corner of the rectangle
+	   * @param c           The bottom right corner of the rectangle
+	   * @param d           The bottom left corner of the rectangle
+     */
+  public void setNewCornersPosition(Double x, Double y) {
+      Double height = a.distance(d);
+      Double length = a.distance(b);
+   
+      this.a = new Point2D(x - height/2, y - height/2);
+      this.b = new Point2D(x + length/2, y - height/2);
+      this.c = new Point2D(x + length/2, y + height/2);
+      this.d = new Point2D(x - length/2, y + height/2);
+      
+  }
 
 	/**
 	 * Creates a rectangle from an SVG string

@@ -1,7 +1,6 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.geometry.Point2D;
-import javafx.scene.effect.Light.Point;
 
 import org.pinte.models.Utils.CanvasObjectParser;
 

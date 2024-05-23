@@ -3,16 +3,15 @@ package org.pinte.models;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 
 import org.pinte.models.CanvasObjects.CanvasEllipse;
 import org.pinte.models.CanvasObjects.CanvasObject;
+import org.pinte.models.CanvasObjects.CanvasRectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,20 +143,22 @@ public class CanvasContextualMenu {
                         //If there is something to paste
                         if (canvas.getClipboard().hasString()) {
                           
-                            // Convert SVG to CanvasObject
-                            String shapeToPasteSVG = canvas.getClipboard().getString();
-                            CanvasEllipse shapeToPaste = CanvasEllipse.createFromSVG(shapeToPasteSVG);
-
-                            // Need do paste where the mouse is
+                            // Grab the new center for the Object
                             Double mouseX = e.getX();
                             Double mouseY = e.getY();
 
-                            // Change center
-                            shapeToPaste.setCenter(new Point2D(mouseX, mouseY));
+                            // Convert SVG to CanvasObject
+                            String shapeToPasteSVG = canvas.getClipboard().getString();
 
-                            //Paste to the canvas
-                            canvas.add(shapeToPaste);
-                            System.out.println("Paste");
+                            if (shapeToPasteSVG.contains("ellipse")) {
+                                pasteEllipse(shapeToPasteSVG , mouseX, mouseY, canvas);
+                            } else if (shapeToPasteSVG.contains("rect")) {
+                                pasteRect(shapeToPasteSVG , mouseX, mouseY, canvas);
+                            } else {
+                                System.out.println("Impossible to paste this shape for the moment");
+                            }
+
+                            
 
                         } else {
                             System.out.println("Nothing to paste");
@@ -175,4 +176,41 @@ public class CanvasContextualMenu {
 
     }
 
+    /**
+     *  Paste a new Ellipse to the Canvas
+     * @param shapeSVG svg describing the ellipse to copy
+     * @param x new x center
+     * @param y new y center
+     * @param canvas canvas to add the ellipse
+     */
+    static protected void pasteEllipse(String shapeSVG, Double x, Double y, Canvas canvas) {
+        CanvasEllipse shapeToPaste = CanvasEllipse.createFromSVG(shapeSVG);
+
+        // Change center
+        shapeToPaste.setCenter(new Point2D(x, y));
+
+        //Paste to the canvas
+        canvas.add(shapeToPaste);
+
+        System.out.println("Paste");
+    }
+
+    /**
+     * Paste a new Rectangle to the Canvas
+     * @param shapeSVGsvg describing the rectangle to copy
+     * @param x new x center
+     * @param y new y center
+     * @param canvas canvas to add the ellipse
+     */
+    static protected void pasteRect(String shapeSVG, Double x, Double y, Canvas canvas) {
+        CanvasRectangle shapeToPaste = CanvasRectangle.createFromSVG(shapeSVG);
+
+        // Change center
+        shapeToPaste.setNewCornersPosition(x, y);
+
+        //Paste to the canvas
+        canvas.add(shapeToPaste);
+
+        System.out.println("Paste");
+    }
 }
