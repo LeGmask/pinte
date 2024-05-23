@@ -1,12 +1,18 @@
 package org.pinte.models;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import java.net.URL;
+
 import java.nio.file.Path;
 import java.util.Scanner;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import java.io.File;
+
+
 import javafx.geometry.Point2D;
-import org.pinte.models.CanvasObjects.CanvasObject;
 import org.pinte.models.CanvasObjects.CanvasEllipse;
 import org.pinte.models.CanvasObjects.CanvasRectangle;
 import org.pinte.models.CanvasObjects.CanvasPolygon;
@@ -15,7 +21,14 @@ import org.pinte.models.Utils.CanvasObjectParser;
 
 public class Open {
 	
+	Path openpath;
+
 	public Open(){
+		this.openpath=null;
+	}
+
+	public Open(Path path){
+		this.openpath=path;
 	}
 
 	/**
@@ -79,9 +92,10 @@ public class Open {
 		}
 	}
 
-	private void read(Path path){
+	public void read(boolean tested){
 		try{
-			Scanner sc = new Scanner(path).useDelimiter("<");
+			boolean unknown=false;
+			Scanner sc = new Scanner(this.openpath).useDelimiter("<");
 			String input = sc.next();
 			boolean begin = input.contains("svg") && input.contains("xmlns");
 			while(sc.hasNext()&&(!begin)){
@@ -90,60 +104,74 @@ public class Open {
 			}
 			while(sc.hasNext()&&(!input.contains("/svg>"))){
 				if(input.contains("svg")){
-					int intwidth=1; 
-					int intheight=1; 
-					String parseStr[] = input.split(" ");
-					int i= 0;
-					while(i<parseStr.length){
-						if(parseStr[i].contains("width")){
-							intwidth = (int) extractnumber(parseStr[i]);
-						} else if(parseStr[i].contains("height")){
-							intheight = (int) extractnumber(parseStr[i]);
-						} 	
-						i++;
+					if(tested==true){
+						int intwidth=1; 
+						int intheight=1; 
+						String parseStr[] = input.split(" ");
+						int i= 0;
+						while(i<parseStr.length){
+							if(parseStr[i].contains("width")){
+								intwidth = (int) extractnumber(parseStr[i]);
+							} else if(parseStr[i].contains("height")){
+								intheight = (int) extractnumber(parseStr[i]);
+							} 	
+							i++;
+						}
+						canva.setDim(intwidth,intheight);
+						canva.clear();
 					}
-					canva.setDim(intwidth,intheight);
-					canva.clear();
 				} else if (input.contains("ellipse")){
-					canva.add(CanvasEllipse.createFromSVG(input));
+					if(tested==true){
+						canva.add(CanvasEllipse.createFromSVG(input));
+					}
 				} else if(input.contains("rect")){
-					canva.add(CanvasRectangle.createFromSVG(input));
+					if(tested==true){
+						canva.add(CanvasRectangle.createFromSVG(input));
+					}
 				} else if(input.contains("circle")){
-					double cx = Double.parseDouble(CanvasObjectParser.parseKeyword("cx", input));
-					double cy = Double.parseDouble(CanvasObjectParser.parseKeyword("cy", input));
-					double r = Double.parseDouble(CanvasObjectParser.parseKeyword("r", input));
-					CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", input));
-					CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", input));
-					canva.add(new CanvasEllipse(new Point2D(cx, cy), r, fillColor, strokeColor)); 
+					if(tested==true){
+						double cx = Double.parseDouble(CanvasObjectParser.parseKeyword("cx", input));
+						double cy = Double.parseDouble(CanvasObjectParser.parseKeyword("cy", input));
+						double r = Double.parseDouble(CanvasObjectParser.parseKeyword("r", input));
+						CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", input));
+						CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", input));
+						canva.add(new CanvasEllipse(new Point2D(cx, cy), r, fillColor, strokeColor)); 
+					}
 				}  else if(input.contains("line")){
 					System.out.println("line");
-				}  else if(input.contains("polyline")){
-					System.out.println("polyline");
-				}  else if(input.contains("polygon")){
-					canva.add(CanvasPolygon.createFromSVG(input));
-				}  else if(input.contains("path")){
-					System.out.println("path");
-				} else if(input.contains("defs")){
-					System.out.println("defs");
-					System.out.println("?");
-				} else if(input.contains("path")){
-					System.out.println("path");
-				} else if(input.contains("pattern")){
-					System.out.println("pattern");
+					unknown=true;
+				} else if(input.contains("polygon")){
+					if(tested==true){
+						canva.add(CanvasPolygon.createFromSVG(input));
+					}
 				} else if(input.contains("text")){
 					System.out.println("text");
-				}else if(input.contains("g")){
-					System.out.println("g");
-				} else if(input.contains("clipath")){
-					System.out.println("clipath");
-				}else if(input.contains("image")){
+					unknown=true;
+				} else if(input.contains("image")){
 					System.out.println("image");
-				} else if(input.contains("path")){
-					System.out.println("path");
+					unknown=true;
 				} else {
-					System.out.println("pas traiter parce que y a trop de truc on verra plus tard");
+					System.out.println("type non traitée");
+					unknown=true;
+					System.out.println(input);
 				}
 				input=sc.next();
+			}
+			sc.close();
+			if(tested==false && unknown==true){
+				Stage primaryStage = new Stage();
+				URL url = getClass().getResource("../views/warningopen.fxml");
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(url);
+				GridPane root = (GridPane) fxmlLoader.load();
+				Scene scene = new Scene(root);
+				primaryStage.setScene(scene);
+				primaryStage.setTitle("Warning!");
+				primaryStage.show();
+			} else if(tested==false && unknown==false){
+				read(true);
+			} else {
+
 			}
 		} catch(java.io.IOException e){
 			System.out.println(e);
@@ -160,7 +188,9 @@ public class Open {
 
 		File selectedFile = fileChooser.showOpenDialog(stage);
 		if (selectedFile != null) {
-		    read(selectedFile.toPath());
+		    this.openpath=selectedFile.toPath();
+			canva.setPathOpen(openpath);
+			read(false);
 		}
 	}
 

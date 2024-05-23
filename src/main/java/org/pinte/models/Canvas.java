@@ -43,6 +43,10 @@ public final class Canvas {
 	 */
 	private Path path;
 
+	/**
+	 * path that user want to open
+	 */
+	private Path openpath;
 
 	/**
 	 * Private constructor for the Canvas
@@ -173,5 +177,23 @@ public final class Canvas {
 	 */
 	public void setSafePath(boolean safe) {
 		this.safePath = safe;
+	}
+
+	/**
+	 * Get the path of file to open
+	 *
+	 * @return the path of the project to open
+	 */
+	public Path getPathOpen() {
+		return this.openpath;
+	}
+
+	/**
+	 * Set the path of file to open
+	 *
+	 * @param path the path of the project to open
+	 */
+	public void setPathOpen(Path path) {
+		this.openpath = path;
 	}
 }
