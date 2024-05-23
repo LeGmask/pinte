@@ -69,13 +69,19 @@ public class CanvasContextualMenu {
                 } else {
                     List<CanvasObject> toMove = new ArrayList<CanvasObject>();
                     // is one is selected, move all selected. else move the most recent one
-                    for (CanvasObject shape : pointedShapes) {
-                        if (shape.isSelected) {
-                            toMove.add(shape);
+                    boolean oneSelected = false;
+
+                    oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
+
+                    if (oneSelected) {
+                        for (CanvasObject shape : canvas.objects) {
+                            if (shape.isSelected) {
+                                toMove.add(shape);
+                            }
                         }
-                    }
-                    if (toMove.isEmpty()) {
+                    } else {
                         toMove.add(pointedShapes.getLast());
+
                     }
 
                     canvas.javafxCanvas.removeEventHandler(MouseEvent.MOUSE_CLICKED, getContextualMenu(canvas));
