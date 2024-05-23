@@ -7,8 +7,6 @@ import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasObject;
 import org.pinte.models.CanvasObjects.CanvasLine;
 
-import java.awt.*;
-
 public class addLineState extends State {
 	/**
 	 * Extremities of the segment to be added.
@@ -32,7 +30,7 @@ public class addLineState extends State {
 						canvas.removeGhostObject();
 
 						CanvasObject line = new CanvasLine(p1, new Point2D(event.getX(), event.getY()),
-							new CanvasColor(0, 0, 0, 0), new CanvasColor(128, 128, 0, 1));
+								canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
 
 						line.isSelected = true;
 						canvas.setGhostObject(line);
@@ -49,8 +47,7 @@ public class addLineState extends State {
 			@Override
 			public void handle(MouseEvent e) {
 				p2 = new Point2D(e.getX(), e.getY());
-				canvas.add(new CanvasLine(p1, p2, new CanvasColor(0, 0, 0),
-					new CanvasColor(255, 0, 0)));
+				canvas.add(new CanvasLine(p1, p2, canvas.getCopyColorSelect(), canvas.getCopyColorSelect()));
 				canvas.javafxCanvas.setOnMouseClicked(registerP1());
 				canvas.javafxCanvas.setOnMouseMoved(null);
 				canvas.removeGhostObject();

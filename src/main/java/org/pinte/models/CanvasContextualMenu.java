@@ -114,16 +114,11 @@ public class CanvasContextualMenu {
 						System.out.println("Copied");
 					}
 				});
-				MenuItem item2 = new MenuItem("Reshape");
-				item2.setOnAction(new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						System.out.println("Reshaped");
-					}
-				});
+
 				MenuItem item3 = new MenuItem("Colorier interieur");
 				item3.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
-						for(CanvasObject objet : canvas.objects) {
+						for (CanvasObject objet : canvas.objects) {
 							if (objet.isSelected) {
 								objet.setFillColor(canvas.getCopyColorSelect());
 							}
@@ -133,7 +128,7 @@ public class CanvasContextualMenu {
 				MenuItem item4 = new MenuItem("Colorier bordure");
 				item4.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
-						for(CanvasObject objet : canvas.objects) {
+						for (CanvasObject objet : canvas.objects) {
 							if (objet.isSelected) {
 								objet.setStrokeColor(canvas.getCopyColorSelect());
 							}
@@ -142,7 +137,7 @@ public class CanvasContextualMenu {
 				});
 
 				MenuItem item5 = new MenuItem("Delete");
-				item3.setOnAction(new EventHandler<ActionEvent>() {
+				item5.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
 						List<CanvasObject> selected = new ArrayList<CanvasObject>();
 
@@ -166,7 +161,7 @@ public class CanvasContextualMenu {
 						}
 					}
 				});
-				contextMenu.getItems().addAll(item1, item2, item3, item4, item5);
+				contextMenu.getItems().addAll(item1, item3, item4, item5);
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 
@@ -199,20 +194,13 @@ public class CanvasContextualMenu {
 					}
 				});
 
-				// dummy items for now
-				MenuItem item1 = new MenuItem("Resize");
+				MenuItem item1 = new MenuItem("Save");
 				item1.setOnAction(new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						System.out.println("Resized");
-					}
-				});
-				MenuItem item2 = new MenuItem("Save");
-				item2.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
 						System.out.println("Saved");
 					}
 				});
-				contextMenu.getItems().addAll(item1, item2);
+				contextMenu.getItems().addAll(item1);
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 
