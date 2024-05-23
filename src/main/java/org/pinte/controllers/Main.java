@@ -28,7 +28,7 @@ public class Main {
 
 	@FXML
 	public Button addRectangle;
-
+	
 	Canvas canvas = Canvas.getInstance();
 
 	/**

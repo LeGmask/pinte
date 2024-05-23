@@ -93,7 +93,27 @@ public class CanvasContextualMenu {
 						System.out.println("Reshaped");
 					}
 				});
-				contextMenu.getItems().addAll(item1, item2);
+				MenuItem item3 = new MenuItem("Colorier interieur");
+				item3.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						for(CanvasObject objet : canvas.objects) {
+							if (objet.isSelected) {
+								objet.setFillColor(canvas.colorSelect);
+							}
+						}
+					}
+				});
+				MenuItem item4 = new MenuItem("Colorier bordure");
+				item4.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						for(CanvasObject objet : canvas.objects) {
+							if (objet.isSelected) {
+								objet.setStrokeColor(canvas.colorSelect);
+							}
+						}
+					}
+				});
+				contextMenu.getItems().addAll(item1, item2, item3, item4);
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 

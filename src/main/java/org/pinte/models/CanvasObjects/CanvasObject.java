@@ -78,6 +78,24 @@ public abstract class CanvasObject {
 	}
 
 	/**
+	 * Change la couleur de remplissage d'un objet.
+	 * 
+	 * @param couleur la nouvelle couleur de remplissage
+	 */
+	public void setFillColor(CanvasColor couleur) {
+		this.fillColor = couleur;
+	}
+	
+	/**
+	 * Change la couleur de bordure d'un objet.
+	 * 
+	 * @param couleur la nouvelle couleur de bordure
+	 */
+	public void setStrokeColor(CanvasColor couleur) {
+		this.strokeColor = couleur;
+	}
+	
+	/**
 	 * Returns true if the object contains the given coordinates, false otherwise
 	 *
 	 * @param x

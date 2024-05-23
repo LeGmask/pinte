@@ -35,7 +35,7 @@ public class addCircleState extends State {
 
 						CanvasObject circle = new CanvasEllipse(new Point2D(center.getX(), center.getY()),
 								Math.abs(event.getX() - center.getX()),
-								new CanvasColor(255, 255, 255, 0), new CanvasColor(128, 128, 0, 1));
+								canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
 
 						circle.isSelected = true;
 						canvas.setGhostObject(circle);
@@ -53,8 +53,8 @@ public class addCircleState extends State {
 			@Override
 			public void handle(MouseEvent e) {
 				p = new Point2D(e.getX(), e.getY());
-				canvas.add(new CanvasEllipse(center, p.distance(center), new CanvasColor(0, 0, 0),
-						new CanvasColor(255, 0, 0)));
+				canvas.add(new CanvasEllipse(center, p.distance(center), canvas.getCopyColorSelect(),
+						canvas.getCopyColorSelect()));
 				canvas.javafxCanvas.setOnMouseClicked(registerCenter());
 				canvas.javafxCanvas.setOnMouseMoved(null);
 				canvas.removeGhostObject();

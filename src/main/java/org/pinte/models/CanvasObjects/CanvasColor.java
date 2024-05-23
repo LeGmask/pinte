@@ -134,4 +134,74 @@ public class CanvasColor {
 	public boolean equals(CanvasColor c) {
 		return (this.r == c.r && this.g == c.g && this.b == c.b && this.a == c.a);
 	}
+	
+	/**
+	 * Permet de récuperer l'oppacité d'une couleur
+	 * 
+	 * @return l'opaccité de la couleur.
+	 */
+	public int getAlpha(){
+		return this.a;
+	}
+	
+	/**
+	 * Permet de récuperer la composante rouge d'une couleur
+	 * 
+	 * @return la composante rouge de la couleur.
+	 */
+	public int getRed(){
+		return this.r;
+	}
+	/**
+	 * Permet de récuperer la composante verte d'une couleur
+	 * 
+	 * @return la composante verte de la couleur.
+	 */
+	public int getGreen(){
+		return this.g;
+	}
+	/**
+	 * Permet de récuperer la composante bleu d'une couleur
+	 * 
+	 * @return la composante bleu de la couleur.
+	 */
+	public int getBlue(){
+		return this.b;
+	}
+	
+	/**
+	 * Permet de fixer l'oppacité d'une couleur
+	 * 
+	 * @param Na l'opaccité de la couleur.
+	 */
+	public void setAlpha(int Na){
+		this.a = Na;
+	}
+	
+	/**
+	 * Permet de fixer la composante rouge d'une couleur
+	 * 
+	 * @param Na la composante rouge de la couleur.
+	 */
+	public void setRed(int Nr){
+		this.r = Nr;
+	}
+	
+	/**
+	 * Permet de fixer la composante verte d'une couleur
+	 * 
+	 * @param Ng la composante verte de la couleur.
+	 */
+	public void setGreen(int Ng){
+		this.g = Ng;
+	}
+	
+	/**
+	 * Permet de fixer la composante rouge d'une couleur
+	 * 
+	 * @param Na la composante rouge de la couleur.
+	 */
+	public void setBlue(int Nb){
+		this.b = Nb;
+	}
 }
