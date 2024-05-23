@@ -36,6 +36,7 @@ public final class Canvas {
    * The system clipboard to copy paste
    */
   public final Clipboard clipboard = Clipboard.getSystemClipboard();
+  
 
 	/**
 	 * An object used to show information about selection, shape drawing, etc...

@@ -85,9 +85,9 @@ public class CanvasContextualMenu {
                     }
                 });
 
-                // dummy items for now
-                MenuItem item1 = new MenuItem("Copy");
-                item1.setOnAction(new EventHandler<ActionEvent>() {
+
+                MenuItem itemCopy = new MenuItem("Copy");
+                itemCopy.setOnAction(new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent e) {
                         final ClipboardContent content = new ClipboardContent();
                         content.putString(pointedShapes.getLast().toSVG());
@@ -96,13 +96,38 @@ public class CanvasContextualMenu {
                         System.out.println(pointedShapes.getLast().toSVG());
                     }
                 });
-                MenuItem item2 = new MenuItem("Reshape");
-                item2.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent e) {
-                        System.out.println("Reshaped");
+
+                MenuItem itemPaste = new MenuItem("Paste");
+                itemPaste.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent ev) {
+            
+                        //If there is something to paste
+                        if (canvas.getClipboard().hasString()) {
+                          
+                            // Grab the new center for the Object
+                            Double mouseX = e.getX();
+                            Double mouseY = e.getY();
+
+                            // Convert SVG to CanvasObject
+                            String shapeToPasteSVG = canvas.getClipboard().getString();
+
+                            if (shapeToPasteSVG.contains("ellipse")) {
+                                pasteEllipse(shapeToPasteSVG , mouseX, mouseY, canvas);
+                            } else if (shapeToPasteSVG.contains("rect")) {
+                                pasteRect(shapeToPasteSVG , mouseX, mouseY, canvas);
+                            } else {
+                                System.out.println("Impossible to paste this shape for the moment");
+                            }
+
+                            
+
+                        } else {
+                            System.out.println("Nothing to paste");
+                        }
                     }
                 });
-                contextMenu.getItems().addAll(item1, item2);
+
+                contextMenu.getItems().addAll(itemCopy, itemPaste);
                 contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
                 break;
 
