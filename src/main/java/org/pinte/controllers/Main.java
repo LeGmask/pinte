@@ -28,7 +28,10 @@ public class Main {
 
 	@FXML
 	public Button addRectangle;
-	
+
+	@FXML
+	public Button addLine;
+
 	Canvas canvas = Canvas.getInstance();
 
 	/**
@@ -53,8 +56,8 @@ public class Main {
 	public void handleDemo(ActionEvent actionEvent) {
 		CanvasEllipse ellipse = new CanvasEllipse(
 			new Point2D(
-				Math.random() * 800,
-				Math.random() * 800),
+				Math.random() * canvas.getDim().getHeight(),
+				Math.random() * canvas.getDim().getWidth()),
 			10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
 		canvas.add(ellipse);
 	}
@@ -73,5 +76,9 @@ public class Main {
 
 	public void handleAddEllipse(ActionEvent actionEvent) {
 		status = new addEllipseState();
+	}
+
+	public void handleAddLine(ActionEvent actionEvent) {
+		status = new addLineState();
 	}
 }

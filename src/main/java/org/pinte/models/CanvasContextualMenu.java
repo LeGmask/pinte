@@ -7,11 +7,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 import org.pinte.models.CanvasObjects.CanvasObject;
+import org.pinte.models.states.translateState;
+import org.pinte.models.states.State;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CanvasContextualMenu {
+
 	/**
 	 * Creates a context menu for the canvas
 	 *
@@ -58,10 +61,34 @@ public class CanvasContextualMenu {
 	 * @param pointedShapes
 	 */
 	protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, List<CanvasObject> pointedShapes) {
+
 		switch (e.getButton()) {
 			case PRIMARY:
-				for (CanvasObject object : pointedShapes) {
-					object.isSelected = !object.isSelected;
+				if (e.isControlDown()) {
+					pointedShapes.getLast().isSelected = !pointedShapes.getLast().isSelected;
+				} else {
+					List<CanvasObject> toMove = new ArrayList<CanvasObject>();
+					// is one is selected, move all selected. else move the most recent one
+					boolean oneSelected = false;
+
+					oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
+
+					if (oneSelected) {
+						for (CanvasObject shape : canvas.objects) {
+							if (shape.isSelected) {
+								toMove.add(shape);
+							}
+						}
+					} else {
+						toMove.add(pointedShapes.getLast());
+
+					}
+
+					canvas.javafxCanvas.removeEventHandler(MouseEvent.MOUSE_CLICKED, getContextualMenu(canvas));
+
+					translateState translateState = new translateState(toMove, e);
+					translateState.enterTranslateState();
+
 				}
 				break;
 			case SECONDARY:
@@ -113,7 +140,33 @@ public class CanvasContextualMenu {
 						}
 					}
 				});
-				contextMenu.getItems().addAll(item1, item2, item3, item4);
+
+				MenuItem item5 = new MenuItem("Delete");
+				item3.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						List<CanvasObject> selected = new ArrayList<CanvasObject>();
+
+						boolean oneSelected = false;
+
+						oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
+
+						if (oneSelected) {
+							for (CanvasObject shape : canvas.objects) {
+								if (shape.isSelected) {
+									selected.add(shape);
+								}
+							}
+						} else {
+							selected.add(pointedShapes.getLast());
+
+						}
+
+						for (CanvasObject object : selected) {
+							canvas.objects.remove(object);
+						}
+					}
+				});
+				contextMenu.getItems().addAll(item1, item2, item3, item4, item5);
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 
