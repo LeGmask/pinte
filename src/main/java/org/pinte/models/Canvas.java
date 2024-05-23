@@ -31,16 +31,21 @@ public final class Canvas {
 	 * The objects list
 	 */
 	public List<CanvasObject> objects;
-	
+
 	/**
-	 * La couleur actuellement utilisée 
+	 * La couleur actuellement utilisée
 	 */
 	public CanvasColor colorSelect;
-	
+
 	/**
 	 * An object used to show information about selection, shape drawing, etc...
 	 */
 	public CanvasObject ghostObject = null;
+
+	/**
+	 * The name of the project
+	 */
+	private String name;
 
 	/**
 	 * There is a file opened by the app at the end of the path
@@ -205,17 +210,25 @@ public final class Canvas {
 	public void setSafePath(boolean safe) {
 		this.safePath = safe;
 	}
-	
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
 	/**
 	 * getteur pour la couleur séléctionnée
-	 * 
+	 *
 	 * @return une couleur qui a les mêmes attributs que la couleur sélectionnée
 	 */
 	public CanvasColor getCopyColorSelect() {
 		return new CanvasColor(this.colorSelect.getRed(),this.colorSelect.getGreen(),this.colorSelect.getBlue(),this.colorSelect.getAlpha());
 	}
-	
-	
-	
-	
+
+
+
+
 }
