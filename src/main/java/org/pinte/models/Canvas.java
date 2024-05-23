@@ -32,11 +32,10 @@ public final class Canvas {
 	 */
 	public List<CanvasObject> objects;
 
-  /**
-   * The system clipboard to copy paste
-   */
-  public final Clipboard clipboard = Clipboard.getSystemClipboard();
-  
+	/**
+	 * The clipboard to copy paste
+	 */
+	public List<CanvasObject> clipboard = new ArrayList<>();
 
 	/**
 	 * An object used to show information about selection, shape drawing, etc...
@@ -208,10 +207,18 @@ public final class Canvas {
 		this.safePath = safe;
 	}
 
-  /**
-   * Return the clipboard of the canvas
-   */
-  public Clipboard getClipboard() {
-    return clipboard;
-  }
+	/**
+	 * Return the clipboard of the canvas
+	 */
+	public List<CanvasObject> getClipboard() {
+		return clipboard;
+	}
+
+	/**
+	 * Set the clipboard of the canvas
+	 */
+	public void setClipboard(List<CanvasObject> cb) {
+		clipboard = cb;
+
+	}
 }

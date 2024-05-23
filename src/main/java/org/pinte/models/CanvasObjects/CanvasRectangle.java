@@ -60,25 +60,24 @@ public class CanvasRectangle extends CanvasObject {
 
 	}
 
-    
+	/**
+	 * Change the positions of the corners (for the copy/paste)
+	 *
+	 * @param a The top left corner of the rectangle
+	 * @param b The top right corner of the rectangle
+	 * @param c The bottom right corner of the rectangle
+	 * @param d The bottom left corner of the rectangle
+	 */
+	public void setNewCornersPosition(Double x, Double y) {
+		Double height = a.distance(d);
+		Double length = a.distance(b);
 
-    /**
-     * Change the positions of the corners (for the copy/paste)
-     * @param a           The top left corner of the rectangle
-	   * @param b           The top right corner of the rectangle
-	   * @param c           The bottom right corner of the rectangle
-	   * @param d           The bottom left corner of the rectangle
-     */
-  public void setNewCornersPosition(Double x, Double y) {
-      Double height = a.distance(d);
-      Double length = a.distance(b);
-   
-      this.a = new Point2D(x - height/2, y - height/2);
-      this.b = new Point2D(x + length/2, y - height/2);
-      this.c = new Point2D(x + length/2, y + height/2);
-      this.d = new Point2D(x - length/2, y + height/2);
-      
-  }
+		this.a = new Point2D(x - height / 2, y - height / 2);
+		this.b = new Point2D(x + length / 2, y - height / 2);
+		this.c = new Point2D(x + length / 2, y + height / 2);
+		this.d = new Point2D(x - length / 2, y + height / 2);
+
+	}
 
 	/**
 	 * Creates a rectangle from an SVG string
@@ -150,6 +149,14 @@ public class CanvasRectangle extends CanvasObject {
 
 	private double dotProduct(Point2D a, Point2D b) {
 		return a.getX() * b.getX() + a.getY() * b.getY();
+	}
+
+	public Point2D getGravityCenter() {
+		return a.add(b).add(c).add(d).multiply(1 / 4);
+	}
+
+	public CanvasObject duplicate(Point2D offset) {
+		return new CanvasRectangle(a.add(offset), a.distance(b), a.distance(d), fillColor, strokeColor);
 	}
 
 	@Override

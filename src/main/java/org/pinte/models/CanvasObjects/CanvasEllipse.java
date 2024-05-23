@@ -61,13 +61,14 @@ public class CanvasEllipse extends CanvasObject {
 		this.ry = Math.abs(a.getY() - this.center.getY());
 	}
 
-  /**
-   * Change the center of the ellipse
-   * @param center new center
-   */
-  public void setCenter(Point2D center) {
-    this.center = center;
-  }
+	/**
+	 * Change the center of the ellipse
+	 *
+	 * @param center new center
+	 */
+	public void setCenter(Point2D center) {
+		this.center = center;
+	}
 
 	/**
 	 * Creates an ellipse object from an SVG string.
@@ -114,6 +115,15 @@ public class CanvasEllipse extends CanvasObject {
 		d.put("stroke", this.strokeColor.asHex());
 		d.put("stroke-opacity", this.strokeColor.opacityString());
 		return toSVG("ellipse", d);
+	}
+
+	public Point2D getGravityCenter() {
+		return center;
+	}
+
+	public CanvasObject duplicate(Point2D offset) {
+		return new CanvasEllipse(this.center.add(offset),
+				rx, ry, fillColor, strokeColor);
 	}
 
 	@Override
