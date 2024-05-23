@@ -23,7 +23,6 @@
                 -fx-font-size: 20;
                 -fx-border-color: black;
             </style>
-            <Button fx:id="demo" text="Click me!" onAction="#handleDemo"/>
             <Button fx:id="selection" text="Selection" onAction="#handleSelection"/>
             <Button fx:id="addCircle" text="Circle" onAction="#handleAddCircle"/>
             <Button fx:id="addEllipse" text="Ellipse" onAction="#handleAddEllipse"/>
