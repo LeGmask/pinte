@@ -53,8 +53,8 @@ public class Main {
 	public void handleDemo(ActionEvent actionEvent) {
 		CanvasEllipse ellipse = new CanvasEllipse(
 			new Point2D(
-				Math.random() * 800,
-				Math.random() * 800),
+				Math.random() * canvas.getDim().getHeight(),
+				Math.random() * canvas.getDim().getWidth()),
 			10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
 		canvas.add(ellipse);
 	}
