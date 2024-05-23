@@ -165,7 +165,7 @@ public class CanvasColor {
 	/**
 	 * Permet de fixer la composante rouge d'une couleur
 	 *
-	 * @param Na la composante rouge de la couleur.
+	 * @param Nr la composante rouge de la couleur.
 	 */
 	public void setRed(int Nr) {
 		this.r = Nr;
@@ -201,7 +201,7 @@ public class CanvasColor {
 	/**
 	 * Permet de fixer la composante rouge d'une couleur
 	 *
-	 * @param Na la composante rouge de la couleur.
+	 * @param Nb la composante bleu de la couleur.
 	 */
 	public void setBlue(int Nb) {
 		this.b = Nb;
