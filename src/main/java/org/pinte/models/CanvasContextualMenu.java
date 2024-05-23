@@ -98,7 +98,7 @@ public class CanvasContextualMenu {
 					public void handle(ActionEvent e) {
 						for(CanvasObject objet : canvas.objects) {
 							if (objet.isSelected) {
-								objet.setFillColor(canvas.colorSelect);
+								objet.setFillColor(canvas.getCopyColorSelect());
 							}
 						}
 					}
@@ -108,7 +108,7 @@ public class CanvasContextualMenu {
 					public void handle(ActionEvent e) {
 						for(CanvasObject objet : canvas.objects) {
 							if (objet.isSelected) {
-								objet.setStrokeColor(canvas.colorSelect);
+								objet.setStrokeColor(canvas.getCopyColorSelect());
 							}
 						}
 					}
