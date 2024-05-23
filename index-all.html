@@ -68,6 +68,12 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/states/addEllipseState.html#%3Cinit%3E()" class="member-name-link">addEllipseState()</a> - Constructor for class org.pinte.models.states.<a href="org/pinte/models/states/addEllipseState.html" title="class in org.pinte.models.states">addEllipseState</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/pinte/controllers/Main.html#addLine" class="member-name-link">addLine</a> - Variable in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/pinte/models/states/addLineState.html" class="type-name-link" title="class in org.pinte.models.states">addLineState</a> - Class in <a href="org/pinte/models/states/package-summary.html">org.pinte.models.states</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/pinte/models/states/addLineState.html#%3Cinit%3E()" class="member-name-link">addLineState()</a> - Constructor for class org.pinte.models.states.<a href="org/pinte/models/states/addLineState.html" title="class in org.pinte.models.states">addLineState</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/pinte/controllers/Main.html#addRectangle" class="member-name-link">addRectangle</a> - Variable in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/states/addRectangleState.html" class="type-name-link" title="class in org.pinte.models.states">addRectangleState</a> - Class in <a href="org/pinte/models/states/package-summary.html">org.pinte.models.states</a></dt>
@@ -158,6 +164,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructor for an ellipse object on the canvas.</div>
 </dd>
+<dt><a href="org/pinte/models/CanvasObjects/CanvasLine.html" class="type-name-link" title="class in org.pinte.models.CanvasObjects">CanvasLine</a> - Class in <a href="org/pinte/models/CanvasObjects/package-summary.html">org.pinte.models.CanvasObjects</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/pinte/models/CanvasObjects/CanvasLine.html#%3Cinit%3E(javafx.geometry.Point2D,javafx.geometry.Point2D,org.pinte.models.CanvasObjects.CanvasColor,org.pinte.models.CanvasObjects.CanvasColor)" class="member-name-link">CanvasLine(Point2D, Point2D, CanvasColor, CanvasColor)</a> - Constructor for class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasLine.html" title="class in org.pinte.models.CanvasObjects">CanvasLine</a></dt>
+<dd>
+<div class="block">Creates the segment [A,B] with the given points and color.</div>
+</dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasObject.html" class="type-name-link" title="class in org.pinte.models.CanvasObjects">CanvasObject</a> - Class in <a href="org/pinte/models/CanvasObjects/package-summary.html">org.pinte.models.CanvasObjects</a></dt>
 <dd>
 <div class="block">CanvasObject abstract class to build canvas objects</div>
@@ -202,6 +214,8 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasEllipse.html#contains(double,double)" class="member-name-link">contains(double, double)</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasEllipse.html" title="class in org.pinte.models.CanvasObjects">CanvasEllipse</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/pinte/models/CanvasObjects/CanvasLine.html#contains(double,double)" class="member-name-link">contains(double, double)</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasLine.html" title="class in org.pinte.models.CanvasObjects">CanvasLine</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasObject.html#contains(double,double)" class="member-name-link">contains(double, double)</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a></dt>
 <dd>
 <div class="block">Returns true if the object contains the given coordinates, false otherwise</div>
@@ -217,6 +231,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasEllipse.html#createFromSVG(java.lang.String)" class="member-name-link">createFromSVG(String)</a> - Static method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasEllipse.html" title="class in org.pinte.models.CanvasObjects">CanvasEllipse</a></dt>
 <dd>
 <div class="block">Creates an ellipse object from an SVG string.</div>
+</dd>
+<dt><a href="org/pinte/models/CanvasObjects/CanvasLine.html#createFromSVG(java.lang.String)" class="member-name-link">createFromSVG(String)</a> - Static method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasLine.html" title="class in org.pinte.models.CanvasObjects">CanvasLine</a></dt>
+<dd>
+<div class="block">Creates a line from an SVG string</div>
 </dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasPolygon.html#createFromSVG(java.lang.String)" class="member-name-link">createFromSVG(String)</a> - Static method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasPolygon.html" title="class in org.pinte.models.CanvasObjects">CanvasPolygon</a></dt>
 <dd>
@@ -281,6 +299,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/pinte/controllers/Main.html#handleAddCircle(javafx.event.ActionEvent)" class="member-name-link">handleAddCircle(ActionEvent)</a> - Method in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/controllers/Main.html#handleAddEllipse(javafx.event.ActionEvent)" class="member-name-link">handleAddEllipse(ActionEvent)</a> - Method in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/pinte/controllers/Main.html#handleAddLine(javafx.event.ActionEvent)" class="member-name-link">handleAddLine(ActionEvent)</a> - Method in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/controllers/Main.html#handleAddRectangle(javafx.event.ActionEvent)" class="member-name-link">handleAddRectangle(ActionEvent)</a> - Method in class org.pinte.controllers.<a href="org/pinte/controllers/Main.html" title="class in org.pinte.controllers">Main</a></dt>
 <dd>&nbsp;</dd>
@@ -435,9 +455,13 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/states/addEllipseState.html#registerP1()" class="member-name-link">registerP1()</a> - Method in class org.pinte.models.states.<a href="org/pinte/models/states/addEllipseState.html" title="class in org.pinte.models.states">addEllipseState</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/pinte/models/states/addLineState.html#registerP1()" class="member-name-link">registerP1()</a> - Method in class org.pinte.models.states.<a href="org/pinte/models/states/addLineState.html" title="class in org.pinte.models.states">addLineState</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/states/addRectangleState.html#registerP1()" class="member-name-link">registerP1()</a> - Method in class org.pinte.models.states.<a href="org/pinte/models/states/addRectangleState.html" title="class in org.pinte.models.states">addRectangleState</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/states/addEllipseState.html#registerP2()" class="member-name-link">registerP2()</a> - Method in class org.pinte.models.states.<a href="org/pinte/models/states/addEllipseState.html" title="class in org.pinte.models.states">addEllipseState</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/pinte/models/states/addLineState.html#registerP2()" class="member-name-link">registerP2()</a> - Method in class org.pinte.models.states.<a href="org/pinte/models/states/addLineState.html" title="class in org.pinte.models.states">addLineState</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/states/addRectangleState.html#registerP2()" class="member-name-link">registerP2()</a> - Method in class org.pinte.models.states.<a href="org/pinte/models/states/addRectangleState.html" title="class in org.pinte.models.states">addRectangleState</a></dt>
 <dd>&nbsp;</dd>
@@ -455,6 +479,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Renders the ellipse on the canvas</div>
 </dd>
+<dt><a href="org/pinte/models/CanvasObjects/CanvasLine.html#render()" class="member-name-link">render()</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasLine.html" title="class in org.pinte.models.CanvasObjects">CanvasLine</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasObject.html#render()" class="member-name-link">render()</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a></dt>
 <dd>
 <div class="block">Returns a shape that can be rendered on the canvas</div>
@@ -551,6 +577,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Exports the ellipse to SVG format</div>
 </dd>
+<dt><a href="org/pinte/models/CanvasObjects/CanvasLine.html#toSVG()" class="member-name-link">toSVG()</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasLine.html" title="class in org.pinte.models.CanvasObjects">CanvasLine</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/pinte/models/CanvasObjects/CanvasObject.html#toSVG()" class="member-name-link">toSVG()</a> - Method in class org.pinte.models.CanvasObjects.<a href="org/pinte/models/CanvasObjects/CanvasObject.html" title="class in org.pinte.models.CanvasObjects">CanvasObject</a></dt>
 <dd>
 <div class="block">Returns the object as an SVG string</div>
