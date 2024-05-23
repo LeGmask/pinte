@@ -21,6 +21,7 @@
             <Button fx:id="addCircle" text="Circle" onAction="#handleAddCircle"/>
             <Button fx:id="addEllipse" text="Ellipse" onAction="#handleAddEllipse"/>
             <Button fx:id="addRectangle" text="Rectangle" onAction="#handleAddRectangle"/>
+            <Button fx:id="addLine" text="Line" onAction="#handleAddLine"/>
         </VBox>
     </right>
 </BorderPane>

@@ -55,6 +55,7 @@ public abstract class CanvasObject {
 			case "rect" -> CanvasRectangle.createFromSVG(svgString);
 			case "ellipse" -> CanvasEllipse.createFromSVG(svgString);
 			case "polygon" -> CanvasPolygon.createFromSVG(svgString);
+			case "line" -> CanvasLine.createFromSVG(svgString);
 			default -> throw new IllegalArgumentException("Unknown object type '" + type + "' in SVG string.");
 		};
 	}
