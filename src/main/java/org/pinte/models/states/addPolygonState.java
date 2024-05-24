@@ -36,8 +36,7 @@ public class addPolygonState extends State {
 						canvas.removeGhostObject();
 						Point2D p = new Point2D(event.getX(), event.getY());
 						CanvasObject polygon = new CanvasLine(points.getFirst(), p,
-								new CanvasColor(0, 0, 0, 0),
-								new CanvasColor(128, 128, 0, 1));
+								canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
 						polygon.isSelected = true;
 						canvas.setGhostObject(polygon);
 
@@ -62,8 +61,7 @@ public class addPolygonState extends State {
 						ArrayList<Point2D> tmpList = new ArrayList<Point2D>(points);
 						tmpList.add(p);
 						CanvasObject polygon = new CanvasPolygon(tmpList.toArray(new Point2D[0]),
-								new CanvasColor(0, 0, 0, 0),
-								new CanvasColor(128, 128, 0, 1));
+								canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
 
 						polygon.isSelected = true;
 						canvas.setGhostObject(polygon);
