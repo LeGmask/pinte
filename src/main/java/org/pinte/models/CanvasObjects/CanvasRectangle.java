@@ -91,9 +91,9 @@ public class CanvasRectangle extends CanvasObject {
 		double w = Double.parseDouble(CanvasObjectParser.parseKeyword("width", args));
 		double h = Double.parseDouble(CanvasObjectParser.parseKeyword("height", args));
 		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
-			CanvasObjectParser.parseKeyword("fill-opacity", args));
+				CanvasObjectParser.parseKeyword("fill-opacity", args));
 		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
-			CanvasObjectParser.parseKeyword("stroke-opacity", args));
+				CanvasObjectParser.parseKeyword("stroke-opacity", args));
 
 		return new CanvasRectangle(new Point2D(x, y), w, h, fillColor, strokeColor);
 	}
@@ -106,11 +106,11 @@ public class CanvasRectangle extends CanvasObject {
 		this.setUpDrawingParameters();
 
 		gc.fillRect(
-			this.a.getX(), this.a.getY(),
-			this.a.distance(b), this.a.distance(d));
+				this.a.getX(), this.a.getY(),
+				this.a.distance(b), this.a.distance(d));
 		gc.strokeRect(
-			this.a.getX(), this.a.getY(),
-			this.a.distance(b), this.a.distance(d));
+				this.a.getX(), this.a.getY(),
+				this.a.distance(b), this.a.distance(d));
 
 	}
 
@@ -159,7 +159,7 @@ public class CanvasRectangle extends CanvasObject {
 	}
 
 	public Point2D getGravityCenter() {
-		return a.add(b).add(c).add(d).multiply(1 / 4);
+		return a.add(b).add(c).add(d).multiply(1.0 / 4.0);
 	}
 
 	public CanvasObject duplicate(Point2D offset) {
