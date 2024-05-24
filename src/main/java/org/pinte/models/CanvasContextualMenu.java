@@ -94,6 +94,23 @@ public class CanvasContextualMenu {
 				break;
 			case SECONDARY:
 				final ContextMenu contextMenu = new ContextMenu();
+
+				List<CanvasObject> selected = new ArrayList<CanvasObject>();
+
+				boolean oneSelected = false;
+
+				oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
+
+				if (oneSelected) {
+					for (CanvasObject shape : canvas.objects) {
+						if (shape.isSelected) {
+							selected.add(shape);
+						}
+					}
+				} else {
+					selected.add(pointedShapes.getLast());
+				}
+
 				contextMenu.setOnShowing(new EventHandler<WindowEvent>() {
 					public void handle(WindowEvent e) {
 						System.out.println("showing shape context menu for");
@@ -108,70 +125,41 @@ public class CanvasContextualMenu {
 					}
 				});
 
-				// dummy items for now
-				MenuItem item1 = new MenuItem("Copy");
-				item1.setOnAction(new EventHandler<ActionEvent>() {
+				MenuItem itemFill = new MenuItem("Fill with selected color");
+				itemFill.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
-						System.out.println("Copied");
-					}
-				});
-
-				MenuItem item3 = new MenuItem("Colorier interieur");
-				item3.setOnAction(new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						for (CanvasObject objet : canvas.objects) {
-							if (objet.isSelected) {
-								objet.setFillColor(canvas.getCopyColorSelect());
-							}
+						for (CanvasObject object : selected) {
+							object.setFillColor(canvas.getCopyColorSelect());
 						}
 					}
 				});
-				MenuItem item4 = new MenuItem("Colorier bordure");
-				item4.setOnAction(new EventHandler<ActionEvent>() {
+				MenuItem itemStroke = new MenuItem("Stroke with selected color");
+				itemStroke.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
-						for (CanvasObject objet : canvas.objects) {
-							if (objet.isSelected) {
-								objet.setStrokeColor(canvas.getCopyColorSelect());
-							}
+						for (CanvasObject object : selected) {
+							object.setStrokeColor(canvas.getCopyColorSelect());
 						}
 					}
 				});
 
-				MenuItem item5 = new MenuItem("Delete");
-				item5.setOnAction(new EventHandler<ActionEvent>() {
+				MenuItem itemDelete = new MenuItem("Delete");
+				itemDelete.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
-						List<CanvasObject> selected = new ArrayList<CanvasObject>();
-
-						boolean oneSelected = false;
-
-						oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
-
-						if (oneSelected) {
-							for (CanvasObject shape : canvas.objects) {
-								if (shape.isSelected) {
-									selected.add(shape);
-								}
-							}
-						} else {
-							selected.add(pointedShapes.getLast());
-
+						for (CanvasObject object : selected) {
+							canvas.objects.remove(object);
 						}
-            
 
-            for (CanvasObject object : selected) {
+					}
 
-              canvas.objects.remove(object);
+				});
 
-            }
+				MenuItem itemCopy = new MenuItem("Copy");
+				itemCopy.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
 
-          }
-
-        });
-        
-  MenuItem itemCopy = new MenuItem("Copy");
-        itemCopy.setOnAction(new EventHandler<ActionEvent>() {
 						canvas.setClipboard(selected);
 						System.out.println("Copied :");
+					}
 				});
 
 				MenuItem itemPaste = new MenuItem("Paste");
@@ -198,8 +186,7 @@ public class CanvasContextualMenu {
 					}
 				});
 
-				contextMenu.getItems().addAll(item1, item3, item4, item5,itemCopy, itemPaste);
-
+				contextMenu.getItems().addAll(itemFill, itemStroke, itemDelete, itemCopy, itemPaste);
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 
@@ -284,7 +271,6 @@ public class CanvasContextualMenu {
 
 		// Paste to the canvas
 		canvas.add(shapeToPaste);
-
 
 		System.out.println("Paste");
 	}
