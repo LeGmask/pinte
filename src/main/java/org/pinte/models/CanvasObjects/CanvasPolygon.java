@@ -106,6 +106,24 @@ public class CanvasPolygon extends CanvasObject {
 		return inside;
 	}
 
+	public Point2D getGravityCenter() {
+		Point2D gravity_center = new Point2D(0, 0);
+		for (int i = 0; i < points.length; ++i) {
+			gravity_center.add(points[i]);
+		}
+		gravity_center.multiply(1 / points.length);
+		return gravity_center;
+	}
+
+	public CanvasObject duplicate(Point2D offset) {
+
+		Point2D[] new_points = this.points;
+		for (int i = 0; i < new_points.length; ++i) {
+			new_points[i].add(offset);
+		}
+		return new CanvasPolygon(new_points, fillColor, strokeColor);
+  }
+  
 	public void translate(Point2D p) {
 		for (int i = 0; i < points.length; i++) {
 			points[i] = points[i].add(p);

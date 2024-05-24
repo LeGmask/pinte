@@ -1,6 +1,7 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.geometry.Point2D;
+
 import org.pinte.models.Utils.CanvasObjectParser;
 
 import java.util.Dictionary;
@@ -61,6 +62,15 @@ public class CanvasEllipse extends CanvasObject {
 	}
 
 	/**
+	 * Change the center of the ellipse
+	 *
+	 * @param center new center
+	 */
+	public void setCenter(Point2D center) {
+		this.center = center;
+	}
+
+	/**
 	 * Creates an ellipse object from an SVG string.
 	 *
 	 * @param args SVG string
@@ -107,6 +117,15 @@ public class CanvasEllipse extends CanvasObject {
 		return toSVG("ellipse", d);
 	}
 
+	public Point2D getGravityCenter() {
+		return center;
+	}
+
+	public CanvasObject duplicate(Point2D offset) {
+		return new CanvasEllipse(this.center.add(offset),
+				rx, ry, fillColor, strokeColor);
+  }
+  
 	public void translate(Point2D p) {
 		this.center = this.center.add(p);
 	}

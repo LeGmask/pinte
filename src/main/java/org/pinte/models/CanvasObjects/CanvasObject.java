@@ -87,6 +87,22 @@ public abstract class CanvasObject {
 	public abstract boolean contains(double x, double y);
 
 	/**
+	 * Duplicate the object, offsetted from the given coordinates.
+	 *
+	 * @param old_center
+	 * @param new_center
+	 * @return
+	 */
+	public abstract CanvasObject duplicate(Point2D offset);
+
+	/**
+	 * Returns the gravity center of the shape
+	 *
+	 * @return the gravity center of the shape
+	 */
+	public abstract Point2D getGravityCenter();
+
+	/**
 	 * Returns a shape that can be rendered on the canvas
 	 */
 	public abstract void render();

@@ -2,13 +2,13 @@ package org.pinte.models;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 import org.pinte.models.CanvasObjects.CanvasObject;
 import org.pinte.models.states.translateState;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,36 +59,37 @@ public class CanvasContextualMenu {
 	 * @param pointedShapes
 	 */
 	protected static void shapeContextualMenu(MouseEvent e, Canvas canvas, List<CanvasObject> pointedShapes) {
+		List<CanvasObject> applyOperationOn = new ArrayList<CanvasObject>();
+		boolean oneSelected = false;
+
+		oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
+
+		if (oneSelected) {
+			for (CanvasObject shape : canvas.objects) {
+				if (shape.isSelected) {
+					applyOperationOn.add(shape);
+				}
+			}
+		} else {
+			applyOperationOn.add(pointedShapes.getLast());
+
+		}
+
 		switch (e.getButton()) {
 			case PRIMARY:
 				if (e.isControlDown()) {
 					pointedShapes.getLast().isSelected = !pointedShapes.getLast().isSelected;
 				} else {
-					List<CanvasObject> toMove = new ArrayList<CanvasObject>();
-					// is one is selected, move all selected. else move the most recent one
-					boolean oneSelected = false;
-
-					oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
-
-					if (oneSelected) {
-						for (CanvasObject shape : canvas.objects) {
-							if (shape.isSelected) {
-								toMove.add(shape);
-							}
-						}
-					} else {
-						toMove.add(pointedShapes.getLast());
-
-					}
 
 					canvas.javafxCanvas.removeEventHandler(MouseEvent.MOUSE_CLICKED, getContextualMenu(canvas));
 
-					translateState translateState = new translateState(toMove, e);
+					translateState translateState = new translateState(applyOperationOn, e);
 					translateState.enterTranslateState();
 				}
 				break;
 			case SECONDARY:
 				final ContextMenu contextMenu = new ContextMenu();
+
 				contextMenu.setOnShowing(new EventHandler<WindowEvent>() {
 					public void handle(WindowEvent e) {
 						System.out.println("showing shape context menu for");
@@ -103,61 +104,7 @@ public class CanvasContextualMenu {
 					}
 				});
 
-				// dummy items for now
-				MenuItem item1 = new MenuItem("Copy");
-				item1.setOnAction(new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						System.out.println("Copied");
-					}
-				});
-
-				MenuItem item3 = new MenuItem("Colorier interieur");
-				item3.setOnAction(new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						for (CanvasObject objet : canvas.objects) {
-							if (objet.isSelected) {
-								objet.setFillColor(canvas.getCopyColorSelect());
-							}
-						}
-					}
-				});
-				MenuItem item4 = new MenuItem("Colorier bordure");
-				item4.setOnAction(new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						for (CanvasObject objet : canvas.objects) {
-							if (objet.isSelected) {
-								objet.setStrokeColor(canvas.getCopyColorSelect());
-							}
-						}
-					}
-				});
-
-				MenuItem item5 = new MenuItem("Delete");
-				item5.setOnAction(new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						List<CanvasObject> selected = new ArrayList<CanvasObject>();
-
-						boolean oneSelected = false;
-
-						oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
-
-						if (oneSelected) {
-							for (CanvasObject shape : canvas.objects) {
-								if (shape.isSelected) {
-									selected.add(shape);
-								}
-							}
-						} else {
-							selected.add(pointedShapes.getLast());
-
-						}
-
-						for (CanvasObject object : selected) {
-							canvas.objects.remove(object);
-						}
-					}
-				});
-				contextMenu.getItems().addAll(item1, item3, item4, item5);
+				addGenericEntriesContextualMenu(contextMenu, e, canvas, applyOperationOn);
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 
@@ -189,20 +136,87 @@ public class CanvasContextualMenu {
 						System.out.println("shown canvas context menu");
 					}
 				});
-
-				MenuItem item1 = new MenuItem("Save");
-				item1.setOnAction(new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						System.out.println("Saved");
-					}
-				});
-				contextMenu.getItems().addAll(item1);
+				addGenericEntriesContextualMenu(contextMenu, e, canvas, new ArrayList<CanvasObject>());
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 
 			default:
 				break;
 		}
+
+	}
+
+	protected static void addGenericEntriesContextualMenu(ContextMenu contextMenu, MouseEvent e, Canvas canvas,
+			List<CanvasObject> selected) {
+
+		MenuItem itemSave = new MenuItem("Save Project");
+		itemSave.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				System.out.println("Saved");
+			}
+		});
+
+		MenuItem itemFill = new MenuItem("Fill with selected color");
+		itemFill.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				for (CanvasObject object : selected) {
+					object.setFillColor(canvas.getCopyColorSelect());
+				}
+			}
+		});
+		MenuItem itemStroke = new MenuItem("Stroke with selected color");
+		itemStroke.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				for (CanvasObject object : selected) {
+					object.setStrokeColor(canvas.getCopyColorSelect());
+				}
+			}
+		});
+
+		MenuItem itemDelete = new MenuItem("Delete");
+		itemDelete.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				for (CanvasObject object : selected) {
+					canvas.objects.remove(object);
+				}
+
+			}
+
+		});
+
+		MenuItem itemCopy = new MenuItem("Copy");
+		itemCopy.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+
+				canvas.setClipboard(selected);
+				System.out.println("Copied :");
+			}
+		});
+
+		MenuItem itemPaste = new MenuItem("Paste");
+		itemPaste.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent ev) {
+				Point2D new_position = new Point2D(e.getX(), e.getY());
+
+				List<CanvasObject> clipboard = canvas.getClipboard();
+
+				if (!clipboard.isEmpty() && clipboard != null) {
+					Point2D old_center = new Point2D(0, 0);
+					for (CanvasObject shape : clipboard) {
+						old_center.add(shape.getGravityCenter());
+
+					}
+					old_center.multiply(1 / clipboard.size());
+
+					for (CanvasObject shape : clipboard) {
+						canvas.add(shape.duplicate(new_position.subtract(old_center)));
+
+					}
+				}
+
+			}
+		});
+		contextMenu.getItems().addAll(itemFill, itemStroke, itemDelete, itemCopy, itemPaste, itemSave);
 
 	}
 

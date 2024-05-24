@@ -1,6 +1,7 @@
 package org.pinte.models;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.Clipboard;
 import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasObject;
 
@@ -32,6 +33,11 @@ public final class Canvas {
 	public List<CanvasObject> objects;
 
 	/**
+	 * The clipboard to copy paste
+	 */
+	public List<CanvasObject> clipboard = new ArrayList<>();
+  
+  /**
 	 * La couleur actuellement utilisée
 	 */
 	public CanvasColor colorSelect;
@@ -210,6 +216,21 @@ public final class Canvas {
 		this.safePath = safe;
 	}
 
+	/**
+	 * Return the clipboard of the canvas
+	 */
+	public List<CanvasObject> getClipboard() {
+		return clipboard;
+	}
+
+	/**
+	 * Set the clipboard of the canvas
+	 */
+	public void setClipboard(List<CanvasObject> cb) {
+		clipboard = cb;
+
+	}
+  
 	public String getName() {
 		return this.name;
 	}
@@ -226,6 +247,5 @@ public final class Canvas {
 	public CanvasColor getCopyColorSelect() {
 		return new CanvasColor(this.colorSelect.getRed(), this.colorSelect.getGreen(), this.colorSelect.getBlue(), this.colorSelect.getAlpha());
 	}
-
 
 }
