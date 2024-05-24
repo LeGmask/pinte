@@ -84,9 +84,9 @@ public class CanvasEllipse extends CanvasObject {
 		double ry = Double.parseDouble(CanvasObjectParser.parseKeyword("ry", args));
 
 		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
-				CanvasObjectParser.parseKeyword("fill-opacity", args));
+			CanvasObjectParser.parseKeyword("fill-opacity", args));
 		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
-				CanvasObjectParser.parseKeyword("stroke-opacity", args));
+			CanvasObjectParser.parseKeyword("stroke-opacity", args));
 		return new CanvasEllipse(new Point2D(cx, cy), rx, ry, fillColor, strokeColor);
 	}
 
@@ -124,12 +124,16 @@ public class CanvasEllipse extends CanvasObject {
 	public CanvasObject duplicate(Point2D offset) {
 		return new CanvasEllipse(this.center.add(offset),
 				rx, ry, fillColor, strokeColor);
+  }
+  
+	public void translate(Point2D p) {
+		this.center = this.center.add(p);
 	}
 
 	@Override
 	public boolean contains(double x, double y) {
 		double p = (Math.pow((x - center.getX()), 2) / Math.pow(rx, 2))
-				+ (Math.pow((y - center.getY()), 2) / Math.pow(ry, 2));
+			+ (Math.pow((y - center.getY()), 2) / Math.pow(ry, 2));
 		return p <= 1;
 	}
 }

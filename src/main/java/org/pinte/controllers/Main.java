@@ -3,19 +3,13 @@ package org.pinte.controllers;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import org.pinte.models.Canvas;
-import org.pinte.models.CanvasObjects.CanvasColor;
-import org.pinte.models.CanvasObjects.CanvasEllipse;
 import org.pinte.models.states.*;
 
 public class Main {
 	@FXML
 	public javafx.scene.canvas.Canvas javafxCanvas;
-
-	@FXML
-	public Button demo;
 
 	@FXML
 	public Button selection;
@@ -28,6 +22,12 @@ public class Main {
 
 	@FXML
 	public Button addRectangle;
+
+	@FXML
+	public Button addLine;
+
+	@FXML
+	public Button addPolygon;
 
 	Canvas canvas = Canvas.getInstance();
 
@@ -50,15 +50,6 @@ public class Main {
 		}.start();
 	}
 
-	public void handleDemo(ActionEvent actionEvent) {
-		CanvasEllipse ellipse = new CanvasEllipse(
-			new Point2D(
-				Math.random() * 800,
-				Math.random() * 800),
-			10, 10, new CanvasColor(0, 0, 0), new CanvasColor(255, 0, 0));
-		canvas.add(ellipse);
-	}
-
 	public void handleSelection(ActionEvent actionEvent) {
 		status = new selectionState();
 	}
@@ -73,5 +64,13 @@ public class Main {
 
 	public void handleAddEllipse(ActionEvent actionEvent) {
 		status = new addEllipseState();
+	}
+
+	public void handleAddLine(ActionEvent actionEvent) {
+		status = new addLineState();
+	}
+
+	public void handleAddPolygon(ActionEvent actionEvent) {
+		status = new addPolygonState();
 	}
 }

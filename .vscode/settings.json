@@ -1,0 +1,4 @@
+{
+    "editor.defaultFoldingRangeProvider": "redhat.java",
+    "java.server.launchMode": "Hybrid"
+}

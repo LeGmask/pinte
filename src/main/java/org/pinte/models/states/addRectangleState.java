@@ -30,9 +30,9 @@ public class addRectangleState extends State {
 						canvas.removeGhostObject();
 
 						CanvasObject rect = rectangleFrom2Points(p1,
-								new Point2D(event.getX(), event.getY()),
+							new Point2D(event.getX(), event.getY()),
 
-								new CanvasColor(0, 0, 0, 0), new CanvasColor(128, 128, 0, 1));
+							canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
 
 						rect.isSelected = true;
 						canvas.setGhostObject(rect);
@@ -49,8 +49,8 @@ public class addRectangleState extends State {
 			@Override
 			public void handle(MouseEvent e) {
 				p2 = new Point2D(e.getX(), e.getY());
-				canvas.add(rectangleFrom2Points(p1, p2, new CanvasColor(0, 0, 0),
-						new CanvasColor(255, 0, 0)));
+				canvas.add(rectangleFrom2Points(p1, p2, canvas.getCopyColorSelect(),
+					canvas.getCopyColorSelect()));
 				canvas.javafxCanvas.setOnMouseClicked(registerP1());
 				canvas.javafxCanvas.setOnMouseMoved(null);
 				canvas.removeGhostObject();
@@ -71,14 +71,14 @@ public class addRectangleState extends State {
 	 * @param strokeColor The color of the outline
 	 */
 	private CanvasRectangle rectangleFrom2Points(Point2D p1, Point2D p2, CanvasColor fillColor,
-			CanvasColor strokeColor) {
+												 CanvasColor strokeColor) {
 		double x1 = Math.min(p1.getX(), p2.getX());
 		double y1 = Math.min(p1.getY(), p2.getY());
 		double x2 = Math.max(p1.getX(), p2.getX());
 		double y2 = Math.max(p1.getY(), p2.getY());
 
 		return new CanvasRectangle(new Point2D(x1, y1), new Point2D(x2, y1), new Point2D(x2, y2), new Point2D(x1, y2),
-				fillColor, strokeColor);
+			fillColor, strokeColor);
 	}
 
 }

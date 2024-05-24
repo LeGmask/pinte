@@ -12,6 +12,7 @@ import javafx.stage.WindowEvent;
 import org.pinte.models.CanvasObjects.CanvasEllipse;
 import org.pinte.models.CanvasObjects.CanvasObject;
 import org.pinte.models.CanvasObjects.CanvasRectangle;
+import org.pinte.models.states.translateState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,28 @@ public class CanvasContextualMenu {
 			case PRIMARY:
 				if (e.isControlDown()) {
 					pointedShapes.getLast().isSelected = !pointedShapes.getLast().isSelected;
+				} else {
+					List<CanvasObject> toMove = new ArrayList<CanvasObject>();
+					// is one is selected, move all selected. else move the most recent one
+					boolean oneSelected = false;
+
+					oneSelected = !pointedShapes.isEmpty() && pointedShapes.getLast().isSelected;
+
+					if (oneSelected) {
+						for (CanvasObject shape : canvas.objects) {
+							if (shape.isSelected) {
+								toMove.add(shape);
+							}
+						}
+					} else {
+						toMove.add(pointedShapes.getLast());
+
+					}
+
+					canvas.javafxCanvas.removeEventHandler(MouseEvent.MOUSE_CLICKED, getContextualMenu(canvas));
+
+					translateState translateState = new translateState(toMove, e);
+					translateState.enterTranslateState();
 				}
 				break;
 			case SECONDARY:
@@ -85,8 +108,37 @@ public class CanvasContextualMenu {
 					}
 				});
 
-				MenuItem itemCopy = new MenuItem("Copy");
-				itemCopy.setOnAction(new EventHandler<ActionEvent>() {
+				// dummy items for now
+				MenuItem item1 = new MenuItem("Copy");
+				item1.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						System.out.println("Copied");
+					}
+				});
+
+				MenuItem item3 = new MenuItem("Colorier interieur");
+				item3.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						for (CanvasObject objet : canvas.objects) {
+							if (objet.isSelected) {
+								objet.setFillColor(canvas.getCopyColorSelect());
+							}
+						}
+					}
+				});
+				MenuItem item4 = new MenuItem("Colorier bordure");
+				item4.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						for (CanvasObject objet : canvas.objects) {
+							if (objet.isSelected) {
+								objet.setStrokeColor(canvas.getCopyColorSelect());
+							}
+						}
+					}
+				});
+
+				MenuItem item5 = new MenuItem("Delete");
+				item5.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
 						List<CanvasObject> selected = new ArrayList<CanvasObject>();
 
@@ -104,9 +156,22 @@ public class CanvasContextualMenu {
 							selected.add(pointedShapes.getLast());
 
 						}
+            
+
+            for (CanvasObject object : selected) {
+
+              canvas.objects.remove(object);
+
+            }
+
+          }
+
+        });
+        
+  MenuItem itemCopy = new MenuItem("Copy");
+        itemCopy.setOnAction(new EventHandler<ActionEvent>() {
 						canvas.setClipboard(selected);
 						System.out.println("Copied :");
-					}
 				});
 
 				MenuItem itemPaste = new MenuItem("Paste");
@@ -133,7 +198,8 @@ public class CanvasContextualMenu {
 					}
 				});
 
-				contextMenu.getItems().addAll(itemCopy, itemPaste);
+				contextMenu.getItems().addAll(item1, item3, item4, item5,itemCopy, itemPaste);
+
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 
@@ -166,35 +232,13 @@ public class CanvasContextualMenu {
 					}
 				});
 
-				// MenuItem itemPaste = new MenuItem("Paste");
-				// itemPaste.setOnAction(new EventHandler<ActionEvent>() {
-				// public void handle(ActionEvent ev) {
-
-				// // If there is something to paste
-				// if (canvas.getClipboard().hasString()) {
-
-				// // Grab the new center for the Object
-				// Double mouseX = e.getX();
-				// Double mouseY = e.getY();
-
-				// // Convert SVG to CanvasObject
-				// String shapeToPasteSVG = canvas.getClipboard().getString();
-
-				// if (shapeToPasteSVG.contains("ellipse")) {
-				// pasteEllipse(shapeToPasteSVG, mouseX, mouseY, canvas);
-				// } else if (shapeToPasteSVG.contains("rect")) {
-				// pasteRect(shapeToPasteSVG, mouseX, mouseY, canvas);
-				// } else {
-				// System.out.println("Impossible to paste this shape for the moment");
-				// }
-
-				// } else {
-				// System.out.println("Nothing to paste");
-				// }
-				// }
-				// });
-
-				// contextMenu.getItems().addAll(itemPaste);
+				MenuItem item1 = new MenuItem("Save");
+				item1.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						System.out.println("Saved");
+					}
+				});
+				contextMenu.getItems().addAll(item1);
 				contextMenu.show(canvas.javafxCanvas, e.getScreenX(), e.getScreenY());
 				break;
 
@@ -240,6 +284,7 @@ public class CanvasContextualMenu {
 
 		// Paste to the canvas
 		canvas.add(shapeToPaste);
+
 
 		System.out.println("Paste");
 	}

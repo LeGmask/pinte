@@ -12,7 +12,6 @@ import java.util.Enumeration;
  * CanvasObject abstract class to build canvas objects
  */
 public abstract class CanvasObject {
-
 	/**
 	 * Is the object selected
 	 */
@@ -113,6 +112,39 @@ public abstract class CanvasObject {
 	 */
 	public abstract String toSVG();
 
+	/**
+	 * Translates the shape by dx and dy
+	 *
+	 * @param p
+	 */
+	public abstract void translate(Point2D p);
+
+	/**
+	 * Change la couleur de remplissage d'un objet.
+	 *
+	 * @param couleur la nouvelle couleur de remplissage
+	 */
+
+	public void setFillColor(CanvasColor couleur) {
+
+		this.fillColor = couleur;
+
+	}
+
+
+	/**
+	 * Change la couleur de bordure d'un objet.
+	 *
+	 * @param couleur la nouvelle couleur de bordure
+	 */
+
+	public void setStrokeColor(CanvasColor couleur) {
+
+		this.strokeColor = couleur;
+
+	}
+
+
 	protected void setUpDrawingParameters() {
 
 		gc.setFill(this.fillColor.toPaintColor());
@@ -124,8 +156,7 @@ public abstract class CanvasObject {
 		if (this.isSelected) {
 			gc.setStroke(Color.YELLOW);
 			gc.setLineWidth(2);
-			gc.setLineDashes(new double[] { 5 });
+			gc.setLineDashes(new double[]{5});
 		}
 	}
-
 }

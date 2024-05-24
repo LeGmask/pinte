@@ -6,21 +6,29 @@
 <?import javafx.scene.control.Button?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane"
             fx:controller="org.pinte.controllers.Main">
+    <style>
+        -fx-padding: 0;
+    </style>
     <top>
         <fx:include source="menu.fxml"/>
     </top>
-    <left>
-        <Button fx:id="demo" text="Click me!" onAction="#handleDemo"/>
-    </left>
     <center>
         <Canvas fx:id="javafxCanvas"/>
     </center>
     <right>
-        <VBox spacing="10">
+        <VBox spacing="100" alignment="center">
+            <style>
+                -fx-background-color: gold;
+                -fx-font-family: monospace;
+                -fx-font-size: 20;
+                -fx-border-color: black;
+            </style>
             <Button fx:id="selection" text="Selection" onAction="#handleSelection"/>
             <Button fx:id="addCircle" text="Circle" onAction="#handleAddCircle"/>
             <Button fx:id="addEllipse" text="Ellipse" onAction="#handleAddEllipse"/>
             <Button fx:id="addRectangle" text="Rectangle" onAction="#handleAddRectangle"/>
+            <Button fx:id="addLine" text="Line" onAction="#handleAddLine"/>
+            <Button fx:id="addPolygon" text="Polygon" onAction="#handleAddPolygon"/>
         </VBox>
     </right>
 </BorderPane>
