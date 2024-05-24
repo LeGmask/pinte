@@ -203,10 +203,10 @@ public class CanvasContextualMenu {
 				if (!clipboard.isEmpty() && clipboard != null) {
 					Point2D old_center = new Point2D(0, 0);
 					for (CanvasObject shape : clipboard) {
-						old_center.add(shape.getGravityCenter());
+						old_center = old_center.add(shape.getGravityCenter());
 
 					}
-					old_center.multiply(1 / clipboard.size());
+					old_center = old_center.multiply(1.0 / clipboard.size());
 
 					for (CanvasObject shape : clipboard) {
 						canvas.add(shape.duplicate(new_position.subtract(old_center)));
