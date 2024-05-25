@@ -10,6 +10,7 @@ import javafx.stage.Popup;
 import org.pinte.models.Canvas;
 import org.pinte.models.Coloration;
 import org.pinte.models.Save;
+import org.pinte.models.Open;
 
 public class MenuBar {
 	/**
@@ -24,6 +25,7 @@ public class MenuBar {
 	public void initialize() {
 		Coloration coloration = new Coloration();
 		Save save = new Save();
+		Open open = new Open();
 		Menu menuFichier = new Menu("File");
 		Menu menuCouleur = new Menu("Color");
 		Menu menuOpacite = new Menu("Opacity");
@@ -34,11 +36,13 @@ public class MenuBar {
 		MenuItem menuItemSaveAs = new MenuItem("Save As");
 		MenuItem menuItemSave = new MenuItem("Save");
 		MenuItem menuItemExport = new MenuItem("Export");
+		MenuItem menuItemOpen = new MenuItem("Open");
 
 		//adding items to the menu.
 		menuFichier.getItems().add(menuItemSave);
 		menuFichier.getItems().add(menuItemSaveAs);
 		menuFichier.getItems().add(menuItemExport);
+		menuFichier.getItems().add(menuItemOpen);
 
 		// adding menu to the menu bar.
 		menuBar.getMenus().add(menuFichier);
@@ -49,6 +53,9 @@ public class MenuBar {
 		});
 		menuItemSave.setOnAction(event -> {
 			save.SaveFile(true);
+		});
+		menuItemOpen.setOnAction(event->{
+			open.choose();
 		});
 		menuItemExport.setOnAction(event -> {
 			try {

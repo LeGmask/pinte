@@ -31,7 +31,7 @@ public class Warning {
 			primaryStage.setTitle("Enregistrer sous");
 			primaryStage.show();
 			stage.close();
-		} catch (Exception e) {
+		} catch (java.io.IOException e) {
 			System.out.println(e);
 		}
 	}
@@ -47,7 +47,7 @@ public class Warning {
 			Save save = new Save();
 			save.replace();
 			stage.close();
-		} catch (Exception e) {
+		} catch (java.io.IOException e) {
 			System.out.println(e);
 		}
 	}
