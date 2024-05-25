@@ -7,10 +7,9 @@ import javafx.scene.paint.Color;
  */
 public class CanvasColor {
 	/**
-	 * Red, Green and Blue component of the color
+	 * Red, Green Blue and Alpha components of the color
 	 */
-	private int r, g, b;
-
+	private int r, g, b, a;
 
 	/**
 	 * Creates a new CanvasColor from RGB components
@@ -26,6 +25,20 @@ public class CanvasColor {
 		this.r = r;
 		this.g = g;
 		this.b = b;
+		this.a = 255;
+	}
+
+	/**
+	 * Creates a new CanvasColor from RGBA components
+	 *
+	 * @param r red component
+	 * @param g green component
+	 * @param b blue component
+	 * @param a alpha component
+	 */
+	public CanvasColor(int r, int g, int b, int a) {
+		this(r, g, b);
+		this.a = a;
 	}
 
 	/**
@@ -34,21 +47,27 @@ public class CanvasColor {
 	 *
 	 * @param hex hex string of the color
 	 */
-	public CanvasColor(String hex) {
+	public CanvasColor(String hex, String opacity) {
 		hex = hex.replace("#", "");
 		if (hex.length() != 6) {
 			throw new IllegalArgumentException("Length of hex string " + hex + " is not 6");
 		}
+
 		int r = Integer.parseInt(hex.substring(0, 2), 16);
 		int g = Integer.parseInt(hex.substring(2, 4), 16);
 		int b = Integer.parseInt(hex.substring(4, 6), 16);
-		if (!(isColorConform(r) && isColorConform(g) && isColorConform(b))) {
+		int a = 255;
+		if (opacity != null && opacity.length() > 0) {
+			a = (int) (255.0 * Double.parseDouble(opacity));
+		}
+		if (!(isColorConform(r) && isColorConform(g) && isColorConform(b) && isColorConform(a))) {
 			throw new IllegalArgumentException("Each composant must be >= 0 and <= 255");
 		}
 
 		this.r = r;
 		this.g = g;
 		this.b = b;
+		this.a = a;
 	}
 
 	/**
@@ -85,20 +104,25 @@ public class CanvasColor {
 		return "#" + toHexString(r) + toHexString(g) + toHexString(b);
 	}
 
+	public String opacityString() {
+		Double res = ((double) a / 255.0);
+		return res.toString();
+	}
+
 	/**
 	 * Converts the color to a javafx color object
 	 *
 	 * @return a javafx color
 	 */
 	public Color toPaintColor() {
-		return new Color((double) r / 255.0, (double) g / 255.0, (double) b / 255.0, 1.0);
+		return new Color((double) r / 255.0, (double) g / 255.0, (double) b / 255.0, (double) a / 255.0);
 	}
 
 	/**
 	 * @return the color in the format "Color [r=..., g=..., b=...]"
 	 */
 	public String toString() {
-		return "Color [r=" + r + ", g=" + g + ", b=" + b + "]";
+		return "Color [r=" + r + ", g=" + g + ", b=" + b + ", a=" + a + "]";
 	}
 
 	/**
@@ -108,6 +132,78 @@ public class CanvasColor {
 	 * @return true if the color is the same
 	 */
 	public boolean equals(CanvasColor c) {
-		return (this.r == c.r && this.g == c.g && this.b == c.b);
+		return (this.r == c.r && this.g == c.g && this.b == c.b && this.a == c.a);
+	}
+
+	/**
+	 * Permet de récuperer l'oppacité d'une couleur
+	 *
+	 * @return l'opaccité de la couleur.
+	 */
+	public int getAlpha() {
+		return this.a;
+	}
+
+	/**
+	 * Permet de fixer l'oppacité d'une couleur
+	 *
+	 * @param Na l'opaccité de la couleur.
+	 */
+	public void setAlpha(int Na) {
+		this.a = Na;
+	}
+
+	/**
+	 * Permet de récuperer la composante rouge d'une couleur
+	 *
+	 * @return la composante rouge de la couleur.
+	 */
+	public int getRed() {
+		return this.r;
+	}
+
+	/**
+	 * Permet de fixer la composante rouge d'une couleur
+	 *
+	 * @param Nr la composante rouge de la couleur.
+	 */
+	public void setRed(int Nr) {
+		this.r = Nr;
+	}
+
+	/**
+	 * Permet de récuperer la composante verte d'une couleur
+	 *
+	 * @return la composante verte de la couleur.
+	 */
+	public int getGreen() {
+		return this.g;
+	}
+
+	/**
+	 * Permet de fixer la composante verte d'une couleur
+	 *
+	 * @param Ng la composante verte de la couleur.
+	 */
+	public void setGreen(int Ng) {
+		this.g = Ng;
+	}
+
+	/**
+	 * Permet de récuperer la composante bleu d'une couleur
+	 *
+	 * @return la composante bleu de la couleur.
+	 */
+	public int getBlue() {
+		return this.b;
+	}
+
+	/**
+	 * Permet de fixer la composante rouge d'une couleur
+	 *
+	 * @param Nb la composante bleu de la couleur.
+	 */
+	public void setBlue(int Nb) {
+		this.b = Nb;
 	}
 }

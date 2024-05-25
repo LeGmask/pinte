@@ -32,7 +32,7 @@ public class Save {
 	}
 
 	/**
-	 * Opening the window to change the name and/or 
+	 * Opening the window to change the name and/or
 	 * location of the saving file and save
 	 */
 	public void SaveFile_as() {
@@ -58,7 +58,7 @@ public class Save {
 	 */
 	public void SaveFile(boolean savingas) {
 		try {
-			if (Files.exists(canva.getPath())) {
+			if (Files.exists(canva.getPath())) {>>>>>>> main
 				if (!canva.getSafePath()) {
 					Stage primaryStage = new Stage();
 					URL url = getClass().getResource("../views/warning.fxml");
@@ -82,7 +82,7 @@ public class Save {
 
 	/**
 	 * Write the information of the canva in the file on svg format
-	 *
+   *
 	 * @param path path of the file to save
 	 * @throws java.io.IOException failed or interrupted I/O operations
 	 */
@@ -95,7 +95,7 @@ public class Save {
 			objectsstr.add(object.toSVG());
 		}
 		objectsstr.add("</svg>");
-		if (exist = true) {
+		if (exist) {
 			Files.write(canva.getPath(), objectsstr, StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE);
 		} else {
 			Files.write(canva.getPath(), objectsstr, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
@@ -104,7 +104,7 @@ public class Save {
 	}
 
 	/**
-	 * change the parameter for the write function to erase the content 
+	 * change the parameter for the write function to erase the content
 	 * of the file and replace it
 	 *
 	 * @throws java.io.IOException failed or interrupted I/O operations

@@ -3,16 +3,18 @@ package org.pinte.models.states;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
-import org.pinte.models.CanvasObjects.CanvasEllipse;
+import org.pinte.models.CanvasObjects.CanvasColor;
+import org.pinte.models.CanvasObjects.CanvasLine;
 import org.pinte.models.CanvasObjects.CanvasObject;
 
-public class addEllipseState extends State {
-	/**
-	 * Points on ellipse to be added.
-	 */
-	Point2D p1, p2;
 
-	public addEllipseState() {
+public class addLineState extends State {
+	/**
+	 * Extremities of the segment to be added.
+	 */
+	private Point2D p1, p2;
+
+	public addLineState() {
 		canvas.javafxCanvas.setOnMouseClicked(registerP1());
 	}
 
@@ -21,24 +23,22 @@ public class addEllipseState extends State {
 			@Override
 			public void handle(MouseEvent e) {
 				p1 = new Point2D(e.getX(), e.getY());
+				canvas.javafxCanvas.setOnMouseClicked(registerP2());
 
 				canvas.javafxCanvas.setOnMouseMoved(new EventHandler<MouseEvent>() {
-
 					@Override
 					public void handle(MouseEvent event) {
 						canvas.removeGhostObject();
 
-						CanvasObject ellipse = new CanvasEllipse(new Point2D(p1.getX(), p1.getY()),
-							Math.abs(event.getX() - p1.getX()), Math.abs(event.getY() - p1.getY()),
-							canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
+						CanvasObject line = new CanvasLine(p1, new Point2D(event.getX(), event.getY()),
+								canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
 
-						ellipse.isSelected = true;
-						canvas.setGhostObject(ellipse);
+						line.isSelected = true;
+						canvas.setGhostObject(line);
 
 					}
 				});
 
-				canvas.javafxCanvas.setOnMouseClicked(registerP2());
 			}
 		};
 	}
@@ -47,13 +47,13 @@ public class addEllipseState extends State {
 		return new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
-				canvas.add(new CanvasEllipse(p1, Math.abs(e.getX() - p1.getX()), Math.abs(e.getY() - p1.getY()),
-					canvas.getCopyColorSelect(),
-					canvas.getCopyColorSelect()));
+				p2 = new Point2D(e.getX(), e.getY());
+				canvas.add(new CanvasLine(p1, p2, canvas.getCopyColorSelect(), canvas.getCopyColorSelect()));
 				canvas.javafxCanvas.setOnMouseClicked(registerP1());
 				canvas.javafxCanvas.setOnMouseMoved(null);
 				canvas.removeGhostObject();
 			}
 		};
 	}
+
 }

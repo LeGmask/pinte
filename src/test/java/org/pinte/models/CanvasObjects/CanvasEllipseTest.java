@@ -55,8 +55,10 @@ public class CanvasEllipseTest {
 		Double cy = Double.parseDouble(CanvasObjectParser.parseKeyword("cy", svgString));
 		Double rx = Double.parseDouble(CanvasObjectParser.parseKeyword("rx", svgString));
 		Double ry = Double.parseDouble(CanvasObjectParser.parseKeyword("ry", svgString));
-		CanvasColor fill = new CanvasColor(CanvasObjectParser.parseKeyword("fill", svgString));
-		CanvasColor stroke = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", svgString));
+		CanvasColor fill = new CanvasColor(CanvasObjectParser.parseKeyword("fill", svgString),
+			CanvasObjectParser.parseKeyword("fill-opacity", svgString));
+		CanvasColor stroke = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", svgString),
+			CanvasObjectParser.parseKeyword("stroke-opacity", svgString));
 
 		Assertions.assertEquals(cx, center.getX());
 		Assertions.assertEquals(cy, center.getY());

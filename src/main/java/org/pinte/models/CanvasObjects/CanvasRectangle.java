@@ -1,6 +1,7 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.geometry.Point2D;
+
 import org.pinte.models.Utils.CanvasObjectParser;
 
 import java.util.Dictionary;
@@ -60,6 +61,25 @@ public class CanvasRectangle extends CanvasObject {
 	}
 
 	/**
+	 * Change the positions of the corners (for the copy/paste)
+	 *
+	 * @param a The top left corner of the rectangle
+	 * @param b The top right corner of the rectangle
+	 * @param c The bottom right corner of the rectangle
+	 * @param d The bottom left corner of the rectangle
+	 */
+	public void setNewCornersPosition(Double x, Double y) {
+		Double height = a.distance(d);
+		Double length = a.distance(b);
+
+		this.a = new Point2D(x - height / 2, y - height / 2);
+		this.b = new Point2D(x + length / 2, y - height / 2);
+		this.c = new Point2D(x + length / 2, y + height / 2);
+		this.d = new Point2D(x - length / 2, y + height / 2);
+
+	}
+
+	/**
 	 * Creates a rectangle from an SVG string
 	 *
 	 * @param args the SVG string to parse
@@ -68,11 +88,12 @@ public class CanvasRectangle extends CanvasObject {
 	public static CanvasRectangle createFromSVG(String args) {
 		double x = Double.parseDouble(CanvasObjectParser.parseKeyword("x", args));
 		double y = Double.parseDouble(CanvasObjectParser.parseKeyword("y", args));
-
 		double w = Double.parseDouble(CanvasObjectParser.parseKeyword("width", args));
 		double h = Double.parseDouble(CanvasObjectParser.parseKeyword("height", args));
-		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args));
-		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args));
+		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
+				CanvasObjectParser.parseKeyword("fill-opacity", args));
+		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
+				CanvasObjectParser.parseKeyword("stroke-opacity", args));
 
 		return new CanvasRectangle(new Point2D(x, y), w, h, fillColor, strokeColor);
 	}
@@ -85,12 +106,19 @@ public class CanvasRectangle extends CanvasObject {
 		this.setUpDrawingParameters();
 
 		gc.fillRect(
-			this.a.getX(), this.a.getY(),
-			this.a.distance(b), this.a.distance(d));
+				this.a.getX(), this.a.getY(),
+				this.a.distance(b), this.a.distance(d));
 		gc.strokeRect(
-			this.a.getX(), this.a.getY(),
-			this.a.distance(b), this.a.distance(d));
+				this.a.getX(), this.a.getY(),
+				this.a.distance(b), this.a.distance(d));
 
+	}
+
+	public void translate(Point2D p) {
+		a = a.add(p);
+		b = b.add(p);
+		c = c.add(p);
+		d = d.add(p);
 	}
 
 	/**
@@ -105,7 +133,9 @@ public class CanvasRectangle extends CanvasObject {
 		attributes.put("x", Double.toString(this.a.getX()));
 		attributes.put("y", Double.toString(this.a.getY()));
 		attributes.put("fill", this.fillColor.asHex());
+		attributes.put("fill-opacity", this.fillColor.opacityString());
 		attributes.put("stroke", this.strokeColor.asHex());
+		attributes.put("stroke-opacity", this.strokeColor.opacityString());
 		return toSVG("rect", attributes);
 	}
 
@@ -126,6 +156,14 @@ public class CanvasRectangle extends CanvasObject {
 
 	private double dotProduct(Point2D a, Point2D b) {
 		return a.getX() * b.getX() + a.getY() * b.getY();
+	}
+
+	public Point2D getGravityCenter() {
+		return a.add(b).add(c).add(d).multiply(1.0 / 4.0);
+	}
+
+	public CanvasObject duplicate(Point2D offset) {
+		return new CanvasRectangle(a.add(offset), a.distance(b), a.distance(d), fillColor, strokeColor);
 	}
 
 	@Override

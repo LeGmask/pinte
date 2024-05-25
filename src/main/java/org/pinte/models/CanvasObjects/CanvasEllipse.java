@@ -1,6 +1,7 @@
 package org.pinte.models.CanvasObjects;
 
 import javafx.geometry.Point2D;
+
 import org.pinte.models.Utils.CanvasObjectParser;
 
 import java.util.Dictionary;
@@ -61,6 +62,15 @@ public class CanvasEllipse extends CanvasObject {
 	}
 
 	/**
+	 * Change the center of the ellipse
+	 *
+	 * @param center new center
+	 */
+	public void setCenter(Point2D center) {
+		this.center = center;
+	}
+
+	/**
 	 * Creates an ellipse object from an SVG string.
 	 *
 	 * @param args SVG string
@@ -73,8 +83,10 @@ public class CanvasEllipse extends CanvasObject {
 		double rx = Double.parseDouble(CanvasObjectParser.parseKeyword("rx", args));
 		double ry = Double.parseDouble(CanvasObjectParser.parseKeyword("ry", args));
 
-		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args));
-		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args));
+		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
+			CanvasObjectParser.parseKeyword("fill-opacity", args));
+		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
+			CanvasObjectParser.parseKeyword("stroke-opacity", args));
 		return new CanvasEllipse(new Point2D(cx, cy), rx, ry, fillColor, strokeColor);
 	}
 
@@ -99,8 +111,23 @@ public class CanvasEllipse extends CanvasObject {
 		d.put("rx", Double.toString(this.rx));
 		d.put("ry", Double.toString(this.ry));
 		d.put("fill", this.fillColor.asHex());
+		d.put("fill-opacity", this.fillColor.opacityString());
 		d.put("stroke", this.strokeColor.asHex());
+		d.put("stroke-opacity", this.strokeColor.opacityString());
 		return toSVG("ellipse", d);
+	}
+
+	public Point2D getGravityCenter() {
+		return center;
+	}
+
+	public CanvasObject duplicate(Point2D offset) {
+		return new CanvasEllipse(this.center.add(offset),
+				rx, ry, fillColor, strokeColor);
+  }
+  
+	public void translate(Point2D p) {
+		this.center = this.center.add(p);
 	}
 
 	@Override

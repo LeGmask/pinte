@@ -37,8 +37,11 @@ public class CanvasPolygon extends CanvasObject {
 	public static CanvasPolygon createFromSVG(String args) {
 		Point2D[] points = CanvasObjectParser.parsePoints(args);
 
-		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args));
-		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args));
+		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
+				CanvasObjectParser.parseKeyword("fill-opacity", args));
+		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
+				CanvasObjectParser.parseKeyword("stroke-opacity", args));
+
 		return new CanvasPolygon(points, fillColor, strokeColor);
 	}
 
@@ -51,7 +54,10 @@ public class CanvasPolygon extends CanvasObject {
 		Dictionary<String, String> d = new Hashtable<>();
 		d.put("points", pointsToString());
 		d.put("fill", this.fillColor.asHex());
+		d.put("fill-opacity", this.fillColor.opacityString());
 		d.put("stroke", this.strokeColor.asHex());
+		d.put("stroke-opacity", this.strokeColor.opacityString());
+
 		return toSVG("polygon", d);
 	}
 
@@ -64,8 +70,8 @@ public class CanvasPolygon extends CanvasObject {
 		String result = "";
 		for (Point2D point : points) {
 			result += "%s,%s ".formatted(
-				point.getX(),
-				point.getY());
+					point.getX(),
+					point.getY());
 		}
 		return result.trim(); // remove trailing space
 	}
@@ -83,11 +89,11 @@ public class CanvasPolygon extends CanvasObject {
 				if (y <= Math.max(p1.getY(), p2.getY())) {
 					if (x <= Math.max(p1.getX(), p2.getX())) {
 						double x_intersection = (y - p1.getY()) * (p2.getX() - p1.getX())
-							/ (p2.getY() - p1.getY())
-							+ p1.getX();
+								/ (p2.getY() - p1.getY())
+								+ p1.getX();
 
 						if (p1.getX() == p2.getX()
-							|| x <= x_intersection) {
+								|| x <= x_intersection) {
 							inside = !inside;
 						}
 					}
@@ -98,6 +104,30 @@ public class CanvasPolygon extends CanvasObject {
 		}
 
 		return inside;
+	}
+
+	public Point2D getGravityCenter() {
+		Point2D gravity_center = new Point2D(0, 0);
+		for (int i = 0; i < points.length; ++i) {
+			gravity_center = gravity_center.add(points[i]);
+		}
+		gravity_center = gravity_center.multiply(1.0 / points.length);
+		return gravity_center;
+	}
+
+	public CanvasObject duplicate(Point2D offset) {
+
+		Point2D[] new_points = this.points.clone();
+		for (int i = 0; i < new_points.length; ++i) {
+			new_points[i] = new_points[i].add(offset);
+		}
+		return new CanvasPolygon(new_points, fillColor, strokeColor);
+	}
+
+	public void translate(Point2D p) {
+		for (int i = 0; i < points.length; i++) {
+			points[i] = points[i].add(p);
+		}
 	}
 
 	/**
@@ -116,9 +146,9 @@ public class CanvasPolygon extends CanvasObject {
 		this.setUpDrawingParameters();
 
 		gc.fillPolygon(
-			points_x,
-			points_y,
-			points.length);
+				points_x,
+				points_y,
+				points.length);
 		gc.strokePolygon(points_x, points_y, points.length);
 	}
 

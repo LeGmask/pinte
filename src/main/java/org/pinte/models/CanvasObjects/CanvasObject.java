@@ -1,7 +1,9 @@
 package org.pinte.models.CanvasObjects;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import org.pinte.models.Canvas;
 
 import java.util.Dictionary;
@@ -11,7 +13,6 @@ import java.util.Enumeration;
  * CanvasObject abstract class to build canvas objects
  */
 public abstract class CanvasObject {
-
 	/**
 	 * Is the object selected
 	 */
@@ -55,6 +56,8 @@ public abstract class CanvasObject {
 			case "rect" -> CanvasRectangle.createFromSVG(svgString);
 			case "ellipse" -> CanvasEllipse.createFromSVG(svgString);
 			case "polygon" -> CanvasPolygon.createFromSVG(svgString);
+			case "line" -> CanvasLine.createFromSVG(svgString);
+			case "text" -> CanvasTextField.createFromSVG(svgString);
 			default -> throw new IllegalArgumentException("Unknown object type '" + type + "' in SVG string.");
 		};
 	}
@@ -87,6 +90,22 @@ public abstract class CanvasObject {
 	public abstract boolean contains(double x, double y);
 
 	/**
+	 * Duplicate the object, offsetted from the given coordinates.
+	 *
+	 * @param old_center
+	 * @param new_center
+	 * @return
+	 */
+	public abstract CanvasObject duplicate(Point2D offset);
+
+	/**
+	 * Returns the gravity center of the shape
+	 *
+	 * @return the gravity center of the shape
+	 */
+	public abstract Point2D getGravityCenter();
+
+	/**
 	 * Returns a shape that can be rendered on the canvas
 	 */
 	public abstract void render();
@@ -95,6 +114,37 @@ public abstract class CanvasObject {
 	 * Returns the object as an SVG string
 	 */
 	public abstract String toSVG();
+
+	/**
+	 * Translates the shape by dx and dy
+	 *
+	 * @param p
+	 */
+	public abstract void translate(Point2D p);
+
+	/**
+	 * Change la couleur de remplissage d'un objet.
+	 *
+	 * @param couleur la nouvelle couleur de remplissage
+	 */
+
+	public void setFillColor(CanvasColor couleur) {
+
+		this.fillColor = couleur;
+
+	}
+
+	/**
+	 * Change la couleur de bordure d'un objet.
+	 *
+	 * @param couleur la nouvelle couleur de bordure
+	 */
+
+	public void setStrokeColor(CanvasColor couleur) {
+
+		this.strokeColor = couleur;
+
+	}
 
 	protected void setUpDrawingParameters() {
 
@@ -107,8 +157,12 @@ public abstract class CanvasObject {
 		if (this.isSelected) {
 			gc.setStroke(Color.YELLOW);
 			gc.setLineWidth(2);
-			gc.setLineDashes(new double[]{5});
+			gc.setLineDashes(new double[] { 5 });
 		}
 	}
 
+	protected void setUpWritingParameters(String fontFamily, int fontSize) {
+
+		gc.setFont(Font.font(fontFamily, fontSize));
+	}
 }

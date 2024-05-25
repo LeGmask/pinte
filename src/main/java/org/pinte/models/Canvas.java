@@ -1,6 +1,9 @@
 package org.pinte.models;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.Clipboard;
+import javafx.scene.paint.Color;
+import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasObject;
 
 import java.awt.*;
@@ -29,6 +32,37 @@ public final class Canvas {
 	 * The objects list
 	 */
 	public List<CanvasObject> objects;
+
+	/**
+	 * The clipboard to copy paste
+	 */
+	public List<CanvasObject> clipboard = new ArrayList<>();
+  
+	/**
+	 * La couleur actuellement utilisée
+	 */
+	public CanvasColor colorSelect;
+
+	/**
+	 * Selected font size
+	 */
+	private int selectedFontSize;
+
+	/**
+	 * Selected font type
+	 */
+	private String selectedFontType;
+
+	/**
+	 * An object used to show information about selection, shape drawing, etc...
+	 */
+	public CanvasObject ghostObject = null;
+
+	/**
+	 * The name of the project
+	 */
+	private String name;
+
 	/**
 	 * There is a file opened by the app at the end of the path
 	 */
@@ -42,7 +76,6 @@ public final class Canvas {
 	 * Where the project should be saved
 	 */
 	private Path path;
-
 	/**
 	 * path that user want to open
 	 */
@@ -52,7 +85,7 @@ public final class Canvas {
 	 * Private constructor for the Canvas
 	 */
 	private Canvas() {
-		objects = new ArrayList<CanvasObject>(10);
+		objects = new ArrayList<>(10);
 	}
 
 	/**
@@ -75,7 +108,9 @@ public final class Canvas {
 	public void setJavafxCanvas(javafx.scene.canvas.Canvas javafxCanvas) {
 		this.javafxCanvas = javafxCanvas;
 		this.javafxGraphicsContext = javafxCanvas.getGraphicsContext2D();
-
+		this.colorSelect = new CanvasColor(120, 120, 250, 101);
+		this.selectedFontSize = 25;
+		this.selectedFontType = "serif";
 		if (this.dim != null) {
 			this.javafxCanvas.setWidth(this.dim.getWidth());
 			this.javafxCanvas.setHeight(this.dim.getHeight());
@@ -114,7 +149,8 @@ public final class Canvas {
 	 * Clear the canvas
 	 */
 	public void clear() {
-		this.javafxCanvas.getGraphicsContext2D().clearRect(0, 0, this.javafxCanvas.getWidth(), this.javafxCanvas.getHeight());
+		this.javafxCanvas.getGraphicsContext2D().clearRect(0, 0, this.javafxCanvas.getWidth(),
+			this.javafxCanvas.getHeight());
 	}
 
 	/**
@@ -123,6 +159,9 @@ public final class Canvas {
 	public void render() {
 		for (CanvasObject object : objects) {
 			object.render();
+		}
+		if (ghostObject != null) {
+			ghostObject.render();
 		}
 	}
 
@@ -136,11 +175,26 @@ public final class Canvas {
 	}
 
 	/**
+	 * Set the ghost object of the canvas
+	 *
+	 * @param ghostObject the new ghost object
+	 */
+	public void setGhostObject(CanvasObject ghostObject) {
+		this.ghostObject = ghostObject;
+	}
+
+	/**
+	 * Delete the ghost object of the canvas
+	 */
+	public void removeGhostObject() {
+		ghostObject = null;
+	}
+
+	/**
 	 * Renvoi la liste des objets du Canvas
 	 */
 	public List<CanvasObject> getCanvas() {
-		List<CanvasObject> list = this.objects;
-		return list;
+		return this.objects;
 	}
 
 	/**
@@ -163,7 +217,7 @@ public final class Canvas {
 
 	/**
 	 * Get if the path don't point to an unrelatd file
-	 * 
+	 *
 	 * @return boolean that answer previous statement
 	 */
 	public boolean getSafePath() {
@@ -172,7 +226,7 @@ public final class Canvas {
 
 	/**
 	 * Set if the path led to an unrelated file
-	 * 
+	 *
 	 * @param safe boolean that answer previous statement
 	 */
 	public void setSafePath(boolean safe) {
@@ -196,4 +250,69 @@ public final class Canvas {
 	public void setPathOpen(Path path) {
 		this.openpath = path;
 	}
+  
+  /**
+	 * Return the clipboard of the canvas
+	 */
+	public List<CanvasObject> getClipboard() {
+		return clipboard;
+	}
+
+	/**
+	 * Set the clipboard of the canvas
+	 */
+	public void setClipboard(List<CanvasObject> cb) {
+		clipboard = cb;
+
+	}
+  
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * getteur pour la couleur séléctionnée
+	 *
+	 * @return une couleur qui a les mêmes attributs que la couleur sélectionnée
+	 */
+	public CanvasColor getCopyColorSelect() {
+		return new CanvasColor(this.colorSelect.getRed(), this.colorSelect.getGreen(), this.colorSelect.getBlue(), this.colorSelect.getAlpha());
+	}
+
+	/**
+	 * getter of selectedFontSize
+	 * @return current selected font size
+	 */
+	public int getSelectedFontSize() {
+		return selectedFontSize;
+	}
+
+	/**
+	 * setter for selectedFontSize
+	 * @param selectedFontSize new selectedFontSize
+	 */
+	public void setSelectedFontSize(int selectedFontSize) {
+		this.selectedFontSize = selectedFontSize;
+	}
+
+	/**
+	 * getter of selectedFontType
+	 * @return current selected font type
+	 */
+	public String getSelectedFontType() {
+		return selectedFontType;
+	}
+
+	/**
+	 * setter for selectedFontType
+	 * @param selectedFontType new selectedFontType
+	 */
+	public void setSelectedFontType(String selectedFontType) {
+		this.selectedFontType = selectedFontType;
+	}
+
 }

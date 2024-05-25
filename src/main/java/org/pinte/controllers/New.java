@@ -93,6 +93,7 @@ public class New {
 			Integer.parseInt(projectWidth.getText()),
 			Integer.parseInt(projectHeight.getText())
 		);
+		canvas.setName(projectName.getText());
 		canvas.setPath(Path.of(projectLocation.getText() + "/" + projectName.getText() + ".svg"));
 	}
 
