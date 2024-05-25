@@ -3,6 +3,7 @@ package org.pinte.models.CanvasObjects;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import org.pinte.models.Canvas;
 
 import java.util.Dictionary;
@@ -158,5 +159,10 @@ public abstract class CanvasObject {
 			gc.setLineWidth(2);
 			gc.setLineDashes(new double[]{5});
 		}
+	}
+
+	protected void setUpWritingParameters(String fontFamily, int fontSize) {
+
+		gc.setFont(Font.font(fontFamily, fontSize));
 	}
 }

@@ -7,7 +7,9 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
+import org.pinte.models.CanvasObjects.CanvasLine;
 import org.pinte.models.CanvasObjects.CanvasObject;
+import org.pinte.models.CanvasObjects.CanvasTextField;
 import org.pinte.models.states.translateState;
 import java.util.ArrayList;
 import java.util.List;
@@ -173,6 +175,28 @@ public class CanvasContextualMenu {
 			}
 		});
 
+		MenuItem itemFontSize = new MenuItem("Resize text");
+		itemFontSize.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				for (CanvasObject object : selected) {
+					if (object instanceof CanvasTextField) {
+						((CanvasTextField)object).setFontSize(canvas.getSelectedFontSize());
+					}
+				}
+			}
+		});
+
+		MenuItem itemFontType = new MenuItem("Change font");
+		itemFontType.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				for (CanvasObject object : selected) {
+					if (object instanceof CanvasTextField) {
+						((CanvasTextField)object).setFontFamily(canvas.getSelectedFontType());
+					}
+				}
+			}
+		});
+
 		MenuItem itemDelete = new MenuItem("Delete");
 		itemDelete.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -216,7 +240,7 @@ public class CanvasContextualMenu {
 
 			}
 		});
-		contextMenu.getItems().addAll(itemFill, itemStroke, itemDelete, itemCopy, itemPaste, itemSave);
+		contextMenu.getItems().addAll(itemFill, itemStroke, itemDelete, itemFontSize, itemFontType, itemCopy, itemPaste, itemSave);
 
 	}
 
