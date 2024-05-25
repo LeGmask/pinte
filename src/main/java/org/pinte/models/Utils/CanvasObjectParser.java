@@ -82,4 +82,20 @@ public class CanvasObjectParser {
 		}
 		return pointArray;
 	}
+
+	/**
+	 * Parses a string of the form : points="x1,y1 x2,y2 ..." and returns an array
+	 * of Point2D objects
+	 *
+	 * @param svgString the string to parse
+	 * @return an array of Point2D objects
+	 * @throws IllegalArgumentException if the string is not in the correct format
+	 */
+	public static String parseBetweenTags(String svgString, String keyword) throws IllegalArgumentException {
+		Pattern p = Pattern.compile(">[^<]*<\\/" + keyword + ">");
+		String matchedText = parsePattern(p, svgString);
+		matchedText = matchedText.replaceFirst(">", "");
+		matchedText = matchedText.replace("</" + keyword + ">", "");
+		return matchedText;
+	}
 }

@@ -1,8 +1,13 @@
 package org.pinte.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import org.pinte.models.Canvas;
 import org.pinte.models.Coloration;
 import org.pinte.models.Save;
 
@@ -22,6 +27,8 @@ public class MenuBar {
 		Menu menuFichier = new Menu("Fichier");
 		Menu menuCouleur = new Menu("Couleur");
 		Menu menuOpacite = new Menu("Opacité");
+		Menu menuFontType = new Menu("FontType");
+		Menu menuFontSize = new Menu("FontSize");
 
 		// Items of the toolbar.
 		MenuItem menuItemSaveAs = new MenuItem("Enregistrer sous");
@@ -138,5 +145,63 @@ public class MenuBar {
 		menuItemOpaq10.setOnAction(event -> {
 			coloration.Opaq(255);
 		});
+
+
+		// creation of menu for font size choice
+		MenuItem menuFontSize10 = new MenuItem("10");
+		MenuItem menuFontSize25 = new MenuItem("25");
+		MenuItem menuFontSize50 = new MenuItem("50");
+		MenuItem menuFontSize60 = new MenuItem("60");
+		MenuItem menuFontSize80 = new MenuItem("80");
+
+		menuFontSize.getItems().add(menuFontSize10);
+		menuFontSize.getItems().add(menuFontSize25);
+		menuFontSize.getItems().add(menuFontSize50);
+		menuFontSize.getItems().add(menuFontSize60);
+		menuFontSize.getItems().add(menuFontSize80);
+
+
+		menuBar.getMenus().add(menuFontSize);
+
+		menuFontSize10.setOnAction(event -> {
+			Canvas.getInstance().setSelectedFontSize(10);
+		});
+		menuFontSize25.setOnAction(event -> {
+			Canvas.getInstance().setSelectedFontSize(25);
+		});
+		menuFontSize50.setOnAction(event -> {
+			Canvas.getInstance().setSelectedFontSize(50);
+		});
+		menuFontSize60.setOnAction(event -> {
+			Canvas.getInstance().setSelectedFontSize(60);
+		});
+		menuFontSize80.setOnAction(event -> {
+			Canvas.getInstance().setSelectedFontSize(80);
+		});
+
+		// creation of menu for font type
+		MenuItem menuFontTypeSerif = new MenuItem("serif");
+		MenuItem menuFontTypeSansSerif = new MenuItem("sans-serif");
+		MenuItem menuFontTypeMonospace = new MenuItem("monospace");
+
+		menuFontType.getItems().add(menuFontTypeSerif);
+		menuFontType.getItems().add(menuFontTypeSansSerif);
+		menuFontType.getItems().add(menuFontTypeMonospace);
+
+		menuBar.getMenus().add(menuFontType);
+
+		menuFontTypeSerif.setOnAction(event -> {
+			Canvas.getInstance().setSelectedFontType("serif");
+		});
+		menuFontTypeSansSerif.setOnAction(event -> {
+			Canvas.getInstance().setSelectedFontType("sans-serif");
+		});
+		menuFontTypeMonospace.setOnAction(event -> {
+			Canvas.getInstance().setSelectedFontType("monospace");
+		});
+
+
 	}
+
+
 }

@@ -29,6 +29,7 @@
             <Button fx:id="addRectangle" text="Rectangle" onAction="#handleAddRectangle"/>
             <Button fx:id="addLine" text="Line" onAction="#handleAddLine"/>
             <Button fx:id="addPolygon" text="Polygon" onAction="#handleAddPolygon"/>
+            <Button fx:id="addText" text="Text" onAction="#handleAddText"/>
         </VBox>
     </right>
 </BorderPane>

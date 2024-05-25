@@ -37,10 +37,20 @@ public final class Canvas {
 	 */
 	public List<CanvasObject> clipboard = new ArrayList<>();
   
-  /**
+	/**
 	 * La couleur actuellement utilisée
 	 */
 	public CanvasColor colorSelect;
+
+	/**
+	 * Selected font size
+	 */
+	private int selectedFontSize;
+
+	/**
+	 * Selected font type
+	 */
+	private String selectedFontType;
 
 	/**
 	 * An object used to show information about selection, shape drawing, etc...
@@ -94,6 +104,8 @@ public final class Canvas {
 		this.javafxCanvas = javafxCanvas;
 		this.javafxGraphicsContext = javafxCanvas.getGraphicsContext2D();
 		this.colorSelect = new CanvasColor(120, 120, 250, 101);
+		this.selectedFontSize = 25;
+		this.selectedFontType = "serif";
 		if (this.dim != null) {
 			this.javafxCanvas.setWidth(this.dim.getWidth());
 			this.javafxCanvas.setHeight(this.dim.getHeight());
@@ -246,6 +258,38 @@ public final class Canvas {
 	 */
 	public CanvasColor getCopyColorSelect() {
 		return new CanvasColor(this.colorSelect.getRed(), this.colorSelect.getGreen(), this.colorSelect.getBlue(), this.colorSelect.getAlpha());
+	}
+
+	/**
+	 * getter of selectedFontSize
+	 * @return current selected font size
+	 */
+	public int getSelectedFontSize() {
+		return selectedFontSize;
+	}
+
+	/**
+	 * setter for selectedFontSize
+	 * @param selectedFontSize new selectedFontSize
+	 */
+	public void setSelectedFontSize(int selectedFontSize) {
+		this.selectedFontSize = selectedFontSize;
+	}
+
+	/**
+	 * getter of selectedFontType
+	 * @return current selected font type
+	 */
+	public String getSelectedFontType() {
+		return selectedFontType;
+	}
+
+	/**
+	 * setter for selectedFontType
+	 * @param selectedFontType new selectedFontType
+	 */
+	public void setSelectedFontType(String selectedFontType) {
+		this.selectedFontType = selectedFontType;
 	}
 
 }

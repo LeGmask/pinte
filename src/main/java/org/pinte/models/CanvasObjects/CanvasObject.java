@@ -3,6 +3,7 @@ package org.pinte.models.CanvasObjects;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import org.pinte.models.Canvas;
 
 import java.util.Dictionary;
@@ -55,6 +56,8 @@ public abstract class CanvasObject {
 			case "rect" -> CanvasRectangle.createFromSVG(svgString);
 			case "ellipse" -> CanvasEllipse.createFromSVG(svgString);
 			case "polygon" -> CanvasPolygon.createFromSVG(svgString);
+			case "line" -> CanvasLine.createFromSVG(svgString);
+			case "text" -> CanvasTextField.createFromSVG(svgString);
 			default -> throw new IllegalArgumentException("Unknown object type '" + type + "' in SVG string.");
 		};
 	}
@@ -131,7 +134,6 @@ public abstract class CanvasObject {
 
 	}
 
-
 	/**
 	 * Change la couleur de bordure d'un objet.
 	 *
@@ -144,7 +146,6 @@ public abstract class CanvasObject {
 
 	}
 
-
 	protected void setUpDrawingParameters() {
 
 		gc.setFill(this.fillColor.toPaintColor());
@@ -156,7 +157,12 @@ public abstract class CanvasObject {
 		if (this.isSelected) {
 			gc.setStroke(Color.YELLOW);
 			gc.setLineWidth(2);
-			gc.setLineDashes(new double[]{5});
+			gc.setLineDashes(new double[] { 5 });
 		}
+	}
+
+	protected void setUpWritingParameters(String fontFamily, int fontSize) {
+
+		gc.setFont(Font.font(fontFamily, fontSize));
 	}
 }
