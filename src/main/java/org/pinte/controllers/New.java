@@ -63,11 +63,15 @@ public class New {
 	 * @param actionEvent Action event
 	 */
 	public void browse(ActionEvent actionEvent) {
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Select Project Location");
-		Stage stage = getStageFromEvent(actionEvent);
+		try{
+			DirectoryChooser directoryChooser = new DirectoryChooser();
+			directoryChooser.setTitle("Select Project Location");
+			Stage stage = getStageFromEvent(actionEvent);
 
-		projectLocation.setText(directoryChooser.showDialog(stage).getAbsolutePath());
+			projectLocation.setText(directoryChooser.showDialog(stage).getAbsolutePath());
+		} catch (java.lang.NullPointerException e){
+			System.out.println("browse cancelled");
+		}
 	}
 
 	/**
@@ -104,8 +108,9 @@ public class New {
 	 * @throws IOException If the main view is not found
 	 */
 	public void open(ActionEvent actionEvent) throws IOException {
-		switchScene(actionEvent, "../views/main.fxml");
 		Open open = new Open();
 		open.choose();
+		Stage stage = getStageFromEvent(actionEvent);
+		stage.close();
 	}
 }

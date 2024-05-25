@@ -77,7 +77,11 @@ public abstract class CanvasObject {
 			String k = e.nextElement();
 			svgString += " " + k + "=\"" + attributes.get(k) + "\"";
 		}
-		return svgString + "/>";
+		if(shape.compareTo("text")==0){
+			return svgString + ">";
+		} else {
+			return svgString + "/>";
+		}
 	}
 
 	/**

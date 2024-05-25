@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.net.URL;
+import javafx.scene.Parent;
 
 import java.nio.file.Path;
 import java.util.Scanner;
@@ -16,6 +17,8 @@ import javafx.geometry.Point2D;
 import org.pinte.models.CanvasObjects.CanvasEllipse;
 import org.pinte.models.CanvasObjects.CanvasRectangle;
 import org.pinte.models.CanvasObjects.CanvasPolygon;
+import org.pinte.models.CanvasObjects.CanvasLine;
+import org.pinte.models.CanvasObjects.CanvasTextField;
 import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.Utils.CanvasObjectParser;
 
@@ -44,41 +47,53 @@ public class Open {
 		boolean end=false;
 		while(k<length && !end){
 			char test=input.charAt(k);
-			if(test=='1'){
-				ret=ret+"1";
-				begin=true;
-			} else if(test=='2'){
-				ret=ret+"2";
-				begin=true;
-			} else if(test=='3'){
-				ret=ret+"3";
-				begin=true;
-			} else if(test=='4'){
-				ret=ret+"4";
-				begin=true;
-			} else if(test=='5'){
-				ret=ret+"5";
-				begin=true;
-			} else if(test=='6'){
-				ret=ret+"6";
-				begin=true;
-			} else if(test=='7'){
-				ret=ret+"7";
-				begin=true;
-			} else if(test=='8'){
-				ret=ret+"8";
-				begin=true;
-			} else if(test=='9'){
-				ret=ret+"9";
-				begin=true;
-			} else if(test=='0'){
-				ret=ret+"0";
-				begin=true;
-			} else if(test=='.'){
-				if(begin=true){
-					ret=ret+".";
-				}
-			} else{
+			switch (test){
+				case '1':
+					ret=ret+"1";
+					begin=true;
+					break;
+				case '2':
+					ret=ret+"2";
+					begin=true;
+					break;
+				case '3':
+					ret=ret+"3";
+					begin=true;
+					break;
+				case '4':
+					ret=ret+"4";
+					begin=true;
+					break;
+				case '5':
+					ret=ret+"5";
+					begin=true;
+					break;
+				case '6':
+					ret=ret+"6";
+					begin=true;
+					break;
+				case '7':
+					ret=ret+"7";
+					begin=true;
+					break;
+				case '8':
+					ret=ret+"8";
+					begin=true;
+					break;
+				case '9':
+					ret=ret+"9";
+					begin=true;
+					break;
+				case '0':
+					ret=ret+"0";
+					begin=true;
+					break;
+				case '.':
+					if(begin=true){
+						ret=ret+".";
+					}
+					break;
+			 default:
 				if(begin==true){
 					end=true;
 				}
@@ -141,18 +156,17 @@ public class Open {
 					}
 				}  else if(input.contains("line")){
 				}  else if(input.contains("line")){
-					System.out.println("line");
-					unknown=true;
+					if(tested==true){
+						canva.add(CanvasLine.createFromSVG(input));
+					}
 				} else if(input.contains("polygon")){
 					if(tested==true){
 						canva.add(CanvasPolygon.createFromSVG(input));
 					}
 				} else if(input.contains("text")){
-					System.out.println("text");
-					unknown=true;
-				} else if(input.contains("image")){
-					System.out.println("image");
-					unknown=true;
+					if(tested==true){
+						canva.add(CanvasTextField.createFromSVG(input));
+					}
 				} else {
 					System.out.println("type non traitée");
 					unknown=true;
@@ -184,7 +198,7 @@ public class Open {
 	public void choose(){
 		FileChooser fileChooser = new FileChooser();
 		Stage stage = new Stage();
-
+		
 		fileChooser.setTitle("Open Project");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Svg Files", "*.svg"));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
@@ -193,7 +207,32 @@ public class Open {
 		if (selectedFile != null) {
 		    this.openpath=selectedFile.toPath();
 			canva.setPathOpen(openpath);
+			try{
+				Stage mainStage=new Stage();
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("../views/main.fxml")); // instantiate the new view
+				Parent root = loader.load();
+				Scene scene = new Scene(root);
+				mainStage.setTitle(canva.getName());
+				mainStage.setScene(scene);
+				mainStage.show();
+			} catch(java.io.IOException e){
+				System.out.println(e);
+			}
 			read(false);
+		} else {
+			try{
+				Stage mainStage=new Stage();
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("../views/new.fxml")); // instantiate the new view
+				Parent root = loader.load();
+				Scene scene = new Scene(root);
+				mainStage.setTitle("nouveaux");
+				mainStage.setScene(scene);
+				mainStage.show();
+			} catch(java.io.IOException e){
+				System.out.println(e);
+			}
 		}
 	}
 
