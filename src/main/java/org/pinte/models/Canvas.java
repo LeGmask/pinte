@@ -2,6 +2,7 @@ package org.pinte.models;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.Clipboard;
+import javafx.scene.paint.Color;
 import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasObject;
 

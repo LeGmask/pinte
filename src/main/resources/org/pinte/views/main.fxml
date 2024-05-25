@@ -7,13 +7,27 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane"
             fx:controller="org.pinte.controllers.Main">
     <style>
+        -fx-background-color: grey;
         -fx-padding: 0;
     </style>
     <top>
         <fx:include source="menu.fxml"/>
     </top>
     <center>
-        <Canvas fx:id="javafxCanvas"/>
+        <AnchorPane>
+            <style>
+            -fx-background-color: grey;
+            -fx-padding: 0;
+            </style>
+            <AnchorPane>
+                <style>
+                -fx-background-color: white;
+                -fx-padding: 0;
+                -fx-border-color: black;
+                </style>
+                <Canvas fx:id="javafxCanvas"/>
+            </AnchorPane>
+        </AnchorPane>
     </center>
     <right>
         <VBox spacing="100" alignment="center">
