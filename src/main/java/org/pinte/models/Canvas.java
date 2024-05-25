@@ -104,7 +104,7 @@ public final class Canvas {
 		this.javafxCanvas = javafxCanvas;
 		this.javafxGraphicsContext = javafxCanvas.getGraphicsContext2D();
 		this.colorSelect = new CanvasColor(120, 120, 250, 101);
-		this.selectedFontSize = 20;
+		this.selectedFontSize = 25;
 		this.selectedFontType = "serif";
 		if (this.dim != null) {
 			this.javafxCanvas.setWidth(this.dim.getWidth());
