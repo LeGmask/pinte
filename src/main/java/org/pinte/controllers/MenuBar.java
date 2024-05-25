@@ -24,16 +24,16 @@ public class MenuBar {
 	public void initialize() {
 		Coloration coloration = new Coloration();
 		Save save = new Save();
-		Menu menuFichier = new Menu("Fichier");
-		Menu menuCouleur = new Menu("Couleur");
-		Menu menuOpacite = new Menu("Opacité");
+		Menu menuFichier = new Menu("File");
+		Menu menuCouleur = new Menu("Color");
+		Menu menuOpacite = new Menu("Opacity");
 		Menu menuFontType = new Menu("FontType");
 		Menu menuFontSize = new Menu("FontSize");
 
 		// Items of the toolbar.
-		MenuItem menuItemSaveAs = new MenuItem("Enregistrer sous");
-		MenuItem menuItemSave = new MenuItem("Enregistrer");
-		MenuItem menuItemExport = new MenuItem("Exporter");
+		MenuItem menuItemSaveAs = new MenuItem("Save As");
+		MenuItem menuItemSave = new MenuItem("Save");
+		MenuItem menuItemExport = new MenuItem("Export");
 
 		//adding items to the menu.
 		menuFichier.getItems().add(menuItemSave);
@@ -59,14 +59,14 @@ public class MenuBar {
 		});
 
 		// création des choix du menu couleur.
-		MenuItem menuItemBlack = new MenuItem("Noire");
-		MenuItem menuItemWhite = new MenuItem("Blanc");
-		MenuItem menuItemBlue = new MenuItem("Bleu");
-		MenuItem menuItemGreen = new MenuItem("Vert");
-		MenuItem menuItemRed = new MenuItem("Rouge");
+		MenuItem menuItemBlack = new MenuItem("Black");
+		MenuItem menuItemWhite = new MenuItem("White");
+		MenuItem menuItemBlue = new MenuItem("Blue");
+		MenuItem menuItemGreen = new MenuItem("Green");
+		MenuItem menuItemRed = new MenuItem("Red");
 		MenuItem menuItemCyan = new MenuItem("Cyan");
 		MenuItem menuItemMagenta = new MenuItem("Magenta");
-		MenuItem menuItemYellow = new MenuItem("Jaune");
+		MenuItem menuItemYellow = new MenuItem("Yellow");
 
 		// rajout des choix au menu couleur.
 		menuCouleur.getItems().add(menuItemBlack);
