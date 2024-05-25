@@ -29,14 +29,16 @@ public class CanvasTextField extends CanvasObject {
 
 	/**
 	 * Creates a CanvasTextField.
-	 * @param text the text written in the text field
+	 *
+	 * @param text          the text written in the text field
 	 * @param baselineStart the baseline starting point of the text
-	 * @param fillColor the fill color of the text
-	 * @param strokeColor the stroke color of the text
-	 * @param fontSize the text's font size
-	 * @param fontFamily the text's font family
+	 * @param fillColor     the fill color of the text
+	 * @param strokeColor   the stroke color of the text
+	 * @param fontSize      the text's font size
+	 * @param fontFamily    the text's font family
 	 */
-	public CanvasTextField(String text, Point2D baselineStart, int fontSize, String fontFamily, CanvasColor fillColor, CanvasColor strokeColor) {
+	public CanvasTextField(String text, Point2D baselineStart, int fontSize, String fontFamily, CanvasColor fillColor,
+			CanvasColor strokeColor) {
 		super(fillColor, strokeColor);
 		this.text = text;
 		this.baselineStart = baselineStart;
@@ -57,12 +59,13 @@ public class CanvasTextField extends CanvasObject {
 		double textY = baselineStart.getY() - fontSize * 0.8;
 
 		return new CanvasRectangle(new Point2D(textX, textY), textWidth, textHeight,
-			new CanvasColor(0, 0, 0), new CanvasColor(0, 0, 0));
+				new CanvasColor(0, 0, 0), new CanvasColor(0, 0, 0));
 	}
 
 	/**
 	 * Estimates the width of the text based on the font size.
-	 * @param text the text to estimate the width of
+	 *
+	 * @param text     the text to estimate the width of
 	 * @param fontSize the size of the font
 	 * @return the estimated width of the text
 	 */
@@ -115,12 +118,13 @@ public class CanvasTextField extends CanvasObject {
 		String fontFamily = CanvasObjectParser.parseKeyword("font-family", args);
 		int fontSize = Integer.parseInt(CanvasObjectParser.parseKeyword("font-size", args));
 		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
-			CanvasObjectParser.parseKeyword("fill-opacity", args));
+				CanvasObjectParser.parseKeyword("fill-opacity", args));
 		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
-			CanvasObjectParser.parseKeyword("stroke-opacity", args));
+				CanvasObjectParser.parseKeyword("stroke-opacity", args));
 
-		//TODO : replace text parameter in next line so that the actual registered text is taken into account
-		return new CanvasTextField("text", new Point2D(x, y), fontSize, fontFamily, fillColor, strokeColor);
+		String text = CanvasObjectParser.parseBetweenTags(args, "text");
+
+		return new CanvasTextField(text, new Point2D(x, y), fontSize, fontFamily, fillColor, strokeColor);
 	}
 
 	@Override
