@@ -30,7 +30,7 @@
         </AnchorPane>
     </center>
     <right>
-        <VBox spacing="100" alignment="center">
+        <VBox spacing="30" alignment="top_center">
             <style>
                 -fx-background-color: gold;
                 -fx-font-family: monospace;
