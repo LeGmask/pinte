@@ -99,6 +99,8 @@ public class CanvasLine extends CanvasObject {
 		attributes.put("y1", Double.toString(this.a.getY()));
 		attributes.put("x2", Double.toString(this.b.getX()));
 		attributes.put("y2", Double.toString(this.b.getY()));
+		attributes.put("fill", this.fillColor.asHex());
+		attributes.put("fill-opacity", this.fillColor.opacityString());
 		attributes.put("stroke", this.strokeColor.asHex());
 		attributes.put("stroke-opacity", this.strokeColor.opacityString());
 		return toSVG("line", attributes);
