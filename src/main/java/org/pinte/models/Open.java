@@ -205,9 +205,8 @@ public class Open {
 								strokeColor));
 					}
 				} else {
-					System.out.println("type non traitee");
+					System.out.println("untreated type");
 					unknown = true;
-					System.out.println(input);
 				}
 				input = sc.next();
 			}
@@ -302,7 +301,7 @@ public class Open {
 			loader.setLocation(getClass().getResource("../views/new.fxml")); // instantiate the new view
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
-			mainStage.setTitle("nouveaux");
+			mainStage.setTitle("New");
 			mainStage.setScene(scene);
 			mainStage.show();
 		} catch (java.io.IOException e) {
