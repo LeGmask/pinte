@@ -42,27 +42,6 @@ public abstract class CanvasObject {
 	}
 
 	/**
-	 * Creates a CanvasObject from an SVG string
-	 *
-	 * @param svgString the SVG string to parse
-	 * @return a CanvasObject parsed from the SVG string
-	 * @throws IllegalArgumentException if the SVG string is invalid
-	 */
-	public static CanvasObject parseFromSVG(String svgString) throws IllegalArgumentException {
-		var split = svgString.replace("<", "").split(" ");
-		var type = split[0];
-
-		return switch (type) {
-			case "rect" -> CanvasRectangle.createFromSVG(svgString);
-			case "ellipse" -> CanvasEllipse.createFromSVG(svgString);
-			case "polygon" -> CanvasPolygon.createFromSVG(svgString);
-			case "line" -> CanvasLine.createFromSVG(svgString);
-			case "text" -> CanvasTextField.createFromSVG(svgString);
-			default -> throw new IllegalArgumentException("Unknown object type '" + type + "' in SVG string.");
-		};
-	}
-
-	/**
 	 * Creates an SVG string from a shape name and its attributes
 	 *
 	 * @param shape      the shape name
@@ -77,7 +56,11 @@ public abstract class CanvasObject {
 			String k = e.nextElement();
 			svgString += " " + k + "=\"" + attributes.get(k) + "\"";
 		}
-		return svgString + "/>";
+		if(shape.compareTo("text")==0){
+			return svgString + ">";
+		} else {
+			return svgString + "/>";
+		}
 	}
 
 	/**

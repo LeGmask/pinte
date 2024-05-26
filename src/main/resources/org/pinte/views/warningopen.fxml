@@ -12,7 +12,7 @@
 
 <!--Create the grid that will contain token-->
 <GridPane xmlns:fx="http://javafx.com/fxml"
-          fx:controller="org.pinte.controllers.Warning" alignment="center"
+          fx:controller="org.pinte.controllers.WarningOpen" alignment="center"
           hgap="10" vgap="10">
     <padding>
         <Insets top="40" right="40" bottom="40" left="40"/>
@@ -41,11 +41,24 @@
     </Label>
 
     <!-- Add Message Label -->
-    <Label text="are you sure that you want to replace current existing file?" GridPane.columnIndex="0"
+    <Label text="are you sure that you want to open this file ?" GridPane.columnIndex="0"
            GridPane.rowIndex="0" GridPane.columnSpan="3"
            GridPane.rowSpan="8" GridPane.halignment="CENTER">
         <font>
-            <Font name="Rubik" size="12"/>
+            <Font name="Rubik" size="16"/>
+        </font>
+        <GridPane.margin>
+            <Insets top="20" bottom="20"/>
+        </GridPane.margin>
+    </Label>
+
+
+    <!-- Add Message Label -->
+    <Label text="The project should be different from original since some part are not compatible with current program" GridPane.columnIndex="0"
+           GridPane.rowIndex="0" GridPane.columnSpan="3"
+           GridPane.rowSpan="12" GridPane.halignment="CENTER">
+        <font>
+            <Font name="Rubik" size="10"/>
         </font>
         <GridPane.margin>
             <Insets top="20" bottom="20"/>
@@ -62,8 +75,8 @@
 
         <HBox>
             <!-- Add Save Button -->
-            <Button text="Save"
-                    onAction="#replace"/>
+            <Button text="Open"
+                    onAction="#open"/>
         </HBox>
     </HBox>
 

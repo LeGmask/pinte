@@ -92,7 +92,7 @@ public class CanvasObjectParser {
 	 * @throws IllegalArgumentException if the string is not in the correct format
 	 */
 	public static String parseBetweenTags(String svgString, String keyword) throws IllegalArgumentException {
-		Pattern p = Pattern.compile(">[^<]*<\\/" + keyword + ">");
+		Pattern p = Pattern.compile(">.*<\\/" + keyword + ">");
 		String matchedText = parsePattern(p, svgString);
 		matchedText = matchedText.replaceFirst(">", "");
 		matchedText = matchedText.replace("</" + keyword + ">", "");

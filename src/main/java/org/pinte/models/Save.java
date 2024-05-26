@@ -37,16 +37,16 @@ public class Save {
 	 */
 	public void SaveFile_as() {
 		try {
-			Stage primaryStage = new Stage();
+			Stage saveStage = new Stage();
 			URL url = getClass().getResource("../views/changepath.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(url);
 			GridPane root = (GridPane) fxmlLoader.load();
 			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Enregistrer sous");
-			primaryStage.show();
-		} catch (Exception e) {
+			saveStage.setScene(scene);
+			saveStage.setTitle("Enregistrer sous");
+			saveStage.show();
+		} catch (java.io.IOException e) {
 			System.out.println(e);
 		}
 	}
@@ -60,23 +60,40 @@ public class Save {
 		try {
 			if (Files.exists(canva.getPath())) {
 				if (!canva.getSafePath()) {
-					Stage primaryStage = new Stage();
+					Stage warningStage = new Stage();
 					URL url = getClass().getResource("../views/warning.fxml");
 					FXMLLoader fxmlLoader = new FXMLLoader();
 					fxmlLoader.setLocation(url);
 					GridPane root = (GridPane) fxmlLoader.load();
 					Scene scene = new Scene(root);
-					primaryStage.setScene(scene);
-					primaryStage.setTitle("Warning!");
-					primaryStage.show();
+					warningStage.setScene(scene);
+					warningStage.setTitle("Warning!");
+					warningStage.show();
 				} else {
 					write();
+					open();
 				}
 			} else {
 				write();
+				open();
 			}
-		} catch (Exception e) {
+		} catch (java.io.IOException e) {
 			System.out.println(e);
+		}
+	}
+
+	/**
+	 * Open a project or create a new project
+	 */
+	public void open(){
+		if(canva.getOpen()){
+			canva.setOpen(false);
+			Open open=new Open();
+			open.choose(false);
+		} else if(canva.getNw()){
+			canva.setNw(false);
+			Open open=new Open();
+			open.newproject();
 		}
 	}
 
@@ -85,11 +102,11 @@ public class Save {
 	 *
 	 * @throws Exception all exception
 	 */
-	private void write() throws Exception {
+	private void write() throws java.io.IOException {
 		List<CanvasObject> objects = canva.getCanvas();
 		List<String> objectsstr = new ArrayList<>();
 		objectsstr.add("<?xml version=\"1.0\"?>");
-		objectsstr.add("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800px\" height=\"800px\" viewBox=\"0 0 800 800\">");
+		objectsstr.add("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\""+ canva.getDim().getWidth() +"px\" height=\""+ canva.getDim().getWidth() + "px\" viewBox=\"0 0 "+canva.getDim().getWidth() +" "+ canva.getDim().getHeight() +"\">");
 		for (CanvasObject object : objects) {
 			objectsstr.add(object.toSVG());
 		}
@@ -106,11 +123,12 @@ public class Save {
 	 * change the parameter for the write function to erase the content
 	 * of the file and replace it
 	 *
-	 * @throws Exception all exception
+	 * @throws java.io.IOException failed or interrupted I/O operations
 	 */
-	public void replace() throws Exception {
+	public void replace() throws java.io.IOException {
 		exist = true;
 		canva.setSafePath(true);
 		write();
+		open();
 	}
 }

@@ -40,9 +40,7 @@ public class ChangePath {
 		for (int i = 1; i < directory.length - 1; i++) {
 			newpath = newpath + "/" + directory[i];
 		}
-		String newname = directory[directory.length - 1];
-		newname = newname.replaceAll(".svg", "");
-		projectName.setText(newname);
+		projectName.setText(canva.getName());
 		projectLocation.setText(newpath);
 	}
 
@@ -52,10 +50,14 @@ public class ChangePath {
 	 * @param actionEvent Action event
 	 */
 	public void browse(ActionEvent actionEvent) {
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Select Project Location");
-		Stage stage = getStageFromEvent(actionEvent);
-		projectLocation.setText(directoryChooser.showDialog(stage).getAbsolutePath());
+		try{
+			DirectoryChooser directoryChooser = new DirectoryChooser();
+			directoryChooser.setTitle("Select Project Location");
+			Stage stage = getStageFromEvent(actionEvent);
+			projectLocation.setText(directoryChooser.showDialog(stage).getAbsolutePath());
+		} catch (java.lang.NullPointerException e){
+			System.out.println("browse cancelled");
+		}
 	}
 
 	/**
