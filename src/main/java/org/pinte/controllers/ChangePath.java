@@ -40,9 +40,7 @@ public class ChangePath {
 		for (int i = 1; i < directory.length - 1; i++) {
 			newpath = newpath + "/" + directory[i];
 		}
-		String newname = directory[directory.length - 1];
-		newname = newname.replaceAll(".svg", "");
-		projectName.setText(newname);
+		projectName.setText(canva.getName());
 		projectLocation.setText(newpath);
 	}
 

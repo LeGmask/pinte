@@ -33,7 +33,7 @@ public class WarningOpen {
 	public void open(ActionEvent actionEvent) {
 		Stage stage = getStageFromEvent(actionEvent);
 		Open open = new Open(canva.getPathOpen());
-		open.read(true);
+		open.read(true,true);
 		stage.close();
 	}
 

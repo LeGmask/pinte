@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.Scanner;
 import javafx.stage.FileChooser;
 import java.io.File;
-
+import java.lang.IllegalArgumentException;
 
 import javafx.geometry.Point2D;
 import org.pinte.models.CanvasObjects.CanvasEllipse;
@@ -25,6 +25,7 @@ import org.pinte.models.Utils.CanvasObjectParser;
 public class Open {
 	
 	Path openpath;
+	Stage stage;
 
 	public Open(){
 		this.openpath=null;
@@ -107,8 +108,11 @@ public class Open {
 		}
 	}
 
-	public void read(boolean tested){
+	public void read(boolean tested,boolean warned){
 		try{
+			if(warned==true){
+				openwindows();
+			}
 			boolean unknown=false;
 			Scanner sc = new Scanner(this.openpath).useDelimiter("<");
 			String input = sc.next();
@@ -133,7 +137,7 @@ public class Open {
 							i++;
 						}
 						canva.setDim(intwidth,intheight);
-						canva.clear();
+						//canva.clear();
 					}
 				} else if (input.contains("ellipse")){
 					if(tested==true){
@@ -164,11 +168,23 @@ public class Open {
 						canva.add(CanvasPolygon.createFromSVG(input));
 					}
 				} else if(input.contains("text")){
-					if(tested==true){
-						canva.add(CanvasTextField.createFromSVG(input));
-					}
+						if(tested==true){
+							try{
+								double x = Double.parseDouble(CanvasObjectParser.parseKeyword("x", input));
+								double y = Double.parseDouble(CanvasObjectParser.parseKeyword("y", input));
+								String fontFamily = CanvasObjectParser.parseKeyword("font-family", input);
+								int fontSize = Integer.parseInt(CanvasObjectParser.parseKeyword("font-size", input));
+								CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", input),
+									CanvasObjectParser.parseKeyword("fill-opacity", input));
+								CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", input),
+									CanvasObjectParser.parseKeyword("stroke-opacity", input));
+								canva.add(new CanvasTextField("salut", new Point2D(x, y), fontSize, fontFamily, fillColor, strokeColor));
+							} catch(NumberFormatException e){
+								System.out.println("erreur bizarre"+e);
+							}
+						}
 				} else {
-					System.out.println("type non traitée");
+					System.out.println("type non traitee");
 					unknown=true;
 					System.out.println(input);
 				}
@@ -176,6 +192,7 @@ public class Open {
 			}
 			sc.close();
 			if(tested==false && unknown==true){
+				this.stage.close();
 				Stage primaryStage = new Stage();
 				URL url = getClass().getResource("../views/warningopen.fxml");
 				FXMLLoader fxmlLoader = new FXMLLoader();
@@ -186,52 +203,67 @@ public class Open {
 				primaryStage.setTitle("Warning!");
 				primaryStage.show();
 			} else if(tested==false && unknown==false){
-				read(true);
+				read(true,false);
 			} else {
-
+				canva.setPath(this.openpath);
+				canva.setPathOpen(null);
+				canva.setName(name());
 			}
 		} catch(java.io.IOException e){
 			System.out.println(e);
 		}
 	}
 
-	public void choose(){
+	public String name(){
+		String[] directory = openpath.toString().split("/");
+		String newname = directory[directory.length - 1];
+		return newname.replaceAll(".svg", "");
+	}
+
+	public void openwindows(){
+		try{
+			Stage mainStage=new Stage();
+			this.stage=mainStage;
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("../views/main.fxml")); // instantiate the new view
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			mainStage.setTitle(name());
+			mainStage.setScene(scene);
+			mainStage.show();
+		} catch(java.io.IOException e){
+			System.out.println(e);
+		}
+	}
+
+	public void choose(boolean first){
 		FileChooser fileChooser = new FileChooser();
-		Stage stage = new Stage();
+		Stage choosestage = new Stage();
 		
 		fileChooser.setTitle("Open Project");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Svg Files", "*.svg"));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
 
-		File selectedFile = fileChooser.showOpenDialog(stage);
+		File selectedFile = fileChooser.showOpenDialog(choosestage);
 		if (selectedFile != null) {
 		    this.openpath=selectedFile.toPath();
+			openwindows();
 			canva.setPathOpen(openpath);
-			try{
-				Stage mainStage=new Stage();
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("../views/main.fxml")); // instantiate the new view
-				Parent root = loader.load();
-				Scene scene = new Scene(root);
-				mainStage.setTitle(canva.getName());
-				mainStage.setScene(scene);
-				mainStage.show();
-			} catch(java.io.IOException e){
-				System.out.println(e);
-			}
-			read(false);
+			read(false,false);
 		} else {
-			try{
-				Stage mainStage=new Stage();
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("../views/new.fxml")); // instantiate the new view
-				Parent root = loader.load();
-				Scene scene = new Scene(root);
-				mainStage.setTitle("nouveaux");
-				mainStage.setScene(scene);
-				mainStage.show();
-			} catch(java.io.IOException e){
-				System.out.println(e);
+			if(first==true){
+				try{
+					Stage mainStage=new Stage();
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(getClass().getResource("../views/new.fxml")); // instantiate the new view
+					Parent root = loader.load();
+					Scene scene = new Scene(root);
+					mainStage.setTitle("nouveaux");
+					mainStage.setScene(scene);
+					mainStage.show();
+				} catch(java.io.IOException e){
+					System.out.println(e);
+				}
 			}
 		}
 	}

@@ -109,7 +109,7 @@ public class New {
 	 */
 	public void open(ActionEvent actionEvent) throws IOException {
 		Open open = new Open();
-		open.choose();
+		open.choose(true);
 		Stage stage = getStageFromEvent(actionEvent);
 		stage.close();
 	}

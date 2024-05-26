@@ -55,7 +55,7 @@ public class MenuBar {
 			save.SaveFile(true);
 		});
 		menuItemOpen.setOnAction(event->{
-			open.choose();
+			open.choose(false);
 		});
 		menuItemExport.setOnAction(event -> {
 			try {

@@ -112,19 +112,17 @@ public class CanvasTextField extends CanvasObject {
 	 * @param args the SVG string to parse
 	 * @return a CanvasTextField parsed from the SVG string
 	 */
-	public static CanvasTextField createFromSVG(String args) {
-		double x = Double.parseDouble(CanvasObjectParser.parseKeyword("x", args));
-		double y = Double.parseDouble(CanvasObjectParser.parseKeyword("y", args));
-		String fontFamily = CanvasObjectParser.parseKeyword("font-family", args);
-		int fontSize = Integer.parseInt(CanvasObjectParser.parseKeyword("font-size", args));
-		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
+	public static CanvasTextField createFromSVG(String args,String text){
+			double x = Double.parseDouble(CanvasObjectParser.parseKeyword("x", args));
+			double y = Double.parseDouble(CanvasObjectParser.parseKeyword("y", args));
+			String fontFamily = CanvasObjectParser.parseKeyword("font-family", args);
+			int fontSize = Integer.parseInt(CanvasObjectParser.parseKeyword("font-size", args));
+			CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
 				CanvasObjectParser.parseKeyword("fill-opacity", args));
-		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
+			CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
 				CanvasObjectParser.parseKeyword("stroke-opacity", args));
 
-		String text = CanvasObjectParser.parseBetweenTags(args, "text");
-
-		return new CanvasTextField(text, new Point2D(x, y), fontSize, fontFamily, fillColor, strokeColor);
+			return new CanvasTextField(text, new Point2D(x, y), fontSize, fontFamily, fillColor, strokeColor);
 	}
 
 	@Override
