@@ -151,13 +151,6 @@ public class CanvasContextualMenu {
 	protected static void addGenericEntriesContextualMenu(ContextMenu contextMenu, MouseEvent e, Canvas canvas,
 			List<CanvasObject> selected) {
 
-		MenuItem itemSave = new MenuItem("Save Project");
-		itemSave.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				System.out.println("Saved");
-			}
-		});
-
 		MenuItem itemFill = new MenuItem("Fill with selected color");
 		itemFill.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -180,7 +173,7 @@ public class CanvasContextualMenu {
 			public void handle(ActionEvent e) {
 				for (CanvasObject object : selected) {
 					if (object instanceof CanvasTextField) {
-						((CanvasTextField)object).setFontSize(canvas.getSelectedFontSize());
+						((CanvasTextField) object).setFontSize(canvas.getSelectedFontSize());
 					}
 				}
 			}
@@ -191,7 +184,7 @@ public class CanvasContextualMenu {
 			public void handle(ActionEvent e) {
 				for (CanvasObject object : selected) {
 					if (object instanceof CanvasTextField) {
-						((CanvasTextField)object).setFontFamily(canvas.getSelectedFontType());
+						((CanvasTextField) object).setFontFamily(canvas.getSelectedFontType());
 					}
 				}
 			}
@@ -240,7 +233,8 @@ public class CanvasContextualMenu {
 
 			}
 		});
-		contextMenu.getItems().addAll(itemFill, itemStroke, itemDelete, itemFontSize, itemFontType, itemCopy, itemPaste, itemSave);
+		contextMenu.getItems().addAll(itemFill, itemStroke, itemDelete, itemFontSize, itemFontType, itemCopy,
+				itemPaste);
 
 	}
 
