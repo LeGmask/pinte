@@ -11,7 +11,6 @@ import java.nio.file.Path;
 import java.util.Scanner;
 import javafx.stage.FileChooser;
 import java.io.File;
-import java.lang.IllegalArgumentException;
 
 import javafx.geometry.Point2D;
 import org.pinte.models.CanvasObjects.CanvasEllipse;
@@ -24,13 +23,21 @@ import org.pinte.models.Utils.CanvasObjectParser;
 
 public class Open {
 	
-	Path openpath;
-	Stage stage;
+	Path openpath;//path to the new file
+	Stage stage;//stage of the transition window if a warning is needed
 
+	/**
+	 *  Constructor of Open
+	 */
 	public Open(){
 		this.openpath=null;
 	}
 
+	/**
+	 * constructor of Open with the path to the file to open
+	 * 
+	 * @param path path to the file to open
+	 */
 	public Open(Path path){
 		this.openpath=path;
 	}
@@ -40,6 +47,12 @@ public class Open {
 	 */
 	Canvas canva = Canvas.getInstance();
 
+	/**
+	 * extract a number from a String
+	 * 
+	 * @param input String where the number is extracted
+	 * @return the number extracted as a double
+	 */
 	private double extractnumber(String input){
 		int length=input.length();
 		int k=0;
@@ -108,6 +121,12 @@ public class Open {
 		}
 	}
 
+	/**
+	 * Reading of the file and setting of the canvas
+	 * 
+	 * @param tested the program has been tested to know if we can set it or not
+	 * @param warned the user has been warned of potential change in the original svg
+	 */
 	public void read(boolean tested,boolean warned){
 		try{
 			if(warned==true){
@@ -158,8 +177,7 @@ public class Open {
 						CanvasObjectParser.parseKeyword("stroke-opacity", input));
 						canva.add(new CanvasEllipse(new Point2D(cx, cy), r, fillColor, strokeColor)); 
 					}
-				}  else if(input.contains("line")){
-				}  else if(input.contains("line")){
+				} else if(input.contains("line")){
 					if(tested==true){
 						canva.add(CanvasLine.createFromSVG(input));
 					}
@@ -178,9 +196,10 @@ public class Open {
 									CanvasObjectParser.parseKeyword("fill-opacity", input));
 								CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", input),
 									CanvasObjectParser.parseKeyword("stroke-opacity", input));
-								canva.add(new CanvasTextField("salut", new Point2D(x, y), fontSize, fontFamily, fillColor, strokeColor));
+								String text=input.split(">")[1];
+								canva.add(new CanvasTextField(text, new Point2D(x, y), fontSize, fontFamily, fillColor, strokeColor));
 							} catch(NumberFormatException e){
-								System.out.println("erreur bizarre"+e);
+								System.out.println("strange error"+e);
 							}
 						}
 				} else {
@@ -214,12 +233,19 @@ public class Open {
 		}
 	}
 
+	/**
+	 * extract name from path
+	 * @return name of project
+	 */
 	public String name(){
 		String[] directory = openpath.toString().split("/");
 		String newname = directory[directory.length - 1];
 		return newname.replaceAll(".svg", "");
 	}
 
+	/**
+	 * open a new main window that contain a project
+	 */
 	public void openwindows(){
 		try{
 			Stage mainStage=new Stage();
@@ -236,6 +262,11 @@ public class Open {
 		}
 	}
 
+	/**
+	 * Choose the file to open
+	 * 
+	 * @param first the first file opened
+	 */
 	public void choose(boolean first){
 		FileChooser fileChooser = new FileChooser();
 		Stage choosestage = new Stage();
@@ -252,19 +283,27 @@ public class Open {
 			read(false,false);
 		} else {
 			if(first==true){
-				try{
-					Stage mainStage=new Stage();
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(getClass().getResource("../views/new.fxml")); // instantiate the new view
-					Parent root = loader.load();
-					Scene scene = new Scene(root);
-					mainStage.setTitle("nouveaux");
-					mainStage.setScene(scene);
-					mainStage.show();
-				} catch(java.io.IOException e){
-					System.out.println(e);
-				}
+				newproject();
 			}
+		}
+	}
+
+	/**
+	 * Open a window to create a new project
+	 * 
+	 */
+	public void newproject(){
+		try{
+			Stage mainStage=new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("../views/new.fxml")); // instantiate the new view
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			mainStage.setTitle("nouveaux");
+			mainStage.setScene(scene);
+			mainStage.show();
+		} catch(java.io.IOException e){
+			System.out.println(e);
 		}
 	}
 

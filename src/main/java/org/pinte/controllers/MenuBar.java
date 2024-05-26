@@ -33,12 +33,14 @@ public class MenuBar {
 		Menu menuFontSize = new Menu("FontSize");
 
 		// Items of the toolbar.
+		MenuItem menuItemNew = new MenuItem("New");
 		MenuItem menuItemSaveAs = new MenuItem("Save As");
 		MenuItem menuItemSave = new MenuItem("Save");
 		MenuItem menuItemExport = new MenuItem("Export");
 		MenuItem menuItemOpen = new MenuItem("Open");
 
 		//adding items to the menu.
+		menuFichier.getItems().add(menuItemNew);
 		menuFichier.getItems().add(menuItemSave);
 		menuFichier.getItems().add(menuItemSaveAs);
 		menuFichier.getItems().add(menuItemExport);
@@ -56,6 +58,9 @@ public class MenuBar {
 		});
 		menuItemOpen.setOnAction(event->{
 			open.choose(false);
+		});
+		menuItemNew.setOnAction(event->{
+			open.newproject();
 		});
 		menuItemExport.setOnAction(event -> {
 			try {
