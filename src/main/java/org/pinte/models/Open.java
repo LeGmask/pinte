@@ -228,7 +228,9 @@ public class Open {
 			} else if (tested == false && unknown == false) {
 				read(true, false);
 			} else {
-				canva.getCanvastage().close();
+				if(canva.getCanvastage()!=null){
+					canva.getCanvastage().close();
+				}
 				canva.setCanvastage(this.stage);
 				canva.setPath(this.openpath);
 				canva.setPathOpen(null);
