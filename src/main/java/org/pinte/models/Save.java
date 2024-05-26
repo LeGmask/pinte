@@ -37,15 +37,15 @@ public class Save {
 	 */
 	public void SaveFile_as() {
 		try {
-			Stage primaryStage = new Stage();
+			Stage saveStage = new Stage();
 			URL url = getClass().getResource("../views/changepath.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(url);
 			GridPane root = (GridPane) fxmlLoader.load();
 			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Enregistrer sous");
-			primaryStage.show();
+			saveStage.setScene(scene);
+			saveStage.setTitle("Enregistrer sous");
+			saveStage.show();
 		} catch (java.io.IOException e) {
 			System.out.println(e);
 		}
@@ -60,23 +60,40 @@ public class Save {
 		try {
 			if (Files.exists(canva.getPath())) {
 				if (!canva.getSafePath()) {
-					Stage primaryStage = new Stage();
+					Stage warningStage = new Stage();
 					URL url = getClass().getResource("../views/warning.fxml");
 					FXMLLoader fxmlLoader = new FXMLLoader();
 					fxmlLoader.setLocation(url);
 					GridPane root = (GridPane) fxmlLoader.load();
 					Scene scene = new Scene(root);
-					primaryStage.setScene(scene);
-					primaryStage.setTitle("Warning!");
-					primaryStage.show();
+					warningStage.setScene(scene);
+					warningStage.setTitle("Warning!");
+					warningStage.show();
 				} else {
 					write();
+					open();
 				}
 			} else {
 				write();
+				open();
 			}
 		} catch (java.io.IOException e) {
 			System.out.println(e);
+		}
+	}
+
+	/**
+	 * Open a project or create a new project
+	 */
+	public void open(){
+		if(canva.getOpen()){
+			canva.setOpen(false);
+			Open open=new Open();
+			open.choose(false);
+		} else if(canva.getNw()){
+			canva.setNw(false);
+			Open open=new Open();
+			open.newproject();
 		}
 	}
 
@@ -112,5 +129,6 @@ public class Save {
 		exist = true;
 		canva.setSafePath(true);
 		write();
+		open();
 	}
 }

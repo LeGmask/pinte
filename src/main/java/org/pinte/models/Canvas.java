@@ -5,6 +5,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.paint.Color;
 import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasObject;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.nio.file.Path;
@@ -76,10 +77,26 @@ public final class Canvas {
 	 * Where the project should be saved
 	 */
 	private Path path;
+
 	/**
 	 * path that user want to open
 	 */
 	private Path openpath;
+
+	/**
+	 * Stage of the project
+	 */
+	private Stage canvastage;
+
+	/**
+	 * the project is saving to close to creat a new
+	 */
+	private boolean nw=false;
+
+	/**
+	 * the project is saving to close to open
+	 */
+	private boolean open=false;
 
 	/**
 	 * Private constructor for the Canvas
@@ -132,6 +149,11 @@ public final class Canvas {
 		}
 	}
 
+	/**
+	 * Get the dimension of the canvas
+	 * 
+	 * @return Dimension of the canvas
+	 */
 	public Dimension getDim() {
 		return this.dim;
 	}
@@ -151,6 +173,18 @@ public final class Canvas {
 	public void clear() {
 		this.javafxCanvas.getGraphicsContext2D().clearRect(0, 0, this.javafxCanvas.getWidth(),
 			this.javafxCanvas.getHeight());
+	}
+
+	/**
+	 * Reset the canvas
+	 */
+	public void reset(){
+		clear();
+		this.dim=null;
+		this.path=null;
+		setSafePath(false);
+		this.objects.clear();
+		removeGhostObject();
 	}
 
 	/**
@@ -225,6 +259,60 @@ public final class Canvas {
 	}
 
 	/**
+	 * Set if a new project is being opened
+	 *
+	 * @param open boolean that answer previous statement
+	 */
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
+
+	/**
+	 * Get if a new project is being opened
+	 *
+	 * @return boolean that answer previous statement
+	 */
+	public boolean getOpen() {
+		return this.open;
+	}
+
+	/**
+	 * Set if a new project is being opened
+	 *
+	 * @param nw boolean that answer previous statement
+	 */
+	public void setNw(boolean nw) {
+		this.nw = nw;
+	}
+	
+	/**
+	 * Get if a new project is being opened
+	 *
+	 * @return boolean that answer previous statement
+	 */
+	public boolean getNw() {
+		return this.nw;
+	}
+
+	/**
+	 * Set the new stage of the window opened
+	 *
+	 * @param stage stage of the window opened
+	 */
+	public void setCanvastage(Stage stage) {
+		this.canvastage = stage;
+	}
+	
+	/**
+	 * Get the stage of the window opened
+	 *
+	 * @return stage of the window opened
+	 */
+	public Stage getCanvastage() {
+		return this.canvastage;
+	}
+
+	/**
 	 * Set if the path led to an unrelated file
 	 *
 	 * @param safe boolean that answer previous statement
@@ -232,7 +320,7 @@ public final class Canvas {
 	public void setSafePath(boolean safe) {
 		this.safePath = safe;
 	}
-	
+
 	/**
 	 * Get the path of file to open
 	 *
@@ -265,11 +353,17 @@ public final class Canvas {
 		clipboard = cb;
 
 	}
-  
+	
+	/**
+	 * Return the name of the project
+	 */
 	public String getName() {
 		return this.name;
 	}
 
+	/**
+	 * Set the name of the project
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}

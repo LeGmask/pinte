@@ -41,7 +41,7 @@
     </Label>
 
     <!-- Add Message Label -->
-    <Label text="êtes vous sure de vouloir remplacer ce fichier ?" GridPane.columnIndex="0"
+    <Label text="are you sure that you want to replace current existing file?" GridPane.columnIndex="0"
            GridPane.rowIndex="0" GridPane.columnSpan="3"
            GridPane.rowSpan="8" GridPane.halignment="CENTER">
         <font>

@@ -133,6 +133,9 @@ public class Open {
 			if (warned == true) {
 				openwindows();
 			}
+			if(tested==true){
+				canva.reset();
+			}
 			boolean unknown = false;
 			Scanner sc = new Scanner(this.openpath).useDelimiter("<");
 			String input = sc.next();
@@ -157,7 +160,6 @@ public class Open {
 							i++;
 						}
 						canva.setDim(intwidth, intheight);
-						// canva.clear();
 					}
 				} else if (input.contains("ellipse")) {
 					if (tested == true) {
@@ -213,20 +215,24 @@ public class Open {
 			sc.close();
 			if (tested == false && unknown == true) {
 				this.stage.close();
-				Stage primaryStage = new Stage();
+				Stage warningStage = new Stage();
 				URL url = getClass().getResource("../views/warningopen.fxml");
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(url);
 				GridPane root = (GridPane) fxmlLoader.load();
 				Scene scene = new Scene(root);
-				primaryStage.setScene(scene);
-				primaryStage.setTitle("Warning!");
-				primaryStage.show();
+				warningStage.setScene(scene);
+				warningStage.setTitle("Warning!");
+				warningStage.show();
+				this.stage=warningStage;
 			} else if (tested == false && unknown == false) {
 				read(true, false);
 			} else {
+				canva.getCanvastage().close();
+				canva.setCanvastage(this.stage);
 				canva.setPath(this.openpath);
 				canva.setPathOpen(null);
+				canva.setSafePath(true);
 				canva.setName(name());
 			}
 		} catch (java.io.IOException e) {
@@ -250,15 +256,15 @@ public class Open {
 	 */
 	public void openwindows() {
 		try {
-			Stage mainStage = new Stage();
-			this.stage = mainStage;
+			Stage newStage = new Stage();
+			this.stage = newStage;
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("../views/main.fxml")); // instantiate the new view
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
-			mainStage.setTitle(name());
-			mainStage.setScene(scene);
-			mainStage.show();
+			newStage.setTitle(name());
+			newStage.setScene(scene);
+			newStage.show();
 		} catch (java.io.IOException e) {
 			System.out.println(e);
 		}
@@ -291,19 +297,55 @@ public class Open {
 	}
 
 	/**
+	 * Open warning close window
+	 * @param nw new canva
+	 */
+	public void warning(boolean nw){
+		try{
+			if(nw){
+				canva.setNw(true);
+				Stage warningStage = new Stage();
+				URL url = getClass().getResource("../views/warningclose.fxml");
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(url);
+				GridPane root = (GridPane) fxmlLoader.load();
+				Scene scene = new Scene(root);
+				warningStage.setScene(scene);
+				warningStage.setTitle("Warning!");
+				warningStage.show();
+			} else {
+				canva.setOpen(true);
+				Stage warningStage = new Stage();
+				URL url = getClass().getResource("../views/warningclose.fxml");
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(url);
+				GridPane root = (GridPane) fxmlLoader.load();
+				Scene scene = new Scene(root);
+				warningStage.setScene(scene);
+				warningStage.setTitle("Warning!");
+				warningStage.show();
+			}
+		} catch (java.io.IOException e) {
+			System.out.println(e);
+		}
+	}
+	
+	/**
 	 * Open a window to create a new project
 	 *
 	 */
 	public void newproject() {
 		try {
-			Stage mainStage = new Stage();
+			Stage openStage = new Stage();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("../views/new.fxml")); // instantiate the new view
+			loader.setLocation(getClass().getResource("../views/opennew.fxml")); // instantiate the new view
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
-			mainStage.setTitle("New");
-			mainStage.setScene(scene);
-			mainStage.show();
+			openStage.setTitle(canva.getName());
+			openStage.setScene(scene);
+			openStage.show();
+			canva.getCanvastage().close();
+			canva.setCanvastage(openStage);
 		} catch (java.io.IOException e) {
 			System.out.println(e);
 		}

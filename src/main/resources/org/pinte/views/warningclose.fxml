@@ -12,7 +12,7 @@
 
 <!--Create the grid that will contain token-->
 <GridPane xmlns:fx="http://javafx.com/fxml"
-          fx:controller="org.pinte.controllers.WarningOpen" alignment="center"
+          fx:controller="org.pinte.controllers.WarningClose" alignment="center"
           hgap="10" vgap="10">
     <padding>
         <Insets top="40" right="40" bottom="40" left="40"/>
@@ -41,7 +41,7 @@
     </Label>
 
     <!-- Add Message Label -->
-    <Label text="are you sure that you want to open this file ?" GridPane.columnIndex="0"
+    <Label text="Your project will be closed would you like to save it" GridPane.columnIndex="0"
            GridPane.rowIndex="0" GridPane.columnSpan="3"
            GridPane.rowSpan="8" GridPane.halignment="CENTER">
         <font>
@@ -53,18 +53,6 @@
     </Label>
 
 
-    <!-- Add Message Label -->
-    <Label text="The project should be different from original since some part are not compatible with current program" GridPane.columnIndex="0"
-           GridPane.rowIndex="0" GridPane.columnSpan="3"
-           GridPane.rowSpan="12" GridPane.halignment="CENTER">
-        <font>
-            <Font name="Rubik" size="10"/>
-        </font>
-        <GridPane.margin>
-            <Insets top="20" bottom="20"/>
-        </GridPane.margin>
-    </Label>
-
     <!-- Add Box containing Button -->
     <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
 
@@ -74,9 +62,19 @@
         <Pane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
 
         <HBox>
+            <Button text="Save As" onAction="#Save_File_As">
+                <HBox.margin>
+                    <Insets right="10"/>
+                </HBox.margin>
+            </Button>
+            <Button text="Save" onAction="#Save_File">
+                <HBox.margin>
+                    <Insets right="10"/>
+                </HBox.margin>
+            </Button>
             <!-- Add Save Button -->
-            <Button text="Open"
-                    onAction="#open"/>
+            <Button text="ignore"
+                    onAction="#ignore"/>
         </HBox>
     </HBox>
 

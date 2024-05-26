@@ -57,10 +57,10 @@ public class MenuBar {
 			save.SaveFile(true);
 		});
 		menuItemOpen.setOnAction(event->{
-			open.choose(false);
+			open.warning(false);
 		});
 		menuItemNew.setOnAction(event->{
-			open.newproject();
+			open.warning(true);
 		});
 		menuItemExport.setOnAction(event -> {
 			try {

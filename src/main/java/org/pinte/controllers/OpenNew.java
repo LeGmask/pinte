@@ -6,11 +6,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.pinte.models.Canvas;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
-import org.pinte.models.Canvas;
-import org.pinte.models.Open;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -21,7 +20,7 @@ import static org.pinte.Utils.JavaFX.getStageFromEvent;
  * New project controller
  * Handles the creation of new projects
  */
-public class New {
+public class OpenNew {
 	/**
 	 * Singleton instance of the Canvas
 	 */
@@ -99,29 +98,16 @@ public class New {
 		loader.setLocation(getClass().getResource("../views/main.fxml")); // instantiate the new view
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
-		newStage.setTitle("pinte");
+		newStage.setTitle(projectName.getText());
 		newStage.setScene(scene);
 		newStage.show();
-		canvas.setCanvastage(newStage);
-		Stage stage = getStageFromEvent(actionEvent);
-		stage.close();
 		canvas.setDim(
 			Integer.parseInt(projectWidth.getText()),
 			Integer.parseInt(projectHeight.getText())
 		);
 		canvas.setName(projectName.getText());
 		canvas.setPath(Path.of(projectLocation.getText() + "/" + projectName.getText() + ".svg"));
-	}
-
-	/**
-	 * Open an existing project
-	 *
-	 * @param actionEvent Action event
-	 * @throws IOException If the main view is not found
-	 */
-	public void open(ActionEvent actionEvent) throws IOException {
-		Open open = new Open();
-		open.choose(true);
+		canvas.setCanvastage(newStage);
 		Stage stage = getStageFromEvent(actionEvent);
 		stage.close();
 	}

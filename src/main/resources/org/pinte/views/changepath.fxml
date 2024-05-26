@@ -29,7 +29,7 @@
     </columnConstraints>
 
     <!-- Add Header Label -->
-    <Label text="Enregistrer le projet" GridPane.columnIndex="0"
+    <Label text="Save project" GridPane.columnIndex="0"
            GridPane.rowIndex="0" GridPane.columnSpan="3"
            GridPane.rowSpan="1" GridPane.halignment="CENTER">
         <font>
