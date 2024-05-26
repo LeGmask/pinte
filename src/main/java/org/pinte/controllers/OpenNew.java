@@ -93,6 +93,7 @@ public class OpenNew {
 	 * @throws IOException If the main view is not found
 	 */
 	public void create(ActionEvent actionEvent) throws IOException {
+		canvas.reset();
 		Stage newStage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../views/main.fxml")); // instantiate the new view
