@@ -3,7 +3,6 @@ package org.pinte.models.states;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
-import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasLine;
 import org.pinte.models.CanvasObjects.CanvasObject;
 
@@ -31,7 +30,7 @@ public class addLineState extends State {
 						canvas.removeGhostObject();
 
 						CanvasObject line = new CanvasLine(p1, new Point2D(event.getX(), event.getY()),
-								canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
+							canvas.getCopyColorSelect(), canvas.getCopyColorSelect());
 
 						line.isSelected = true;
 						canvas.setGhostObject(line);

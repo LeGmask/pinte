@@ -54,7 +54,8 @@
 
 
     <!-- Add Message Label -->
-    <Label text="The project should be different from original since some part are not compatible with current program" GridPane.columnIndex="0"
+    <Label text="The project should be different from original since some part are not compatible with current program"
+           GridPane.columnIndex="0"
            GridPane.rowIndex="0" GridPane.columnSpan="3"
            GridPane.rowSpan="12" GridPane.halignment="CENTER">
         <font>

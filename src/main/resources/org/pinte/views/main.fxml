@@ -16,14 +16,14 @@
     <center>
         <AnchorPane>
             <style>
-            -fx-background-color: grey;
-            -fx-padding: 0;
+                -fx-background-color: grey;
+                -fx-padding: 0;
             </style>
             <AnchorPane>
                 <style>
-                -fx-background-color: white;
-                -fx-padding: 0;
-                -fx-border-color: black;
+                    -fx-background-color: white;
+                    -fx-padding: 0;
+                    -fx-border-color: black;
                 </style>
                 <Canvas fx:id="javafxCanvas"/>
             </AnchorPane>

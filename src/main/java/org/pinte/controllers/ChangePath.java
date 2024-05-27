@@ -50,12 +50,12 @@ public class ChangePath {
 	 * @param actionEvent Action event
 	 */
 	public void browse(ActionEvent actionEvent) {
-		try{
+		try {
 			DirectoryChooser directoryChooser = new DirectoryChooser();
 			directoryChooser.setTitle("Select Project Location");
 			Stage stage = getStageFromEvent(actionEvent);
 			projectLocation.setText(directoryChooser.showDialog(stage).getAbsolutePath());
-		} catch (java.lang.NullPointerException e){
+		} catch (java.lang.NullPointerException e) {
 			System.out.println("browse cancelled");
 		}
 	}

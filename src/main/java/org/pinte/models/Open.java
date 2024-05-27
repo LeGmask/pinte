@@ -1,30 +1,28 @@
 package org.pinte.models;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import java.net.URL;
-import javafx.scene.Parent;
+import org.pinte.models.CanvasObjects.*;
+import org.pinte.models.Utils.CanvasObjectParser;
 
+import java.io.File;
+import java.net.URL;
 import java.nio.file.Path;
 import java.util.Scanner;
-import javafx.stage.FileChooser;
-import java.io.File;
-
-import javafx.geometry.Point2D;
-import org.pinte.models.CanvasObjects.CanvasEllipse;
-import org.pinte.models.CanvasObjects.CanvasRectangle;
-import org.pinte.models.CanvasObjects.CanvasPolygon;
-import org.pinte.models.CanvasObjects.CanvasLine;
-import org.pinte.models.CanvasObjects.CanvasTextField;
-import org.pinte.models.CanvasObjects.CanvasColor;
-import org.pinte.models.Utils.CanvasObjectParser;
 
 public class Open {
 
 	Path openpath;// path to the new file
 	Stage stage;// stage of the transition window if a warning is needed
+	/**
+	 * Canva
+	 */
+	Canvas canva = Canvas.getInstance();
 
 	/**
 	 * Constructor of Open
@@ -41,11 +39,6 @@ public class Open {
 	public Open(Path path) {
 		this.openpath = path;
 	}
-
-	/**
-	 * Canva
-	 */
-	Canvas canva = Canvas.getInstance();
 
 	/**
 	 * extract a number from a String
@@ -133,7 +126,7 @@ public class Open {
 			if (warned == true) {
 				openwindows();
 			}
-			if(tested==true){
+			if (tested == true) {
 				canva.reset();
 			}
 			boolean unknown = false;
@@ -175,9 +168,9 @@ public class Open {
 						double cy = Double.parseDouble(CanvasObjectParser.parseKeyword("cy", input));
 						double r = Double.parseDouble(CanvasObjectParser.parseKeyword("r", input));
 						CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", input),
-								CanvasObjectParser.parseKeyword("fill-opacity", input));
+							CanvasObjectParser.parseKeyword("fill-opacity", input));
 						CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", input),
-								CanvasObjectParser.parseKeyword("stroke-opacity", input));
+							CanvasObjectParser.parseKeyword("stroke-opacity", input));
 						canva.add(new CanvasEllipse(new Point2D(cx, cy), r, fillColor, strokeColor));
 					}
 				} else if (input.contains("line")) {
@@ -199,12 +192,12 @@ public class Open {
 						String fontFamily = CanvasObjectParser.parseKeyword("font-family", input);
 						int fontSize = Integer.parseInt(CanvasObjectParser.parseKeyword("font-size", input));
 						CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", input),
-								CanvasObjectParser.parseKeyword("fill-opacity", input));
+							CanvasObjectParser.parseKeyword("fill-opacity", input));
 						CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", input),
-								CanvasObjectParser.parseKeyword("stroke-opacity", input));
+							CanvasObjectParser.parseKeyword("stroke-opacity", input));
 						String text = CanvasObjectParser.parseBetweenTags(input, "text");
 						canva.add(new CanvasTextField(text, new Point2D(x, y), fontSize, fontFamily, fillColor,
-								strokeColor));
+							strokeColor));
 					}
 				} else {
 					System.out.println("untreated type");
@@ -224,11 +217,11 @@ public class Open {
 				warningStage.setScene(scene);
 				warningStage.setTitle("Warning!");
 				warningStage.show();
-				this.stage=warningStage;
+				this.stage = warningStage;
 			} else if (tested == false && unknown == false) {
 				read(true, false);
 			} else {
-				if(canva.getCanvastage()!=null){
+				if (canva.getCanvastage() != null) {
 					canva.getCanvastage().close();
 				}
 				canva.setCanvastage(this.stage);
@@ -300,11 +293,12 @@ public class Open {
 
 	/**
 	 * Open warning close window
+	 *
 	 * @param nw new canva
 	 */
-	public void warning(boolean nw){
-		try{
-			if(nw){
+	public void warning(boolean nw) {
+		try {
+			if (nw) {
 				canva.setNw(true);
 				Stage warningStage = new Stage();
 				URL url = getClass().getResource("../views/warningclose.fxml");
@@ -331,10 +325,9 @@ public class Open {
 			System.out.println(e);
 		}
 	}
-	
+
 	/**
 	 * Open a window to create a new project
-	 *
 	 */
 	public void newproject() {
 		try {

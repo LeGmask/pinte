@@ -38,12 +38,31 @@ public class CanvasTextField extends CanvasObject {
 	 * @param fontFamily    the text's font family
 	 */
 	public CanvasTextField(String text, Point2D baselineStart, int fontSize, String fontFamily, CanvasColor fillColor,
-			CanvasColor strokeColor) {
+						   CanvasColor strokeColor) {
 		super(fillColor, strokeColor);
 		this.text = text;
 		this.baselineStart = baselineStart;
 		this.fontSize = fontSize;
 		this.fontFamily = fontFamily;
+	}
+
+	/**
+	 * Creates a text filed from an SVG string
+	 *
+	 * @param args the SVG string to parse
+	 * @return a CanvasTextField parsed from the SVG string
+	 */
+	public static CanvasTextField createFromSVG(String args, String text) {
+		double x = Double.parseDouble(CanvasObjectParser.parseKeyword("x", args));
+		double y = Double.parseDouble(CanvasObjectParser.parseKeyword("y", args));
+		String fontFamily = CanvasObjectParser.parseKeyword("font-family", args);
+		int fontSize = Integer.parseInt(CanvasObjectParser.parseKeyword("font-size", args));
+		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
+			CanvasObjectParser.parseKeyword("fill-opacity", args));
+		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
+			CanvasObjectParser.parseKeyword("stroke-opacity", args));
+
+		return new CanvasTextField(text, new Point2D(x, y), fontSize, fontFamily, fillColor, strokeColor);
 	}
 
 	@Override
@@ -59,7 +78,7 @@ public class CanvasTextField extends CanvasObject {
 		double textY = baselineStart.getY() - fontSize * 0.8;
 
 		return new CanvasRectangle(new Point2D(textX, textY), textWidth, textHeight,
-				new CanvasColor(0, 0, 0), new CanvasColor(0, 0, 0));
+			new CanvasColor(0, 0, 0), new CanvasColor(0, 0, 0));
 	}
 
 	/**
@@ -104,25 +123,6 @@ public class CanvasTextField extends CanvasObject {
 		attributes.put("font-family", fontFamily);
 		attributes.put("font-size", Integer.toString(fontSize));
 		return toSVG("text", attributes) + text + "</text>";
-	}
-
-	/**
-	 * Creates a text filed from an SVG string
-	 *
-	 * @param args the SVG string to parse
-	 * @return a CanvasTextField parsed from the SVG string
-	 */
-	public static CanvasTextField createFromSVG(String args,String text){
-			double x = Double.parseDouble(CanvasObjectParser.parseKeyword("x", args));
-			double y = Double.parseDouble(CanvasObjectParser.parseKeyword("y", args));
-			String fontFamily = CanvasObjectParser.parseKeyword("font-family", args);
-			int fontSize = Integer.parseInt(CanvasObjectParser.parseKeyword("font-size", args));
-			CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
-				CanvasObjectParser.parseKeyword("fill-opacity", args));
-			CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
-				CanvasObjectParser.parseKeyword("stroke-opacity", args));
-
-			return new CanvasTextField(text, new Point2D(x, y), fontSize, fontFamily, fillColor, strokeColor);
 	}
 
 	@Override

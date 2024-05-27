@@ -7,10 +7,10 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
-import org.pinte.models.CanvasObjects.CanvasLine;
 import org.pinte.models.CanvasObjects.CanvasObject;
 import org.pinte.models.CanvasObjects.CanvasTextField;
 import org.pinte.models.states.translateState;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,7 +149,7 @@ public class CanvasContextualMenu {
 	}
 
 	protected static void addGenericEntriesContextualMenu(ContextMenu contextMenu, MouseEvent e, Canvas canvas,
-			List<CanvasObject> selected) {
+														  List<CanvasObject> selected) {
 
 		MenuItem itemFill = new MenuItem("Fill with selected color");
 		itemFill.setOnAction(new EventHandler<ActionEvent>() {
@@ -234,7 +234,7 @@ public class CanvasContextualMenu {
 			}
 		});
 		contextMenu.getItems().addAll(itemFill, itemStroke, itemDelete, itemFontSize, itemFontType, itemCopy,
-				itemPaste);
+			itemPaste);
 
 	}
 

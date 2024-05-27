@@ -38,9 +38,9 @@ public class CanvasPolygon extends CanvasObject {
 		Point2D[] points = CanvasObjectParser.parsePoints(args);
 
 		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
-				CanvasObjectParser.parseKeyword("fill-opacity", args));
+			CanvasObjectParser.parseKeyword("fill-opacity", args));
 		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
-				CanvasObjectParser.parseKeyword("stroke-opacity", args));
+			CanvasObjectParser.parseKeyword("stroke-opacity", args));
 
 		return new CanvasPolygon(points, fillColor, strokeColor);
 	}
@@ -70,8 +70,8 @@ public class CanvasPolygon extends CanvasObject {
 		String result = "";
 		for (Point2D point : points) {
 			result += "%s,%s ".formatted(
-					point.getX(),
-					point.getY());
+				point.getX(),
+				point.getY());
 		}
 		return result.trim(); // remove trailing space
 	}
@@ -89,11 +89,11 @@ public class CanvasPolygon extends CanvasObject {
 				if (y <= Math.max(p1.getY(), p2.getY())) {
 					if (x <= Math.max(p1.getX(), p2.getX())) {
 						double x_intersection = (y - p1.getY()) * (p2.getX() - p1.getX())
-								/ (p2.getY() - p1.getY())
-								+ p1.getX();
+							/ (p2.getY() - p1.getY())
+							+ p1.getX();
 
 						if (p1.getX() == p2.getX()
-								|| x <= x_intersection) {
+							|| x <= x_intersection) {
 							inside = !inside;
 						}
 					}
@@ -146,9 +146,9 @@ public class CanvasPolygon extends CanvasObject {
 		this.setUpDrawingParameters();
 
 		gc.fillPolygon(
-				points_x,
-				points_y,
-				points.length);
+			points_x,
+			points_y,
+			points.length);
 		gc.strokePolygon(points_x, points_y, points.length);
 	}
 

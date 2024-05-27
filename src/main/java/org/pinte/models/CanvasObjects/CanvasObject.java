@@ -56,7 +56,7 @@ public abstract class CanvasObject {
 			String k = e.nextElement();
 			svgString += " " + k + "=\"" + attributes.get(k) + "\"";
 		}
-		if(shape.compareTo("text")==0){
+		if (shape.compareTo("text") == 0) {
 			return svgString + ">";
 		} else {
 			return svgString + "/>";
@@ -140,7 +140,7 @@ public abstract class CanvasObject {
 		if (this.isSelected) {
 			gc.setStroke(Color.YELLOW);
 			gc.setLineWidth(2);
-			gc.setLineDashes(new double[] { 5 });
+			gc.setLineDashes(new double[]{5});
 		}
 	}
 

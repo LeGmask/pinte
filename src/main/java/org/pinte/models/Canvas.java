@@ -1,11 +1,9 @@
 package org.pinte.models;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.Clipboard;
-import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import org.pinte.models.CanvasObjects.CanvasColor;
 import org.pinte.models.CanvasObjects.CanvasObject;
-import javafx.stage.Stage;
 
 import java.awt.*;
 import java.nio.file.Path;
@@ -38,27 +36,23 @@ public final class Canvas {
 	 * The clipboard to copy paste
 	 */
 	public List<CanvasObject> clipboard = new ArrayList<>();
-  
+
 	/**
 	 * La couleur actuellement utilisée
 	 */
 	public CanvasColor colorSelect;
-
-	/**
-	 * Selected font size
-	 */
-	private int selectedFontSize;
-
-	/**
-	 * Selected font type
-	 */
-	private String selectedFontType;
-
 	/**
 	 * An object used to show information about selection, shape drawing, etc...
 	 */
 	public CanvasObject ghostObject = null;
-
+	/**
+	 * Selected font size
+	 */
+	private int selectedFontSize;
+	/**
+	 * Selected font type
+	 */
+	private String selectedFontType;
 	/**
 	 * The name of the project
 	 */
@@ -91,12 +85,12 @@ public final class Canvas {
 	/**
 	 * the project is saving to close to creat a new
 	 */
-	private boolean nw=false;
+	private boolean nw = false;
 
 	/**
 	 * the project is saving to close to open
 	 */
-	private boolean open=false;
+	private boolean open = false;
 
 	/**
 	 * Private constructor for the Canvas
@@ -151,7 +145,7 @@ public final class Canvas {
 
 	/**
 	 * Get the dimension of the canvas
-	 * 
+	 *
 	 * @return Dimension of the canvas
 	 */
 	public Dimension getDim() {
@@ -178,10 +172,10 @@ public final class Canvas {
 	/**
 	 * Reset the canvas
 	 */
-	public void reset(){
+	public void reset() {
 		clear();
-		this.dim=null;
-		this.path=null;
+		this.dim = null;
+		this.path = null;
 		setSafePath(false);
 		this.objects.clear();
 		removeGhostObject();
@@ -259,12 +253,12 @@ public final class Canvas {
 	}
 
 	/**
-	 * Set if a new project is being opened
+	 * Set if the path led to an unrelated file
 	 *
-	 * @param open boolean that answer previous statement
+	 * @param safe boolean that answer previous statement
 	 */
-	public void setOpen(boolean open) {
-		this.open = open;
+	public void setSafePath(boolean safe) {
+		this.safePath = safe;
 	}
 
 	/**
@@ -279,12 +273,12 @@ public final class Canvas {
 	/**
 	 * Set if a new project is being opened
 	 *
-	 * @param nw boolean that answer previous statement
+	 * @param open boolean that answer previous statement
 	 */
-	public void setNw(boolean nw) {
-		this.nw = nw;
+	public void setOpen(boolean open) {
+		this.open = open;
 	}
-	
+
 	/**
 	 * Get if a new project is being opened
 	 *
@@ -295,14 +289,14 @@ public final class Canvas {
 	}
 
 	/**
-	 * Set the new stage of the window opened
+	 * Set if a new project is being opened
 	 *
-	 * @param stage stage of the window opened
+	 * @param nw boolean that answer previous statement
 	 */
-	public void setCanvastage(Stage stage) {
-		this.canvastage = stage;
+	public void setNw(boolean nw) {
+		this.nw = nw;
 	}
-	
+
 	/**
 	 * Get the stage of the window opened
 	 *
@@ -313,12 +307,12 @@ public final class Canvas {
 	}
 
 	/**
-	 * Set if the path led to an unrelated file
+	 * Set the new stage of the window opened
 	 *
-	 * @param safe boolean that answer previous statement
+	 * @param stage stage of the window opened
 	 */
-	public void setSafePath(boolean safe) {
-		this.safePath = safe;
+	public void setCanvastage(Stage stage) {
+		this.canvastage = stage;
 	}
 
 	/**
@@ -353,7 +347,7 @@ public final class Canvas {
 		clipboard = cb;
 
 	}
-	
+
 	/**
 	 * Return the name of the project
 	 */
@@ -379,6 +373,7 @@ public final class Canvas {
 
 	/**
 	 * getter of selectedFontSize
+	 *
 	 * @return current selected font size
 	 */
 	public int getSelectedFontSize() {
@@ -387,6 +382,7 @@ public final class Canvas {
 
 	/**
 	 * setter for selectedFontSize
+	 *
 	 * @param selectedFontSize new selectedFontSize
 	 */
 	public void setSelectedFontSize(int selectedFontSize) {
@@ -395,6 +391,7 @@ public final class Canvas {
 
 	/**
 	 * getter of selectedFontType
+	 *
 	 * @return current selected font type
 	 */
 	public String getSelectedFontType() {
@@ -403,6 +400,7 @@ public final class Canvas {
 
 	/**
 	 * setter for selectedFontType
+	 *
 	 * @param selectedFontType new selectedFontType
 	 */
 	public void setSelectedFontType(String selectedFontType) {

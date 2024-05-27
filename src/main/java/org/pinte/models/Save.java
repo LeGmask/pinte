@@ -85,14 +85,14 @@ public class Save {
 	/**
 	 * Open a project or create a new project
 	 */
-	public void open(){
-		if(canva.getOpen()){
+	public void open() {
+		if (canva.getOpen()) {
 			canva.setOpen(false);
-			Open open=new Open();
+			Open open = new Open();
 			open.choose(false);
-		} else if(canva.getNw()){
+		} else if (canva.getNw()) {
 			canva.setNw(false);
-			Open open=new Open();
+			Open open = new Open();
 			open.newproject();
 		}
 	}
@@ -106,7 +106,7 @@ public class Save {
 		List<CanvasObject> objects = canva.getCanvas();
 		List<String> objectsstr = new ArrayList<>();
 		objectsstr.add("<?xml version=\"1.0\"?>");
-		objectsstr.add("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\""+ canva.getDim().getWidth() +"px\" height=\""+ canva.getDim().getWidth() + "px\" viewBox=\"0 0 "+canva.getDim().getWidth() +" "+ canva.getDim().getHeight() +"\">");
+		objectsstr.add("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" + canva.getDim().getWidth() + "px\" height=\"" + canva.getDim().getWidth() + "px\" viewBox=\"0 0 " + canva.getDim().getWidth() + " " + canva.getDim().getHeight() + "\">");
 		for (CanvasObject object : objects) {
 			objectsstr.add(object.toSVG());
 		}

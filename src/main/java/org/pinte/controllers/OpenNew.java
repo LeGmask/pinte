@@ -2,14 +2,13 @@ package org.pinte.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.pinte.models.Canvas;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -64,13 +63,13 @@ public class OpenNew {
 	 * @param actionEvent Action event
 	 */
 	public void browse(ActionEvent actionEvent) {
-		try{
+		try {
 			DirectoryChooser directoryChooser = new DirectoryChooser();
 			directoryChooser.setTitle("Select Project Location");
 			Stage stage = getStageFromEvent(actionEvent);
 
 			projectLocation.setText(directoryChooser.showDialog(stage).getAbsolutePath());
-		} catch (java.lang.NullPointerException e){
+		} catch (java.lang.NullPointerException e) {
 			System.out.println("browse cancelled");
 		}
 	}

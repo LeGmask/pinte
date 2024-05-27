@@ -1,16 +1,12 @@
 package org.pinte.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
 import org.pinte.models.Canvas;
 import org.pinte.models.Coloration;
-import org.pinte.models.Save;
 import org.pinte.models.Open;
+import org.pinte.models.Save;
 
 public class MenuBar {
 	/**
@@ -56,10 +52,10 @@ public class MenuBar {
 		menuItemSave.setOnAction(event -> {
 			save.SaveFile(true);
 		});
-		menuItemOpen.setOnAction(event->{
+		menuItemOpen.setOnAction(event -> {
 			open.warning(false);
 		});
-		menuItemNew.setOnAction(event->{
+		menuItemNew.setOnAction(event -> {
 			open.warning(true);
 		});
 		menuItemExport.setOnAction(event -> {

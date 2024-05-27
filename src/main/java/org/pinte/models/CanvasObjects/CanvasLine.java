@@ -35,9 +35,9 @@ public class CanvasLine extends CanvasObject {
 		double x2 = Double.parseDouble(CanvasObjectParser.parseKeyword("x2", args));
 		double y2 = Double.parseDouble(CanvasObjectParser.parseKeyword("y2", args));
 		CanvasColor fillColor = new CanvasColor(CanvasObjectParser.parseKeyword("fill", args),
-				CanvasObjectParser.parseKeyword("fill-opacity", args));
+			CanvasObjectParser.parseKeyword("fill-opacity", args));
 		CanvasColor strokeColor = new CanvasColor(CanvasObjectParser.parseKeyword("stroke", args),
-				CanvasObjectParser.parseKeyword("stroke-opacity", args));
+			CanvasObjectParser.parseKeyword("stroke-opacity", args));
 
 		return new CanvasLine(new Point2D(x1, y1), new Point2D(x2, y2), fillColor, strokeColor);
 	}
@@ -78,8 +78,8 @@ public class CanvasLine extends CanvasObject {
 		} else {
 			// Projection is on the segment
 			Point2D projectionPoint = new Point2D(
-					a.getX() + projection * ab.getX(),
-					a.getY() + projection * ab.getY());
+				a.getX() + projection * ab.getX(),
+				a.getY() + projection * ab.getY());
 			distance = length(p.subtract(projectionPoint));
 		}
 
